@@ -1,0 +1,20 @@
+<% if (success.length) { %>
+<div class="alertSuccess" id="alert">
+  <h1 class="msg"><%= success %></h1>
+  <div class="btn">
+    <button type="button" id="closeBtn">
+      <i class="fa-solid fa-circle-xmark"></i>
+    </button>
+  </div>
+</div>
+
+<% } %> <% if (error.length) { %>
+<div class="alertError" id="alert">
+  <h1 class="msg"><%= error %></h1>
+  <div class="btn">
+    <button type="button" id="closeBtn">
+      <i class="fa-solid fa-circle-xmark"></i>
+    </button>
+  </div>
+</div>
+<% } %>

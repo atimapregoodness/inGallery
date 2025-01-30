@@ -1,0 +1,55 @@
+<title>Register - inGallery</title>
+<%- layout('layout/boilerplate') %>
+
+<div class="container">
+  <form action="/signup" method="post">
+    <h1 id="header">Create Account</h1>
+    <%- include('../partials/err') %>
+    <div id="input">
+      <label for="username">Username</label>
+      <div class="inputContainer">
+        <i class="fa-solid fa-user"></i>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="enter your username"
+        />
+      </div>
+    </div>
+    <div id="input">
+      <label for="email">Email Address</label>
+      <div class="inputContainer">
+        <i class="fa-solid fa-envelope"></i>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="enter your email address"
+        />
+      </div>
+    </div>
+    <div id="input">
+      <label for="password">Password</label>
+      <div class="inputContainer">
+        <i class="fa-sharp fa-solid fa-key"></i>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="create a password"
+        />
+      </div>
+    </div>
+    <div class="terms">
+      <input type="checkbox" name="terms" id="terms" / required>
+      <label for="terms"
+        ><p>i agreed to the <a href="">terms and conditions</a></p></label
+      >
+    </div>
+    <div class="btns">
+      <button type="submit">Register <i class="fa-solid fa-plus"></i></button>
+      <a href="/login">i have an account!</a>
+    </div>
+  </form>
+</div>

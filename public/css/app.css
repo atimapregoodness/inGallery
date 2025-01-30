@@ -1,0 +1,372 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+* {
+  font-family: "Roboto Flex", serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --darkGreen: #104b10;
+  --lightGreen: #b7e6ab;
+  --redBg: #ff7474;
+  --red: #ff0000;
+  --lightRed: #ffdede;
+  --transition: all 0.5s;
+  --hoverGreen: #0b350b;
+  --greenBg: #addf96b4;
+  --lightGreenHover: #8cbd80;
+}
+
+button {
+  transition: var(--transition);
+  border: none;
+}
+
+#alert {
+  border-radius: 0.5em;
+  width: 100%;
+  display: flex;
+  padding: 0.7em 0;
+}
+#alert .msg {
+  padding: 0.1em 0.5em;
+  font-size: 15px;
+}
+#alert .btn {
+  width: auto;
+  margin: auto;
+}
+#alert .btn button {
+  margin-right: 0.5em;
+  background: none;
+  border: none;
+}
+
+.alertSuccess {
+  border: var(--darkGreen) 1px solid;
+  background-color: var(--lightGreen);
+}
+
+.alertError {
+  border: var(--redBg) 1px solid;
+  background-color: var(--lightRed);
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.container {
+  padding-top: 10em;
+  align-items: center; /* Center items horizontally */
+  margin: 0 auto; /* Center the container itself */
+}
+
+form {
+  border-radius: 0.5em;
+  display: block;
+  margin: auto;
+  width: 20em;
+}
+form #header {
+  font-size: 25px;
+  text-align: center;
+  color: #000000;
+}
+form div {
+  margin-top: 0.8em;
+  display: block;
+}
+form input {
+  border-radius: 0 0.5em 0.5em 0;
+  background-color: var(--lightGreen);
+  color: #000000;
+  border: none;
+  padding: 0.5em;
+  width: 100%;
+}
+form .inputContainer {
+  display: flex;
+  flex-direction: row;
+}
+form .inputContainer i {
+  background-color: var(--greenBg);
+  color: #000000;
+  display: flex;
+  border-radius: 0.5em 0 0 0.5em;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+form #input {
+  padding-top: 0.8em;
+}
+form .btns {
+  margin: 0.5em 0em;
+  display: block;
+}
+form .btns button {
+  margin-top: 0.5em;
+  background-color: var(--darkGreen);
+  color: #ffffff;
+  border-radius: 0.3em;
+  border: none;
+  padding: 0.5em 1em;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+form .btns button:hover {
+  background-color: var(--hoverGreen);
+}
+form .btns a {
+  color: var(--red);
+}
+form .btns i {
+  padding-right: 0.4em;
+}
+form .terms {
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  padding-top: 0.5em;
+}
+form .terms input {
+  width: 1em;
+}
+form .terms p {
+  padding-left: 0.3em;
+  font-size: 13px;
+}
+form .terms a {
+  font-size: 13px;
+}
+
+#closeBtn {
+  background-color: #104b10;
+}
+
+nav {
+  padding: 0.5em;
+  padding-bottom: 0;
+  position: fixed;
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background-color: rgba(255, 255, 255, 0.8156862745);
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+nav .logo {
+  padding-left: 1em;
+}
+nav .logo img {
+  width: 140px;
+}
+nav .navLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-right: 8em;
+  margin-bottom: 0.3em;
+}
+nav .navLinks ul {
+  display: flex;
+  padding: 0;
+}
+nav .navLinks li {
+  font-size: 15px;
+  list-style: none;
+}
+nav .navLinks a {
+  color: #000000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 3em;
+  transition: none;
+  text-decoration: none;
+}
+nav .navLinks #navActive {
+  padding: 0.5em;
+  color: var(--darkGreen);
+  border-bottom: 2px solid var(--darkGreen);
+}
+nav .hamborger {
+  margin-left: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+nav .hamborger ul {
+  display: block;
+}
+nav .hamborger li {
+  padding: 0em;
+  font-size: 15px;
+  list-style: none;
+}
+nav .hamborger a {
+  margin-left: 0em;
+  padding: 0;
+  color: #000000;
+  text-decoration: none;
+}
+nav .hamborger .items {
+  width: auto;
+  position: absolute;
+  display: none;
+  padding-top: 3.5em;
+}
+nav .hamborger .active {
+  display: block;
+}
+nav .hamborger .itemsContainer {
+  border: 1px solid #c1e4b1;
+  background-color: #ffffff;
+  border-radius: 0.3em;
+  padding: 0.5em;
+}
+nav .hamborger .itemsContainer i {
+  padding-right: 1em;
+}
+nav .hamborger .itemsContainer li {
+  width: 100%;
+}
+nav .hamborger .itemsContainer li button {
+  background: rgba(255, 255, 255, 0.2745098039);
+  color: #000000;
+  border-radius: 0.3em;
+  border: none;
+  margin-top: 0.3em;
+  padding: 0.5em 1em;
+  width: 100%;
+}
+nav .hamborger .itemsContainer li button:hover {
+  background-color: var(--lightGreen);
+}
+nav .hamborger .itemsContainer a {
+  margin-left: 0;
+  padding-left: 0;
+}
+nav .hamborger .title {
+  z-index: 10;
+  margin-top: 0.3em;
+}
+nav .hamborger .title button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  background-color: var(--greenBg);
+  margin-left: -0.5em;
+  border-radius: 0.7em;
+  color: #000000;
+  border: none;
+}
+nav .hamborger .title button .arrow {
+  transition: var(--transition);
+  color: #000000;
+  padding-left: 1em;
+}
+nav .hamborger .title button #userIcon {
+  padding-right: 0em;
+}
+nav .hamborger .title button .arrowDown {
+  transition: var(--transition);
+  transform: rotateX(180deg);
+}
+nav .hamborger #header {
+  font-size: 30px;
+}
+nav #logoutBtn {
+  background-color: var(--red);
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+nav #logoutBtn:hover {
+  background-color: #d80a0a;
+}
+nav #logoutBtn #exitIcon {
+  padding-right: 0.3em;
+}
+
+#active {
+  background-color: var(--greenBg);
+}
+
+.bodyContainer {
+  padding-top: 2em;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.gridContainer .img {
+  padding-left: 3em;
+}
+.gridContainer #gridImg {
+  width: 550px;
+}
+.gridContainer .gridContents {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  padding-right: 3em;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 65vh;
+}
+.searchContainer .text {
+  margin: auto;
+  padding-top: 10em;
+  width: 100vh;
+}
+.searchContainer h1 {
+  font-size: 50px;
+  text-align: center;
+}
+.searchContainer h1 span {
+  font-size: 60px;
+  padding: 0 0.2em;
+  text-align: center;
+  border-bottom: 4px solid var(--greenBg);
+  color: var(--lightGreenHover);
+}
+.searchContainer #searchForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.searchContainer #searchForm input {
+  border: 2px solid var(--lightGreen);
+  background: none;
+  border-radius: 0.4em;
+  font-size: 20px;
+  padding: 0.5em 1em;
+  width: 28em;
+}
+.searchContainer #searchForm #submitBtn {
+  background-color: var(--lightGreen);
+  border-radius: 0.4em;
+  margin-left: 0.4em;
+  padding: 0.2em 1.3em;
+  font-size: 19px;
+}
+.searchContainer #searchForm #submitBtn:hover {
+  background-color: var(--lightGreenHover);
+}/*# sourceMappingURL=app.css.map */
