@@ -1,3 +1,9 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+// console.log(process.env.SECRET);
+
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -12,7 +18,7 @@ const userRoute = require('./routes/userRoute');
 const flash = require('connect-flash');
 
 
-mongoose.connect('mongodb://localhost:27017/inGallery', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('DB CONNECTION OPEN');
   })

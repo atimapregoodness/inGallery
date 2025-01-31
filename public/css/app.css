@@ -19,6 +19,10 @@
   --lightGreenHover: #8cbd80;
 }
 
+img {
+  pointer-events: none;
+}
+
 button {
   transition: var(--transition);
   border: none;
