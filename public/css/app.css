@@ -8,13 +8,13 @@
 }
 
 :root {
-  --darkGreen: #104b10;
+  --darkGreen: #457c45;
   --lightGreen: #b7e6ab;
   --redBg: #ff7474;
   --red: #ff0000;
   --lightRed: #ffdede;
   --transition: all 0.5s;
-  --hoverGreen: #0b350b;
+  --hoverGreen: #294729;
   --greenBg: #addf96b4;
   --lightGreenHover: #8cbd80;
 }
@@ -309,22 +309,56 @@ nav #logoutBtn #exitIcon {
 .bodyContainer {
   padding-top: 2em;
 }
-
-.gridContainer {
+.bodyContainer .gridContents {
+  padding: 4em;
+}
+.bodyContainer .gridContents h1 {
+  text-align: left;
+  font-size: 80px;
+}
+.bodyContainer .gridContents h3 {
+  padding-top: 1em;
+  text-align: left;
+  font-size: 15px;
+  margin: 0;
+}
+.bodyContainer .gridContents h3 span {
+  font-size: 20px;
+  padding: 0 0.2em;
+  border-bottom: 4px solid var(--greenBg);
+  color: var(--darkGreen);
+}
+.bodyContainer #getBtn {
+  width: 30vh;
+  font-weight: 600;
+  border: 2px solid var(--darkGreen);
+  margin-top: 2em;
+  border-radius: 0.3em;
+  padding: 0.7em 1.3em;
+  font-size: 19px;
+  background: none;
+}
+.bodyContainer #getBtn:hover {
+  color: #ffffff;
+  background-color: var(--darkGreen);
+}
+.bodyContainer #arrow {
+  padding-left: 0.5em;
+}
+.bodyContainer .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.gridContainer .img {
+.bodyContainer .gridContainer .img {
   padding-left: 3em;
 }
-.gridContainer #gridImg {
+.bodyContainer .gridContainer #gridImg {
   width: 550px;
 }
-.gridContainer .gridContents {
+.bodyContainer .gridContainer .gridContents {
   display: flex;
   flex-direction: column;
   align-self: center;
-  align-items: center;
   padding-right: 3em;
 }
 
@@ -348,7 +382,7 @@ nav #logoutBtn #exitIcon {
   padding: 0 0.2em;
   text-align: center;
   border-bottom: 4px solid var(--greenBg);
-  color: var(--lightGreenHover);
+  color: var(--darkGreen);
 }
 .searchContainer #searchForm {
   display: flex;
@@ -357,7 +391,7 @@ nav #logoutBtn #exitIcon {
   width: 100%;
 }
 .searchContainer #searchForm input {
-  border: 2px solid var(--lightGreen);
+  border: 2px solid var(--darkGreen);
   background: none;
   border-radius: 0.4em;
   font-size: 20px;
@@ -365,12 +399,105 @@ nav #logoutBtn #exitIcon {
   width: 28em;
 }
 .searchContainer #searchForm #submitBtn {
-  background-color: var(--lightGreen);
+  background-color: var(--darkGreen);
   border-radius: 0.4em;
   margin-left: 0.4em;
   padding: 0.2em 1.3em;
   font-size: 19px;
+  color: #ffffff;
 }
 .searchContainer #searchForm #submitBtn:hover {
-  background-color: var(--lightGreenHover);
+  background-color: var(--hoverGreen);
+}
+
+.sectionTwo {
+  width: 100%;
+  height: auto;
+  padding: 2em;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-self: center;
+}
+.sectionTwo .grid {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.sectionTwo .grid .img {
+  margin: 0;
+}
+.sectionTwo .grid #gridImg {
+  width: 400px;
+}
+.sectionTwo .grid .gridContents {
+  width: 80vh;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.sectionTwo .grid .gridContents ul {
+  list-style: none;
+}
+.sectionTwo .grid .gridContents ul li {
+  font-size: 15px;
+  padding-left: 1.3em;
+  font-weight: 300;
+  color: #000000;
+}
+.sectionTwo .grid .gridContents #listHead {
+  padding-top: 0.7em;
+  font-size: 20px;
+  color: var(--darkGreen);
+  font-weight: 600;
+}
+.sectionTwo .grid .gridContents i {
+  padding-right: 0.4em;
+}
+
+.sectionThree {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 7em 25em;
+  text-align: center;
+}
+.sectionThree h1 {
+  font-size: 70px;
+  border: 2px solid var(--greenBg);
+  border-radius: 0.4em;
+  padding: 0.4em;
+}
+.sectionThree h1 i {
+  font-size: 60px;
+  padding-right: 0.3em;
+  color: var(--darkGreen);
+}
+.sectionThree h2 {
+  padding-top: 1em;
+  font-size: 20px;
+}
+.sectionThree h3 {
+  background-color: #fff;
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  font-weight: 200;
+  font-size: 20px;
+}
+.sectionThree #getBtn {
+  width: auto;
+  font-weight: 600;
+  background-color: var(--darkGreen);
+  margin-top: 2em;
+  border-radius: 0.3em;
+  padding: 0.7em 1.3em;
+  font-size: 19px;
+  color: #ffffff;
+}
+.sectionThree #getBtn:hover {
+  color: #ffffff;
+  background-color: var(--hoverGreen);
 }/*# sourceMappingURL=app.css.map */
