@@ -22,6 +22,31 @@
 // body {
 //   background-image: url("/img/inGallery_logo_black.png");
 // }
+.reveal {
+  transform: translateY(3em);
+  opacity: 0;
+  transition: all 2s;
+  z-index: -1;
+}
+.reveal.active {
+  transform: none;
+  transition: all 2s;
+  opacity: 1;
+  z-index: -1;
+}
+
+.revealRight {
+  transform: translateX(-2em);
+  opacity: 0;
+  transition: all 2s;
+  z-index: -1;
+}
+.revealRight.active {
+  transform: none;
+  transition: all 2s;
+  opacity: 1;
+  z-index: -1;
+}
 
 img {
   pointer-events: none;
@@ -172,6 +197,7 @@ form {
 }
 
 nav {
+  z-index: 999;
   padding: 0.5em;
   padding-bottom: 0;
   position: fixed;
@@ -555,6 +581,7 @@ nav {
     font-size: 20px;
   }
   #getBtn {
+    z-index: 10;
     width: auto;
     font-weight: 600;
     background-color: var(--darkGreen);
@@ -568,5 +595,19 @@ nav {
       color: #ffffff;
       background-color: var(--hoverGreen);
     }
+  }
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50vh;
+  margin-bottom: 0;
+  margin-top: 50vh;
+  padding: 2em;
+  background-color: var(--darkGreen);
+
+  img {
+    width: 250px;
   }
 }

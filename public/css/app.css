@@ -19,6 +19,34 @@
   --lightGreenHover: #8cbd80;
 }
 
+.reveal {
+  transform: translateY(3em);
+  opacity: 0;
+  transition: all 2s;
+  z-index: -1;
+}
+
+.reveal.active {
+  transform: none;
+  transition: all 2s;
+  opacity: 1;
+  z-index: -1;
+}
+
+.revealRight {
+  transform: translateX(-2em);
+  opacity: 0;
+  transition: all 2s;
+  z-index: -1;
+}
+
+.revealRight.active {
+  transform: none;
+  transition: all 2s;
+  opacity: 1;
+  z-index: -1;
+}
+
 img {
   pointer-events: none;
 }
@@ -155,6 +183,7 @@ form .terms a {
 }
 
 nav {
+  z-index: 999;
   padding: 0.5em;
   padding-bottom: 0;
   position: fixed;
@@ -488,6 +517,7 @@ nav #logoutBtn #exitIcon {
   font-size: 20px;
 }
 .sectionThree #getBtn {
+  z-index: 10;
   width: auto;
   font-weight: 600;
   background-color: var(--darkGreen);
@@ -500,4 +530,17 @@ nav #logoutBtn #exitIcon {
 .sectionThree #getBtn:hover {
   color: #ffffff;
   background-color: var(--hoverGreen);
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50vh;
+  margin-bottom: 0;
+  margin-top: 50vh;
+  padding: 2em;
+  background-color: var(--darkGreen);
+}
+footer img {
+  width: 250px;
 }/*# sourceMappingURL=app.css.map */

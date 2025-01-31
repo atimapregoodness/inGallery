@@ -11,7 +11,7 @@ layout('layout/boilerplate') %>
         with our <span>Free,</span> Secure and easy-to-use Image Cloud Storage
         with ease.
       </h3>
-      <a href="/signup"
+      <a href="/signup" class="reveal"
         ><button type="button" id="getBtn">
           Get Started <i class="fa-solid fa-arrow-right" id="arrow"></i></button
       ></a>
@@ -20,20 +20,22 @@ layout('layout/boilerplate') %>
 </section>
 
 <section class="sectionThree">
-  <h1><i class="fa-solid fa-magnifying-glass"></i>Search Photos</h1>
-  <h2>
+  <h1 class="revealRight">
+    <i class="fa-solid fa-magnifying-glass"></i>Search Photos
+  </h1>
+  <h2 class="reveal">
     Never worry about where you can get free stock photos and also save and
     publish your photos whenever and anytime you want.
   </h2>
   <a href="/explore"
-    ><button type="button" id="getBtn">
+    ><button type="button" id="getBtn" class="reveal">
       Start Exploring <i class="fa-solid fa-arrow-right" id="arrow"></i></button
   ></a>
 </section>
 
 <section class="sectionTwo">
   <div class="grid">
-    <div class="gridContents">
+    <div class="gridContents revealRight">
       <ul>
         <li id="listHead">
           <i class="fa-solid fa-circle-check"></i>24/7 access
@@ -54,7 +56,7 @@ layout('layout/boilerplate') %>
           </ul>
         </li>
         <li id="listHead">
-          <i class="fa-solid fa-circle-check"></i>Easy image upload
+          <i class="fa-solid fa-circle-check"></i>Easy and Secured image upload
           <ul>
             <li>
               Upload images from computer using the fastest and safer way.
@@ -69,8 +71,12 @@ layout('layout/boilerplate') %>
         </li>
       </ul>
     </div>
-    <div class="img">
-      <img src="/img/Secure Server-bro (1).png" id="gridImg" alt="" />
+    <div class="img reveal">
+      <img
+        src="/img/Secure Server-bro (1).png"
+        id="gridImg"
+        alt="server_image"
+      />
     </div>
   </div>
 </section>
