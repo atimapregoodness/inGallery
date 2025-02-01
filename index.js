@@ -18,7 +18,7 @@ const userRoute = require('./routes/userRoute');
 const flash = require('connect-flash');
 
 
-mongoose.connect(`${process.env.MONGO_CONNECT}`, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('DB CONNECTION OPEN');
   })
