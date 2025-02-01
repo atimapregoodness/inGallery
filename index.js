@@ -16,6 +16,7 @@ const localStrategy = require('passport-local');
 const session = require('express-session');
 const userRoute = require('./routes/userRoute');
 const flash = require('connect-flash');
+const appError = require('./utils/appError');
 
 
 mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -66,6 +67,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('ejs', ejsMate);
 
 app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+app.get('/home', (req, res) => {
   res.render('index');
 });
 
@@ -73,9 +77,8 @@ app.get('/explore', (req, res) => {
   res.render('explore');
 });
 
-
-
 app.use('/', userRoute);
+
 
 app.get('/dashboard', (req, res) => {
   if (req.isAuthenticated()) {
@@ -86,6 +89,18 @@ app.get('/dashboard', (req, res) => {
   }
 });
 
+
+app.all('*', (req, res, next) => {
+  next(new appError('Page not found', 404));
+});
+
+app.use((err, req, res, next) => {
+  const { status = 500 } = err;
+  if (!err.message) {
+    err.message = 'something went wrong';
+  }
+  res.status(status).render('error/errorPage', { err });
+});
 
 app.listen(3000, () => {
   console.log('LISTENING TO PORT:3000');

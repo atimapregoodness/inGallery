@@ -9,7 +9,7 @@
 
 :root {
   --darkGreen: #457c45;
-  --lightGreen: #b7e6ab;
+  --lightGreen: #e8f0fe;
   --redBg: #ff7474;
   --red: #ff0000;
   --lightRed: #ffdede;
@@ -17,6 +17,10 @@
   --hoverGreen: #294729;
   --greenBg: #addf96b4;
   --lightGreenHover: #8cbd80;
+}
+
+a {
+  cursor: pointer;
 }
 
 .reveal {
@@ -45,6 +49,46 @@
   transition: all 1s;
   opacity: 1;
   z-index: -1;
+}
+
+.errPageContainer {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.errPageContainer img {
+  width: 300px;
+}
+.errPageContainer button {
+  margin-top: 1em;
+  background-color: var(--darkGreen);
+  color: #ffffff;
+  border-radius: 0.3em;
+  border: none;
+  padding: 0.5em 1em;
+  width: 100%;
+}
+.errPageContainer button:hover {
+  background-color: var(--hoverGreen);
+}
+.errPageContainer i {
+  padding-right: 0.4em;
+}
+.errPageContainer h1 {
+  font-size: 50px;
+}
+.errPageContainer p {
+  padding-top: 0.4em;
+  font-size: 15px;
+}
+.errPageContainer span {
+  font-style: italic;
+  font-weight: 800;
+  text-decoration: underline;
 }
 
 img {
@@ -281,7 +325,7 @@ nav .hamborger .itemsContainer li button {
   width: 100%;
 }
 nav .hamborger .itemsContainer li button:hover {
-  background-color: var(--lightGreen);
+  background-color: var(--lightGreenHover);
 }
 nav .hamborger .itemsContainer a {
   margin-left: 0;
@@ -332,7 +376,7 @@ nav #logoutBtn #exitIcon {
 }
 
 #active {
-  background-color: var(--greenBg);
+  background-color: var(--lightGreenHover);
 }
 
 .bodyContainer {
@@ -360,16 +404,15 @@ nav #logoutBtn #exitIcon {
 .bodyContainer #getBtn {
   width: 30vh;
   font-weight: 600;
-  border: 2px solid var(--darkGreen);
+  color: #fff;
+  background-color: var(--darkGreen);
   margin-top: 2em;
   border-radius: 0.3em;
   padding: 0.7em 1.3em;
   font-size: 19px;
-  background: none;
 }
 .bodyContainer #getBtn:hover {
-  color: #ffffff;
-  background-color: var(--darkGreen);
+  background-color: var(--hoverGreen);
 }
 .bodyContainer #arrow {
   padding-left: 0.5em;
@@ -533,14 +576,87 @@ nav #logoutBtn #exitIcon {
 }
 
 footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 50vh;
+  height: auto;
   margin-bottom: 0;
   margin-top: 50vh;
-  padding: 2em;
-  background-color: var(--darkGreen);
+  background-color: var(--lightGreenHover);
 }
-footer img {
-  width: 250px;
+footer .footerContainer {
+  padding: 2em;
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+footer .logo {
+  padding-top: 2em;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  background-color: var(--lightGreen);
+  border-radius: 0.5em;
+}
+footer .logo img {
+  width: 100px;
+}
+footer .logo h2 {
+  margin-left: 1em;
+  font-size: 12px;
+  padding: 0.2em;
+}
+footer .footerLinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+footer h1 {
+  font-size: 18px;
+  margin-bottom: 0.5em;
+}
+footer .ulContainer {
+  padding-top: 3em;
+  margin-right: 2em;
+}
+footer ul {
+  list-style: none;
+}
+footer ul li {
+  line-height: 2em;
+  font-size: 14px;
+}
+footer a {
+  color: #000;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer input {
+  border: 2px solid #000000;
+  background: none;
+  border-radius: 0.3em;
+  font-size: 13px;
+  padding: 0.7em;
+}
+footer button {
+  background: none;
+  border: 2px solid #000;
+  padding: 0.7em 1em;
+  border-radius: 0.3em;
+  margin-left: 0.2em;
+  font-size: 12px;
+}
+footer button:hover {
+  color: #ffffff;
+  background-color: #000000;
+}
+footer i {
+  padding-right: 0.4em;
+}
+footer .social {
+  margin-left: 7em;
 }/*# sourceMappingURL=app.css.map */

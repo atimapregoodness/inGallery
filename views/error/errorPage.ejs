@@ -1,0 +1,17 @@
+<%- layout('layout/boilerplate') %>
+<div class="errPageContainer">
+  <div class="text">
+    <% if(err.status === 404) {%>
+    <img
+      src="/img/404 error with people holding the numbers-bro.png"
+      alt="404_error_image"
+    /><% } else{%>
+    <img src="/img/500 Internal Server Error-bro.png" alt="500_error_image" />
+    <% } %>
+    <h1><%= err.message %></h1>
+  </div>
+  <p>please check the <span>url</span> and refresh this page</p>
+  <a href="/home"
+    ><button><i class="fa-solid fa-arrow-left"></i> Back to Homepage</button></a
+  >
+</div>
