@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
-
 * {
   font-family: "Roboto Flex", serif;
   font-size: 14px;
@@ -94,6 +93,7 @@ a {
   span {
     font-style: italic;
     font-weight: 800;
+    color: #0000ff;
     text-decoration: underline;
   }
 }
@@ -745,3 +745,5 @@ footer {
     margin-left: 7em;
   }
 }
+
+@import "mediaQueryStyle";

@@ -2,8 +2,6 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-console.log(process.env.SECRET);
-
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -15,8 +13,15 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const session = require('express-session');
 const userRoute = require('./routes/userRoute');
+const acctRoute = require('./routes/acctRoute');
 const flash = require('connect-flash');
 const appError = require('./utils/appError');
+const multer = require('multer');
+
+const { storage } = require('./cloudinary');
+// const upload = multer({ storage });
+
+const upload = multer({ dest: "upload" });
 
 
 mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -50,6 +55,8 @@ app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.currentPage = req.originalUrl;
+  res.locals.fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  res.locals.user = req.user;
   next();
 });
 
@@ -69,6 +76,7 @@ app.engine('ejs', ejsMate);
 app.get('/', (req, res) => {
   res.redirect('/home');
 });
+
 app.get('/home', (req, res) => {
   res.render('index');
 });
@@ -77,18 +85,10 @@ app.get('/explore', (req, res) => {
   res.render('explore');
 });
 
-app.use('/', userRoute);
 
 
-app.get('/dashboard', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render('user/acct/dashboard', { user: req.user });
-  } else {
-    req.flash('error', 'Please login first');
-    res.redirect('/login');
-  }
-});
-
+app.use('/', acctRoute);
+app.use('/user', userRoute);
 
 app.all('*', (req, res, next) => {
   next(new appError('Page not found', 404));
@@ -99,7 +99,7 @@ app.use((err, req, res, next) => {
   if (!err.message) {
     err.message = 'something went wrong';
   }
-  res.status(status).render('error/errorPage', { err });
+  res.status(status).render('error/errorPage', { err, url: req.originalUrl });
 });
 
 app.listen(3000, () => {

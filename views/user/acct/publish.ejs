@@ -1,0 +1,35 @@
+<title>Dashboard - inGallery</title>
+<%- layout('layout/userBoilerplate') %>
+
+<div class="bodyContainer">
+  <h1>User Dashbaord</h1>
+  <h1><%= user.username %></h1>
+  <h4><%= user.email %></h4>
+  <h1><%= currentPage %></h1>
+</div>
+
+<form action="/user/publish" method="post">
+  <div class="input">
+    <label for="img"></label>
+    <input type="file" name="img" id="img" />
+  </div>
+  <div class="input">
+    <label for="category">Category</label>
+    <select name="category" id="category">
+      <option value="wallpaper">Wallpaper</option>
+      <option value="nature">nature</option>
+      <option value="people">People</option>
+      <option value="technology">Technology</option>
+      <option value="others">Others</option>
+    </select>
+    <div class="input">
+      <label for="description">Description</label>
+      <textarea
+        name="description"
+        id="description"
+        placeholder="Write a short note about the photo you want to upload"
+      ></textarea>
+    </div>
+    <button type="submit">Publish</button>
+  </div>
+</form>

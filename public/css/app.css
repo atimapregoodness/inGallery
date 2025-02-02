@@ -88,6 +88,7 @@ a {
 .errPageContainer span {
   font-style: italic;
   font-weight: 800;
+  color: #0000ff;
   text-decoration: underline;
 }
 
@@ -659,4 +660,10 @@ footer i {
 }
 footer .social {
   margin-left: 7em;
+}
+
+@media (min-width: 576px) {
+  body {
+    font-size: 16px;
+  }
 }/*# sourceMappingURL=app.css.map */
