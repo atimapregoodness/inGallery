@@ -5,15 +5,14 @@
     <img
       src="/img/404 error with people holding the numbers-bro.png"
       alt="404_error_image"
-    /><% } else{%>
+    />
+    <p>URL: <span><%= fullUrl %></span></p>
+    <p>please check the <span>url</span> and refresh this page</p>
+    <% } else{%>
+    <p><%= err.message %></p>
     <img src="/img/500 Internal Server Error-bro.png" alt="500_error_image" />
     <% } %>
-    <h1><%= err.message %></h1>
   </div>
-  <% if (url.length){ %>
-  <p>URL: <span><%= fullUrl %></span></p>
-  <% } %>
-  <p>please check the <span>url</span> and refresh this page</p>
   <a href="/home"
     ><button><i class="fa-solid fa-arrow-left"></i> Back to Homepage</button></a
   >

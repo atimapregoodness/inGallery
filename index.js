@@ -17,11 +17,12 @@ const acctRoute = require('./routes/acctRoute');
 const flash = require('connect-flash');
 const appError = require('./utils/appError');
 const multer = require('multer');
+const MongoStore = require('connect-mongo');
 
 const { storage } = require('./cloudinary');
-// const upload = multer({ storage });
+const upload = multer({ storage });
 
-const upload = multer({ dest: "upload" });
+// const upload = multer({ dest: "upload" });
 
 
 mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -34,13 +35,15 @@ mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedT
   });
 
 const sessionConfig = {
-  secret: 'ohboythisismysecret',
+  secret: 'thisshouldbeabettersecret',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_CONNECT,
+    collectionName: 'sessions'
+  }),
   cookie: {
-    httpOnly: true,
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
   }
 };
 
