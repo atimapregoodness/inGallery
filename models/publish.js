@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const publishImg = new mongoose.Schema({
-  imgs: [{
+  img: [{
     url: String,
     filename: String,
   }],
@@ -12,6 +12,11 @@ const publishImg = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    require: true
   }
 });
 

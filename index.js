@@ -24,7 +24,6 @@ const upload = multer({ storage });
 
 // const upload = multer({ dest: "upload" });
 
-
 mongoose.connect(process.env.MONGO_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('DB CONNECTION OPEN');
@@ -60,6 +59,7 @@ app.use((req, res, next) => {
   res.locals.currentPage = req.originalUrl;
   res.locals.fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   res.locals.user = req.user;
+
   next();
 });
 

@@ -7,3 +7,15 @@
   <h4><%= user.email %></h4>
   <h1><%= currentPage %></h1>
 </div>
+
+<p>============================================================</p>
+
+<% if (imgs.length) { %> <% for (let img of imgs) { %>
+<p><%= img.url %></p>
+<% } %> <% } %>
+
+<p>============================================================</p>
+
+<% for (let imgDetails of publishedImages){ %>
+<p><%= imgDetails.category %></p>
+<% } %>

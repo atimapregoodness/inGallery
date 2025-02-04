@@ -8,16 +8,16 @@
   <h1><%= currentPage %></h1>
 </div>
 
-<form action="/user/publish" method="post">
+<form action="/user/publish" method="post" enctype="multipart/form-data">
   <h1>Pulbish a Image</h1>
   <%- include('../../partials/err') %>
   <div class="input">
     <label for="img"></label>
-    <input type="file" name="img" id="img" />
+    <input type="file" name="img" id="img" required />
   </div>
   <div class="input">
     <label for="category">Category</label>
-    <select name="category" id="cnategory">
+    <select name="category" id="cnategory" required>
       <option value="wallpaper">Wallpaper</option>
       <option value="nature">nature</option>
       <option value="people">People</option>
@@ -27,6 +27,7 @@
     <div class="input">
       <label for="description">Description</label>
       <textarea
+        required
         name="description"
         id="description"
         placeholder="Write a short note about the photo you want to upload"
