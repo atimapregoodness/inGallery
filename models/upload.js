@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const publishImg = new mongoose.Schema({
+const uploadImg = new mongoose.Schema({
   img: [{
     url: String,
-    filename: String,
+    filename: String
   }],
   category: {
     type: String,
@@ -16,9 +16,10 @@ const publishImg = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    require: true
+    required: true
   }
+
 });
 
-const PublishImg = mongoose.model('PublishImg', publishImg);
-module.exports = PublishImg;  
+const UploadImg = mongoose.model('UploadImg', uploadImg);
+module.exports = UploadImg;  

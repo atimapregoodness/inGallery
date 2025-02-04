@@ -8,14 +8,14 @@
   <h1><%= currentPage %></h1>
 </div>
 
-<p>============================================================</p>
+<% if (imgDetails.length) { %> <% for (let img of imgDetails) { %>
+<img src="<%= img.url %>" alt="<%= img.filename %>" />
+<p><%= img.filename %></p>
+<% } %> <% } else { %>
+<p>No image added</p>
+<% } %> <% if (!imgDetails.length) {%>
 
-<% if (imgs.length) { %> <% for (let img of imgs) { %>
-<p><%= img.url %></p>
-<% } %> <% } %>
-
-<p>============================================================</p>
-
-<% for (let imgDetails of publishedImages){ %>
-<p><%= imgDetails.category %></p>
+<h1>No image added yet</h1>
+<p>click year to upload image</p>
+<a href="/user/upload"><button>Upload Image</button></a>
 <% } %>

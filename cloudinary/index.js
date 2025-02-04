@@ -11,7 +11,8 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'inGalary',
-    allowedFormats: ['jpeg', 'png', 'jpg']
+    format: async (req, file) => { 'png', 'jpg', 'jpeg'; },  // supports promises as well
+    public_id: (req, file) => file.originalname.split('.')[0],
   }
 });
 

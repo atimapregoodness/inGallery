@@ -8,9 +8,9 @@ const userSchema = new Schema({
     required: [true, 'email cannot be blank'],
     unique: true
   },
-  publishedImages: [{
+  uploadedImages: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'PublishImg',
+    ref: 'UploadImg',
   }]
 });
 

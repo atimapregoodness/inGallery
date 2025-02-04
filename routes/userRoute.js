@@ -2,35 +2,34 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { storage } = require('../cloudinary');
-const PublishImg = require('../models/publish');
-// const upload = multer({ storage });
+const UploadImg = require('../models/upload');
+const upload = multer({ storage });
 
-const upload = multer({ dest: "upload" });
+// const upload = multer({ dest: "upload" });
 
 
 router.get('/dashboard', async (req, res) => {
   if (req.isAuthenticated()) {
-    const publishedImages = req.user.publishedImages;
-    const user = req.user;
+    try {
+      const user = req.user;
 
-    const userImgs = await user.populate({
-      path: 'publishedImages',
-      populate: {
-        path: 'img'
-      }
-    });
-
-    console.log(userImgs);
-
-    const images = user.publishedImages.map(publish => publish.img);
-    console.log(images);
-    const imgs = images.flat().map(img => img);
-
-    console.log(userImgs);
+      const userDetails = await user.populate('uploadedImages');
 
 
-    res.render('user/acct/dashboard', { imgs, userImgs, publishedImages });
+      const images = req.user.uploadedImages.map(upload => upload.img);
 
+
+      const imgDetails = images.flat(); // Flatten the array and extract URLs
+
+
+      console.log(imgDetails);
+
+      res.render('user/acct/dashboard', { userDetails, imgDetails });
+
+    } catch (err) {
+      req.flash('error', `${err.message}`);
+      res.render('user/acct/dashboard');
+    }
   }
   else {
     req.flash('error', 'Please login first');
@@ -38,35 +37,61 @@ router.get('/dashboard', async (req, res) => {
 
   }
 });
-router.get('/publish', (req, res) => {
+
+router.get('/upload', (req, res) => {
   if (req.isAuthenticated()) {
-    res.render('user/acct/publish');
+    res.render('user/acct/upload');
   } else {
     req.flash('error', 'Please login first');
     res.redirect('/login');
   }
 });
 
-router.post('/publish', upload.single('img'), async (req, res) => {
-  try {
-    if (req.isAuthenticated()) {
+router.post('/upload', upload.single('img'), async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+
+
       const img = { url: req.file.path, filename: req.file.filename };
       const { category, description } = req.body;
-      const newImg = new PublishImg({ img, category, description, user: req.user._id });
+      const newImg = new UploadImg({ img, category, description, user: req.user._id });
       await newImg.save();
-      req.user.publishedImages.push(newImg._id);
+      req.user.uploadedImages.push(newImg._id);
       await req.user.save();
-      res.redirect('/user/publish');
+      res.redirect('/user/upload');
+
+    } catch (err) {
+      console.log(err);
+      req.flash('error', `${err.message}`);
+      res.redirect('/user/upload');
     }
 
-  } catch (err) {
-    console.log(err);
-    req.flash('error', `${err.message}`);
-    res.redirect('/user/publish');
+  } else {
+    req.flash('error', 'Please login first');
+    res.redirect('/login');
   }
 });
 
-router.post('/publish', (req, res) => {
+// router.post('/publish', upload.single('img'), async (req, res) => {
+//   try {
+//     if (req.isAuthenticated()) {
+//       const img = { url: req.file.path, filename: req.file.filename };
+//       const { category, description } = req.body;
+//       const newImg = new PublishImg({ img, category, description, user: req.user._id });
+//       await newImg.save();
+//       req.user.publishedImages.push(newImg._id);
+//       await req.user.save();
+//       res.redirect('/user/publish');
+//     }
+
+//   } catch (err) {
+//     console.log(err);
+//     req.flash('error', `${err.message}`);
+//     res.redirect('/user/publish');
+//   }
+// });
+
+router.post('/upload', (req, res) => {
   if (req.isAuthenticated()) {
     // res.render('user/acct/dashboard');
     res.send(req.body);

@@ -8,12 +8,12 @@
   <h1><%= currentPage %></h1>
 </div>
 
-<form action="/user/publish" method="post" enctype="multipart/form-data">
+<form action="/user/upload" method="post" enctype="multipart/form-data">
   <h1>Pulbish a Image</h1>
   <%- include('../../partials/err') %>
   <div class="input">
     <label for="img"></label>
-    <input type="file" name="img" id="img" required />
+    <input type="file" name="img" id="img" accept="image/*" required />
   </div>
   <div class="input">
     <label for="category">Category</label>
@@ -33,6 +33,6 @@
         placeholder="Write a short note about the photo you want to upload"
       ></textarea>
     </div>
-    <button type="submit">Publish</button>
+    <button type="submit">Upload</button>
   </div>
 </form>
