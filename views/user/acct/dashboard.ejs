@@ -16,17 +16,50 @@
 
     <div class="imageContainer">
       <% if (imgDetails.length) { %> <% for (let img of imgDetails) { %>
-      <a href="/user/dashboard/<%=img._id%>">
-        <div class="img">
+
+      <div class="img" id="singleImg">
+        <a href="/user/dashboard/<%=img._id%>">
           <img src="<%= img.url %>" alt="<%= img.filename %>" />
+        </a>
+        <div class="downMenu">
+          <button
+            class="downloadBtn"
+            onclick="downloadImage('<%= img.url %>', '<%= img.filename %>')"
+          >
+            <i class="fa-solid fa-circle-down"></i>
+          </button>
         </div>
-        <% } %> <% } %>
-      </a>
+      </div>
+      <% } %> <% } %>
     </div>
-    <% if (!imgDetails.length) {%>
-    <h1>No image added yet</h1>
-    <p>click here to upload image</p>
-    <a href="/user/upload"> <button>Upload Image</button></a>
-    <% } %>
   </div>
+  <% if (!imgDetails.length) {%>
+  <div class="noImg">
+    <h1>No image added yet</h1>
+    <p>click here to upload image !!</p>
+    <a href="/user/upload" id="floatBtn"
+      ><button
+        id="<% if(currentPage === '/user/upload'){ %>buttonActive<% } %>"
+      >
+        <i class="fa-solid fa-plus"></i> New
+      </button>
+    </a>
+  </div>
+  <% } %>
 </div>
+
+<script>
+  function downloadImage(url, filename) {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch((err) => console.error("Error downloading the image:", err));
+  }
+</script>

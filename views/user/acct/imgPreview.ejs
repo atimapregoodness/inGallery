@@ -11,12 +11,28 @@
     </div>
     <div class="imgPreview">
       <img src="<%= img.url %>" alt="<%= img.filename %>" />
-      <a
-        href="<%= img.url %>"
-        download="<%= img.filename %>"
+      <button
         class="downloadBtn"
-        >Download</a
+        onclick="downloadImage('<%= img.url %>', '<%= img.filename %>')"
       >
+        Download
+      </button>
     </div>
   </div>
 </div>
+
+<script>
+  function downloadImage(url, filename) {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch((err) => console.error("Error downloading the image:", err));
+  }
+</script>

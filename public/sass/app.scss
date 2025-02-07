@@ -875,6 +875,7 @@ footer {
       .img {
         background-color: var(--lightGreen);
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         break-inside: avoid;
@@ -898,6 +899,19 @@ footer {
         font-size: 13px;
       }
     }
+  }
+
+  .downMenu {
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    backdrop-filter: blur(10px); /* Apply the blur effect */
+    background-color: #ffffffdc;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    padding: 1em 0.5em;
+    width: 100%;
+    align-self: flex-end;
   }
 }
 
@@ -934,6 +948,40 @@ footer {
       width: auto;
       height: 70vh;
       object-fit: cover;
+    }
+  }
+}
+
+.noImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+
+  h1 {
+    font-size: 30px;
+  }
+  p {
+    padding-top: 0.5em;
+    font-size: 15px;
+  }
+  #floatBtn {
+    button {
+      margin-top: 0.5em;
+      background-color: var(--hoverGreen);
+      font-size: 17px;
+      padding: 0.7em 1.5em;
+      text-align: left;
+      color: #ffffff;
+      width: auto;
+
+      border-radius: 3em;
+      transition: var(--transition);
+
+      i {
+        padding-right: 0.4em;
+      }
     }
   }
 }

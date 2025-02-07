@@ -769,6 +769,7 @@ footer .social {
 .bodyContainer .imgSection .imageContainer .img {
   background-color: var(--lightGreen);
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   break-inside: avoid;
@@ -787,6 +788,18 @@ footer .social {
 }
 .bodyContainer .imgSection .imageContainer p {
   font-size: 13px;
+}
+.bodyContainer .downMenu {
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background-color: rgba(255, 255, 255, 0.862745098);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: center;
+  padding: 1em 0.5em;
+  width: 100%;
+  align-self: flex-end;
 }
 
 #imgPreview {
@@ -822,6 +835,35 @@ footer .social {
   width: auto;
   height: 70vh;
   object-fit: cover;
+}
+
+.noImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+.noImg h1 {
+  font-size: 30px;
+}
+.noImg p {
+  padding-top: 0.5em;
+  font-size: 15px;
+}
+.noImg #floatBtn button {
+  margin-top: 0.5em;
+  background-color: var(--hoverGreen);
+  font-size: 17px;
+  padding: 0.7em 1.5em;
+  text-align: left;
+  color: #ffffff;
+  width: auto;
+  border-radius: 3em;
+  transition: var(--transition);
+}
+.noImg #floatBtn button i {
+  padding-right: 0.4em;
 }
 
 @media (min-width: 576px) {
