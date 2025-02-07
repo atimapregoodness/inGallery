@@ -4,7 +4,7 @@ const multer = require('multer');
 const { storage } = require('../cloudinary');
 const UploadImg = require('../models/upload');
 const upload = multer({ storage });
-
+const path = require('path');
 // const upload = multer({ dest: "upload" });
 
 
@@ -19,12 +19,10 @@ router.get('/dashboard', async (req, res) => {
       const images = req.user.uploadedImages.map(upload => upload.img);
 
 
-      const imgDetails = images.flat(); // Flatten the array and extract URLs
+      const imgDetails = images.flat(); // Flatten the array and extract URL
 
-
-      console.log(imgDetails);
-
-      res.render('user/acct/dashboard', { userDetails, imgDetails });
+      const numberOfImgs = images.length;
+      res.render('user/acct/dashboard', { userDetails, imgDetails, numberOfImgs });
 
     } catch (err) {
       req.flash('error', `${err.message}`);
@@ -35,6 +33,26 @@ router.get('/dashboard', async (req, res) => {
     req.flash('error', 'Please login first');
     res.redirect('/login');
 
+  }
+});
+
+router.get('/dashboard/:id', async (req, res) => {
+  if (req.isAuthenticated()) {
+    const { id } = req.params;
+    const user = req.user;
+
+    const userDetails = await user.populate('uploadedImages');
+
+    const images = req.user.uploadedImages.map(upload => upload.img);
+
+    const imgDetails = images.flat();
+
+    const img = imgDetails.find(img => img._id.toString() === id);
+
+    res.render('user/acct/imgPreview', { img });
+  } else {
+    req.flash('error', 'Please login first');
+    res.redirect('/login');
   }
 });
 
@@ -50,9 +68,7 @@ router.get('/upload', (req, res) => {
 router.post('/upload', upload.single('img'), async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-
-
-      const img = { url: req.file.path, filename: req.file.filename };
+      const img = { url: req.file.path, filename: path.basename(req.file.originalname) };
       const { category, description } = req.body;
       const newImg = new UploadImg({ img, category, description, user: req.user._id });
       await newImg.save();
@@ -72,24 +88,25 @@ router.post('/upload', upload.single('img'), async (req, res) => {
   }
 });
 
+
+
 // router.post('/publish', upload.single('img'), async (req, res) => {
-//   try {
-//     if (req.isAuthenticated()) {
-//       const img = { url: req.file.path, filename: req.file.filename };
-//       const { category, description } = req.body;
-//       const newImg = new PublishImg({ img, category, description, user: req.user._id });
-//       await newImg.save();
-//       req.user.publishedImages.push(newImg._id);
-//       await req.user.save();
-//       res.redirect('/user/publish');
+//   if (req.isAuthenticated()) {
+//     try {
+//       console.log(req.body);
+//       res.redirect('/user/dashboard');
+//     } catch (err) {
+//       console.log(err);
+//       req.flash('error', `${err.message}`);
+//       res.redirect('/user/dashboard');
 //     }
 
-//   } catch (err) {
-//     console.log(err);
-//     req.flash('error', `${err.message}`);
-//     res.redirect('/user/publish');
+//   } else {
+//     req.flash('error', 'Please login first');
+//     res.redirect('/login');
 //   }
 // });
+
 
 router.post('/upload', (req, res) => {
   if (req.isAuthenticated()) {

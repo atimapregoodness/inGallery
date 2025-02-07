@@ -1,38 +1,33 @@
 <title>Dashboard - inGallery</title>
 <%- layout('layout/userBoilerplate') %>
-
 <div class="bodyContainer">
-  <h1>User Dashbaord</h1>
-  <h1><%= user.username %></h1>
-  <h4><%= user.email %></h4>
-  <h1><%= currentPage %></h1>
-</div>
-
-<form action="/user/upload" method="post" enctype="multipart/form-data">
-  <h1>Pulbish a Image</h1>
-  <%- include('../../partials/err') %>
-  <div class="input">
-    <label for="img"></label>
-    <input type="file" name="img" id="img" accept="image/*" required />
-  </div>
-  <div class="input">
-    <label for="category">Category</label>
-    <select name="category" id="cnategory" required>
-      <option value="wallpaper">Wallpaper</option>
-      <option value="nature">nature</option>
-      <option value="people">People</option>
-      <option value="technology">Technology</option>
-      <option value="others">Others</option>
-    </select>
+  <%-include('../../partials/sideBar') %>
+  <form action="/user/upload" method="post" enctype="multipart/form-data">
+    <h1>Pulbish a Image</h1>
+    <%- include('../../partials/err') %>
     <div class="input">
-      <label for="description">Description</label>
-      <textarea
-        required
-        name="description"
-        id="description"
-        placeholder="Write a short note about the photo you want to upload"
-      ></textarea>
+      <label for="img"></label>
+      <input type="file" name="img" id="img" accept="image/*" required />
     </div>
-    <button type="submit">Upload</button>
-  </div>
-</form>
+    <div class="input">
+      <label for="category">Category</label>
+      <select name="category" id="cnategory" required>
+        <option value="wallpaper">Wallpaper</option>
+        <option value="nature">nature</option>
+        <option value="people">People</option>
+        <option value="technology">Technology</option>
+        <option value="others">Others</option>
+      </select>
+      <div class="input">
+        <label for="description">Description</label>
+        <textarea
+          required
+          name="description"
+          id="description"
+          placeholder="Write a short note about the photo you want to upload"
+        ></textarea>
+      </div>
+      <button type="submit">Upload</button>
+    </div>
+  </form>
+</div>

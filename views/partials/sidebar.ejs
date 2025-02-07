@@ -1,4 +1,27 @@
-<ul>
-  <li><a href="/user/dashboard">Dashboard</a></li>
-  <li><a href="/user/upload">Upload</a></li>
-</ul>
+<div class="sideBar">
+  <a href="/user/upload" id="floatBtn"
+    ><button id="<% if(currentPage === '/user/upload'){ %>buttonActive<% } %>">
+      <i class="fa-solid fa-plus"></i> New
+    </button>
+  </a>
+  <ul>
+    <li>
+      <a href="/user/dashboard"
+        ><button
+          id="<% if(currentPage === '/user/dashboard'){ %>buttonActive<% } %>"
+        >
+          <i class="fa-solid fa-house"></i> Gallery
+        </button></a
+      >
+    </li>
+    <li>
+      <a href="#"
+        ><button
+          id="<% if(currentPage === '/user/favorite'){ %>buttonActive<% } %>"
+        >
+          <i class="fa-solid fa-star"></i> Favorite
+        </button></a
+      >
+    </li>
+  </ul>
+</div>

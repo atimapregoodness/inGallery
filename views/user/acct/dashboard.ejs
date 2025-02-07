@@ -2,20 +2,31 @@
 <%- layout('layout/userBoilerplate') %>
 
 <div class="bodyContainer">
-  <h1>User Dashbaord</h1>
-  <h1><%= user.username %></h1>
-  <h4><%= user.email %></h4>
-  <h1><%= currentPage %></h1>
+  <%-include('../../partials/sideBar') %>
+  <div class="imgSection">
+    <div class="topBar">
+      <h1><i class="fa-solid fa-images"></i> My Photos</h1>
+
+      <div class="controlIcons">
+        <ul>
+          <li><%= numberOfImgs %> Photos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="imageContainer">
+      <% if (imgDetails.length) { %> <% for (let img of imgDetails) { %>
+      <a href="/user/dashboard/<%=img._id%>">
+        <div class="img">
+          <img src="<%= img.url %>" alt="<%= img.filename %>" />
+        </div>
+        <% } %> <% } %>
+      </a>
+    </div>
+    <% if (!imgDetails.length) {%>
+    <h1>No image added yet</h1>
+    <p>click here to upload image</p>
+    <a href="/user/upload"> <button>Upload Image</button></a>
+    <% } %>
+  </div>
 </div>
-
-<% if (imgDetails.length) { %> <% for (let img of imgDetails) { %>
-<img src="<%= img.url %>" alt="<%= img.filename %>" />
-<p><%= img.filename %></p>
-<% } %> <% } else { %>
-<p>No image added</p>
-<% } %> <% if (!imgDetails.length) {%>
-
-<h1>No image added yet</h1>
-<p>click year to upload image</p>
-<a href="/user/upload"><button>Upload Image</button></a>
-<% } %>

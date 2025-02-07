@@ -1,0 +1,22 @@
+<title>Dashboard - inGallery</title>
+<%- layout('layout/userBoilerplate') %>
+
+<div id="imgPreview">
+  <div class="topBar">
+    <h1><%= img.filename %></h1>
+  </div>
+  <div class="imgSection2">
+    <div class="header">
+      <h3><% %></h3>
+    </div>
+    <div class="imgPreview">
+      <img src="<%= img.url %>" alt="<%= img.filename %>" />
+      <a
+        href="<%= img.url %>"
+        download="<%= img.filename %>"
+        class="downloadBtn"
+        >Download</a
+      >
+    </div>
+  </div>
+</div>

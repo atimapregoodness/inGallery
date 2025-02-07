@@ -65,3 +65,4 @@ closeBtn.addEventListener('click', () => {
   const alert = document.querySelector('#alert');
   alert.style.display = 'none';
 });
+

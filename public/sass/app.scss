@@ -16,6 +16,7 @@
   --hoverGreen: #294729;
   --greenBg: #addf96b4;
   --lightGreenHover: #8cbd80;
+  --lightGray: #f8f8f8;
 }
 
 a {
@@ -98,9 +99,6 @@ a {
   }
 }
 
-img {
-  pointer-events: none;
-}
 button {
   transition: var(--transition);
   border: none;
@@ -253,7 +251,7 @@ nav {
   position: fixed;
   -webkit-backdrop-filter: blur(10px); /* For Safari */
   backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: #ffffffd0;
+  background-color: #ffffffe3;
 
   width: 100%;
   display: grid;
@@ -743,6 +741,200 @@ footer {
   }
   .social {
     margin-left: 7em;
+  }
+}
+
+//sidebar styles here ===========================================================
+.sideBar {
+  // background-color: var(--lightGray);
+  // border-right: 2px solid var(--lightGreenHover);
+  height: 100vh;
+  padding: 0em;
+  width: 30vh;
+  padding-top: 3em;
+  margin: 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5em;
+
+  #floatBtn {
+    button {
+      background-color: var(--hoverGreen);
+      font-size: 17px;
+      padding: 0.7em 1.5em;
+      text-align: left;
+      color: #ffffff;
+      width: auto;
+
+      border-radius: 3em;
+      transition: var(--transition);
+
+      i {
+        padding-right: 0.4em;
+      }
+    }
+  }
+  i {
+    padding-right: 0.7em;
+  }
+  ul {
+    padding-top: 2em;
+    li {
+      margin-top: 1em;
+      list-style: none;
+      a {
+        text-decoration: none;
+        button {
+          font-size: 17px;
+          padding: 0.4em 0.7em;
+          text-align: left;
+          background: none;
+          width: 9em;
+          border-radius: 0.4em;
+
+          &:hover {
+            background: none;
+            background-color: var(--greenBg);
+          }
+        }
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+#buttonActive {
+  background-color: var(--greenBg);
+}
+
+.bodyContainer {
+  height: 100vh;
+  display: flex;
+  // padding-top: 4em;
+
+  .imgSection {
+    height: 100vh;
+
+    margin-left: 13em;
+    padding: 0.8em;
+
+    margin-right: 3em;
+
+    .topBar {
+      z-index: 9;
+      // background-color: #ffffffd0;
+      // -webkit-backdrop-filter: blur(10px); /* For Safari */
+      // backdrop-filter: blur(10px); /* Apply the blur effect */
+      background-color: #fff;
+
+      width: 100%;
+      position: fixed;
+      display: flex;
+      padding-top: 1em;
+      flex-direction: row;
+      align-items: center;
+      padding: 1.5em 2em;
+      border-radius: 0.3em;
+
+      h1 {
+        font-size: 50px;
+        color: var(--hoverGreen);
+        padding: 0.5 1em;
+
+        i {
+          font-size: 40px;
+        }
+      }
+    }
+
+    .imageContainer {
+      margin-top: 8em;
+      padding: 1.5em;
+      width: auto;
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      column-count: 3; /* Adjust the number of columns as needed */
+      column-gap: 16px;
+
+      img {
+        width: 200%;
+        display: block;
+        cursor: pointer;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .img {
+        background-color: var(--lightGreen);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        break-inside: avoid;
+        margin-bottom: 2em;
+        margin-right: 4em;
+        position: relative;
+        border-radius: 0.3em;
+        overflow: hidden;
+
+        transition: var(--transition);
+        width: 100%;
+
+        height: 12em;
+        &:hover {
+          transform: scale(1.05);
+          transition: var(--transition);
+          // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+#imgPreview {
+  height: 100vh;
+  padding-top: 4em;
+
+  .topBar {
+    padding: 1em;
+    background-color: var(--lightGray);
+    width: 100%;
+  }
+  .imgSection2 {
+    width: 100%;
+    width: 100%;
+    padding-top: 1em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .imgPreview {
+      height: 60vh;
+    }
+    .img {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      overflow: hidden;
+      display: block;
+      width: auto;
+      height: 70vh;
+      object-fit: cover;
+    }
   }
 }
 
