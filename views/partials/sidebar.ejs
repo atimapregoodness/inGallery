@@ -26,9 +26,18 @@
     <li>
       <a href="#"
         ><button
+          id="<% if(currentPage === '/user/publish'){ %>buttonActive<% } %>"
+        >
+          <i class="fa-solid fa-credit-card"></i>My Account
+        </button></a
+      >
+    </li>
+    <li>
+      <a href="#"
+        ><button
           id="<% if(currentPage === '/user/account'){ %>buttonActive<% } %>"
         >
-          <i class="fa-solid fa-credit-card"></i> My Account
+          <i class="fa-solid fa-globe"></i>Published
         </button></a
       >
     </li>
