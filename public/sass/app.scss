@@ -19,6 +19,10 @@
   --lightGray: #f8f8f8;
 }
 
+i {
+  background: none;
+}
+
 a {
   cursor: pointer;
 }
@@ -889,6 +893,7 @@ footer {
         width: 100%;
 
         height: 12em;
+
         &:hover {
           transform: scale(1.05);
           transition: var(--transition);
@@ -900,19 +905,6 @@ footer {
       }
     }
   }
-
-  .downMenu {
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    backdrop-filter: blur(10px); /* Apply the blur effect */
-    background-color: #ffffffdc;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    align-items: center;
-    padding: 1em 0.5em;
-    width: 100%;
-    align-self: flex-end;
-  }
 }
 
 #imgPreview {
@@ -921,14 +913,106 @@ footer {
 
   .topBar {
     padding: 1em;
-    background-color: var(--lightGray);
-    width: 100%;
+    // background-color: var(--lightGray);
+    width: 95%;
+    margin: auto;
+
+    .controlIcons {
+      ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        display: inline-block;
+        align-self: center;
+
+        // padding-left: 2em;
+        font-size: 30px;
+      }
+      button {
+        background: none;
+      }
+
+      i {
+        margin-right: 0.5em;
+        font-size: 17px;
+      }
+
+      #publishBtn {
+        background-color: var(--darkGreen);
+        transition: var(--transition);
+        padding: 1em;
+        color: #ffffff;
+        border-radius: 1em;
+
+        &:hover {
+          background-color: var(--hoverGreen);
+          transition: var(--transition);
+        }
+      }
+
+      h1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      #publish {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 60%;
+        margin: auto;
+
+        #noPadding {
+          padding: 0;
+        }
+      }
+      .first {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-self: center;
+        align-items: flex-start;
+
+        h1 {
+          padding-top: 0.5em;
+        }
+
+        i {
+          color: var(--darkGreen);
+          margin-right: 1em;
+          font-size: 30px;
+          transition: var(--transition);
+
+          &:hover {
+            color: var(--hoverGreen);
+            transition: var(--transition);
+          }
+        }
+      }
+    }
   }
   .imgSection2 {
-    width: 100%;
-    width: 100%;
-    padding-top: 1em;
     display: flex;
+    width: 100%;
+    width: 100%;
+    padding-top: 0em;
+
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -984,6 +1068,106 @@ footer {
       }
     }
   }
+}
+
+.popUpBox {
+  z-index: -10;
+  transition: var(--transition);
+  position: absolute;
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background-color: #ffffffa1;
+
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  #popUpContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    padding: 1em 2em;
+    border-radius: 0.5em;
+    background-color: #ffffff;
+    border: 1px solid var(--greenBg);
+    // box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    pointer-events: none;
+    width: 100px;
+    padding-bottom: 1em;
+  }
+
+  h3 {
+    font-size: 10px;
+    margin-bottom: 0.5em;
+    color: var(--darkGreen);
+  }
+
+  h2 {
+    font-size: 17px;
+  }
+
+  .btns {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    font-size: 15px;
+    padding: 0.5em;
+
+    a {
+      background: var(--darkGreen);
+      color: var(--darkGreen);
+      border-radius: 0.3em;
+      border: none;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      color: #ffffff;
+      transition: var(--transition);
+
+      &:hover {
+        background-color: var(--hoverGreen);
+        transition: var(--transition);
+      }
+    }
+
+    #closeButton {
+      color: #ffffff;
+      background-color: var(--redBg);
+
+      &:hover {
+        background-color: var(--red);
+        transition: var(--transition);
+      }
+    }
+  }
+}
+
+.activeBox {
+  opacity: 1;
+  z-index: 7;
+  transition: ease-in 0.5s;
+  display: block;
+  // transform: scale(1.05);
+
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 @import "mediaQueryStyle";

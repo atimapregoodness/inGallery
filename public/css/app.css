@@ -20,6 +20,10 @@
   --lightGray: #f8f8f8;
 }
 
+i {
+  background: none;
+}
+
 a {
   cursor: pointer;
 }
@@ -789,18 +793,6 @@ footer .social {
 .bodyContainer .imgSection .imageContainer p {
   font-size: 13px;
 }
-.bodyContainer .downMenu {
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: rgba(255, 255, 255, 0.862745098);
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  align-items: center;
-  padding: 1em 0.5em;
-  width: 100%;
-  align-self: flex-end;
-}
 
 #imgPreview {
   height: 100vh;
@@ -808,14 +800,88 @@ footer .social {
 }
 #imgPreview .topBar {
   padding: 1em;
-  background-color: var(--lightGray);
-  width: 100%;
+  width: 95%;
+  margin: auto;
+}
+#imgPreview .topBar .controlIcons ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+#imgPreview .topBar .controlIcons li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  display: inline-block;
+  align-self: center;
+  font-size: 30px;
+}
+#imgPreview .topBar .controlIcons button {
+  background: none;
+}
+#imgPreview .topBar .controlIcons i {
+  margin-right: 0.5em;
+  font-size: 17px;
+}
+#imgPreview .topBar .controlIcons #publishBtn {
+  background-color: var(--darkGreen);
+  transition: var(--transition);
+  padding: 1em;
+  color: #ffffff;
+  border-radius: 1em;
+}
+#imgPreview .topBar .controlIcons #publishBtn:hover {
+  background-color: var(--hoverGreen);
+  transition: var(--transition);
+}
+#imgPreview .topBar .controlIcons h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#imgPreview .topBar .controlIcons #publish {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+#imgPreview .topBar .controlIcons .icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+}
+#imgPreview .topBar .controlIcons .icons #noPadding {
+  padding: 0;
+}
+#imgPreview .topBar .controlIcons .first {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: flex-start;
+}
+#imgPreview .topBar .controlIcons .first h1 {
+  padding-top: 0.5em;
+}
+#imgPreview .topBar .controlIcons .first i {
+  color: var(--darkGreen);
+  margin-right: 1em;
+  font-size: 30px;
+  transition: var(--transition);
+}
+#imgPreview .topBar .controlIcons .first i:hover {
+  color: var(--hoverGreen);
+  transition: var(--transition);
 }
 #imgPreview .imgSection2 {
-  width: 100%;
-  width: 100%;
-  padding-top: 1em;
   display: flex;
+  width: 100%;
+  width: 100%;
+  padding-top: 0em;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -864,6 +930,93 @@ footer .social {
 }
 .noImg #floatBtn button i {
   padding-right: 0.4em;
+}
+
+.popUpBox {
+  z-index: -10;
+  transition: var(--transition);
+  position: absolute;
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background-color: rgba(255, 255, 255, 0.631372549);
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.popUpBox #popUpContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+  border: 1px solid var(--greenBg);
+}
+.popUpBox img {
+  pointer-events: none;
+  width: 100px;
+  padding-bottom: 1em;
+}
+.popUpBox h3 {
+  font-size: 10px;
+  margin-bottom: 0.5em;
+  color: var(--darkGreen);
+}
+.popUpBox h2 {
+  font-size: 17px;
+}
+.popUpBox .btns {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 60%;
+  font-size: 15px;
+  padding: 0.5em;
+}
+.popUpBox .btns a {
+  background: var(--darkGreen);
+  color: var(--darkGreen);
+  border-radius: 0.3em;
+  border: none;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #ffffff;
+  transition: var(--transition);
+}
+.popUpBox .btns a:hover {
+  background-color: var(--hoverGreen);
+  transition: var(--transition);
+}
+.popUpBox .btns #closeButton {
+  color: #ffffff;
+  background-color: var(--redBg);
+}
+.popUpBox .btns #closeButton:hover {
+  background-color: var(--red);
+  transition: var(--transition);
+}
+
+.activeBox {
+  opacity: 1;
+  z-index: 7;
+  transition: ease-in 0.5s;
+  display: block;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 @media (min-width: 576px) {

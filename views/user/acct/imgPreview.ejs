@@ -3,7 +3,54 @@
 
 <div id="imgPreview">
   <div class="topBar">
-    <h1><%= img.filename %></h1>
+    <div class="controlIcons">
+      <ul>
+        <div class="first">
+          <a href="/user/dashboard"
+            ><button><i class="fa-solid fa-circle-left"></i></button
+          ></a>
+          <h1><%= img.filename %></h1>
+        </div>
+
+        <div class="icons">
+          <li>
+            <button
+              id="noPadding"
+              onclick="downloadImage('<%= img.url %>', '<%= img.filename %>')"
+            >
+              <i class="fa-solid fa-circle-down"></i>
+            </button>
+          </li>
+          <li>
+            <a href="/user/dashboard/<%= img._id %>/edit">
+              <button><i class="fa-solid fa-pen-to-square"></i></button>
+            </a>
+          </li>
+          <li>
+            <a href="/user/dashboard/<%= img._id %>/delete">
+              <button><i class="fa-solid fa-trash"></i></button>
+            </a>
+          </li>
+        </div>
+
+        <li id="publish">
+          <button id="publishBtn" class="popUpBtn">
+            <i class="fa-solid fa-cloud-arrow-up"></i>Publish Image
+          </button>
+          <div class="popUpBox">
+            <div class="publishContent" id="popUpContent">
+              <img src="<%= img.url %>" alt="<%= img.filename %>" />
+              <h3>Filename: <%= img.filename %></h3>
+              <h2>Do you wish to publish this image to Web?</h2>
+              <div class="btns">
+                <a href="/user/dashboard/<%= img._id %>/publish">Yes</a>
+                <a href="#" id="closeButton">No</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="imgSection2">
     <div class="header">
@@ -11,12 +58,6 @@
     </div>
     <div class="imgPreview">
       <img src="<%= img.url %>" alt="<%= img.filename %>" />
-      <button
-        class="downloadBtn"
-        onclick="downloadImage('<%= img.url %>', '<%= img.filename %>')"
-      >
-        Download
-      </button>
     </div>
   </div>
 </div>

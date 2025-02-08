@@ -21,14 +21,6 @@
         <a href="/user/dashboard/<%=img._id%>">
           <img src="<%= img.url %>" alt="<%= img.filename %>" />
         </a>
-        <div class="downMenu">
-          <button
-            class="downloadBtn"
-            onclick="downloadImage('<%= img.url %>', '<%= img.filename %>')"
-          >
-            <i class="fa-solid fa-circle-down"></i>
-          </button>
-        </div>
       </div>
       <% } %> <% } %>
     </div>
