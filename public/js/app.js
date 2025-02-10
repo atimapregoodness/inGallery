@@ -2,6 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('DOM fully loaded and parsed');
 
 
+  const closeBtn = document.querySelector('#closeBtn');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const alert = document.querySelector('#alert');
+      alert.style.display = 'none';
+    });
+  }
+
+  // const mACBtn = document.querySelector('motionAlertCloseBtn');
+  // if (mACBtn) {
+  //   mACBtn.addEventListener('click', () => {
+  //     const motionAlert = document.querySelector('#motionAlert');
+  //     motionAlert.style.display = 'none';
+  //   });
+  // }
+
+
   const zoomInButton = document.querySelector('#zoomIn');
   const zoomOutButton = document.querySelector('#zoomOut');
   const zoomableImage = document.querySelector('#zoomableImage');
@@ -115,15 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
     hItems.classList.remove('active');
     arrowUp.classList.remove('arrowDown');
   });
-
-  const closeBtn = document.querySelector('#closeBtn');
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      const alert = document.querySelector('#alert');
-      alert.style.display = 'none';
-    });
-  }
 
 });
 

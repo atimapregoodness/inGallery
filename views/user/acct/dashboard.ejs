@@ -13,18 +13,18 @@
         </ul>
       </div>
     </div>
-
     <div class="imageContainer">
-      <% if (imgDetails.length) { %> <% for (let img of imgDetails) { %>
-
+      <% if (userDetails.uploadedImages.length) { %> <%
+      userDetails.uploadedImages.forEach(function (img) { %>
       <div class="img" id="singleImg">
-        <a href="/user/dashboard/<%=img._id%>">
-          <img src="<%= img.url %>" alt="<%= img.filename %>" />
+        <a href="/user/dashboard/<%= img._id %>">
+          <img src="<%= img.img.url %>" alt="<%= img.img.filename %>" />
         </a>
       </div>
-      <% } %> <% } %>
+      <% }); %> <% } %>
     </div>
   </div>
+
   <% if (!imgDetails.length) {%>
   <div class="noImg">
     <h1>No image added yet</h1>

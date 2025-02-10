@@ -110,23 +110,28 @@ button {
 
 #alert {
   border-radius: 0.5em;
-  width: 100%;
+  width: auto;
   display: flex;
-  padding: 0.7em 0;
+  padding: 0.7em 1em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
   .msg {
-    padding: 0.1em 0.5em;
     font-size: 15px;
   }
+  button {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 0.7em;
+    // margin-right: 0.5em;
 
-  .btn {
-    width: auto;
-    margin: auto;
-
-    button {
-      margin-right: 0.5em;
-      background: none;
-      border: none;
+    i {
+      font-size: 15px;
     }
   }
 }
@@ -759,8 +764,9 @@ footer {
   margin: 0;
   position: fixed;
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
+  padding-left: 0.7em;
   padding-top: 5em;
 
   #floatBtn {
@@ -941,7 +947,7 @@ footer {
 
       i {
         margin-right: 0.5em;
-        font-size: 17px;
+        font-size: 20px;
         color: var(--darkGreen);
       }
 
@@ -1001,7 +1007,7 @@ footer {
         i {
           color: var(--darkGreen);
           margin-right: 1em;
-          font-size: 30px;
+          font-size: 35px;
           transition: var(--transition);
 
           &:hover {
@@ -1038,6 +1044,7 @@ footer {
       width: 15em;
       transition: var(--transition);
       object-fit: cover;
+      pointer-events: none;
     }
 
     i {
@@ -1051,24 +1058,25 @@ footer {
       background: none;
     }
 
-    input {
-      background: var(--lightGreen);
-      appearance: none;
-      border-radius: 2em;
-      width: auto;
-      outline: none;
+    // input {
+    //   background: var(--lightGreen);
+    //   appearance: none;
+    //   border-radius: 2em;
+    //   width: auto;
+    //   outline: none;
 
-      -webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: var(--darkGreen);
-        cursor: pointer;
-      }
-    }
+    //   -webkit-slider-thumb {
+    //     -webkit-appearance: none;
+    //     appearance: none;
+    //     width: 15px;
+    //     height: 15px;
+    //     border-radius: 50%;
+    //     background: var(--darkGreen);
+    //     cursor: pointer;
+    //   }
+    // }
     .footer {
+      width: 100%;
       padding-top: 0.5em;
       display: flex;
       flex-direction: column;
@@ -1217,6 +1225,13 @@ footer {
     transform: scale(1.07);
     transition: var(--transition);
   }
+}
+.imgHeader {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
 @import "mediaQueryStyle";

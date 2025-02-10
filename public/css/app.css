@@ -104,22 +104,27 @@ button {
 
 #alert {
   border-radius: 0.5em;
-  width: 100%;
+  width: auto;
   display: flex;
-  padding: 0.7em 0;
+  padding: 0.7em 1em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 #alert .msg {
-  padding: 0.1em 0.5em;
   font-size: 15px;
 }
-#alert .btn {
-  width: auto;
-  margin: auto;
-}
-#alert .btn button {
-  margin-right: 0.5em;
+#alert button {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
   background: none;
   border: none;
+  padding: 0;
+  margin-left: 0.7em;
+}
+#alert button i {
+  font-size: 15px;
 }
 
 .alertSuccess {
@@ -671,8 +676,9 @@ footer .social {
   margin: 0;
   position: fixed;
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
+  padding-left: 0.7em;
   padding-top: 5em;
 }
 .sideBar #floatBtn button {
@@ -822,7 +828,7 @@ footer .social {
 }
 #imgPreview .topBar .controlIcons i {
   margin-right: 0.5em;
-  font-size: 17px;
+  font-size: 20px;
   color: var(--darkGreen);
 }
 #imgPreview .topBar .controlIcons #publishBtn {
@@ -874,7 +880,7 @@ footer .social {
 #imgPreview .topBar .controlIcons .first i {
   color: var(--darkGreen);
   margin-right: 1em;
-  font-size: 30px;
+  font-size: 35px;
   transition: var(--transition);
 }
 #imgPreview .topBar .controlIcons .first i:hover {
@@ -904,6 +910,7 @@ footer .social {
   width: 15em;
   transition: var(--transition);
   object-fit: cover;
+  pointer-events: none;
 }
 #imgPreview .imgSection2 i {
   color: var(--hoverGreen);
@@ -914,23 +921,8 @@ footer .social {
 #imgPreview .imgSection2 button {
   background: none;
 }
-#imgPreview .imgSection2 input {
-  background: var(--lightGreen);
-  appearance: none;
-  border-radius: 2em;
-  width: auto;
-  outline: none;
-}
-#imgPreview .imgSection2 input -webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--darkGreen);
-  cursor: pointer;
-}
 #imgPreview .imgSection2 .footer {
+  width: 100%;
   padding-top: 0.5em;
   display: flex;
   flex-direction: column;
@@ -1058,6 +1050,14 @@ footer .social {
 .activeBox #popUpContent {
   transform: scale(1.07);
   transition: var(--transition);
+}
+
+.imgHeader {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (min-width: 576px) {

@@ -9,25 +9,25 @@
           <a href="/user/dashboard"
             ><button><i class="fa-solid fa-circle-arrow-left"></i></button
           ></a>
-          <h1><%= img.filename %></h1>
+          <h1><%= imgs.img.filename %></h1>
         </div>
 
         <div class="icons">
           <li>
             <button
               id="noPadding"
-              onclick="downloadImage('<%= img.url %>', '<%= img.filename %>')"
+              onclick="downloadImage('<%= imgs.img.url %>', '<%= imgs.img.filename %>')"
             >
               <i class="fa-solid fa-circle-down"></i>
             </button>
           </li>
           <li>
-            <a href="/user/dashboard/<%= img._id %>/edit">
+            <a href="/user/dashboard/<%= imgs.img._id %>/edit">
               <button><i class="fa-solid fa-pen-to-square"></i></button>
             </a>
           </li>
           <li>
-            <a href="/user/dashboard/<%= img._id %>/delete">
+            <a href="/user/dashboard/<%= imgs.img._id %>/delete">
               <button><i class="fa-solid fa-trash" id="delete"></i></button>
             </a>
           </li>
@@ -39,11 +39,11 @@
           </button>
           <div class="popUpBox">
             <div class="publishContent" id="popUpContent">
-              <img src="<%= img.url %>" alt="<%= img.filename %>" />
-              <h3>Filename: <%= img.filename %></h3>
+              <img src="<%= imgs.img.url %>" alt="<%= imgs.img.filename %>" />
+              <h3>Filename: <%= imgs.img.filename %></h3>
               <h2>Do you wish to publish this image to Web?</h2>
               <div class="btns">
-                <a href="/user/dashboard/<%= img._id %>/publish">Yes</a>
+                <a href="/user/dashboard/<%= imgs._id %>/publish">Yes</a>
                 <a href="#" id="closeButton">No</a>
               </div>
             </div>
@@ -53,11 +53,13 @@
     </div>
   </div>
   <div class="imgSection2">
-    <div class="header">
-      <h3><% %></h3>
-    </div>
+    <div class="imgHeader"><%- include('../../partials/err') %></div>
     <div class="imgPreview">
-      <img src="<%= img.url %>" alt="<%= img.filename %>" id="zoomableImage" />
+      <img
+        src="<%= imgs.img.url %>"
+        alt="<%= imgs.img.filename %>"
+        id="zoomableImage"
+      />
     </div>
     <div class="footer">
       <div>

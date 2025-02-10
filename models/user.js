@@ -12,6 +12,10 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UploadImg',
   }],
+  publishedImages: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PublishImg',
+  }],
   favorites: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'favorites',

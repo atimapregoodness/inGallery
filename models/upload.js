@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const uploadImg = new mongoose.Schema({
-  img: [{
+  img: {
     url: String,
     filename: String
-  }],
+  },
   category: {
     type: String,
     required: true
