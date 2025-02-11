@@ -6,6 +6,7 @@ const UploadImg = require('../models/upload');
 const PublishImg = require('../models/publish');
 const upload = multer({ storage });
 const path = require('path');
+const user = require('../models/user');
 // const upload = multer({ dest: "upload" });
 
 
@@ -101,14 +102,19 @@ router.get('/dashboard/:id/publish', async (req, res) => {
 
       const publishedImg = new PublishImg({ img: imgs.img, category: imgs.category, description: imgs.description, user: req.user._id });
 
-      const matchUrl = await PublishImg.find({ "img.url": publishedImg.img.url }).populate('user');
+      const getImg = await PublishImg.find({
+        img: imgs.img,
+        category: imgs.category,
+        description: imgs.description,
+        user: imgs.user
+      });
 
-      if (!matchUrl.length) {
-        await publishedImg.save();
-        req.flash('success', 'Image publish successful');
+      if (getImg.length) {
+        req.flash('error', 'Image has already been published');
       } else {
-        req.flash('error', "image as already been published");
-        console.log('image as already been published');
+        await publishedImg.save();
+        req.flash('success', 'Image successfully published');
+        console.log('Image successfully published');
       }
       res.redirect(`/user/dashboard/${id}`);
 

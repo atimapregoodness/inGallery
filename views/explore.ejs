@@ -1,5 +1,4 @@
-<title>Home - inGallery</title> <%- layout('layout/boilerplate') %> <%
-layout('layout/boilerplate') %>
+<title>Home - inGallery</title> <%- layout('layout/boilerplate') %>
 
 <div class="searchContainer">
   <div class="text">
@@ -16,4 +15,14 @@ layout('layout/boilerplate') %>
       <i class="fa fa-search"></i>
     </button>
   </form>
+</div>
+
+<div class="exploreImg">
+  <div id="image-container" class="imgs">
+    <% if (imgs.length) {%> <% for (let img of imgs){ %>
+    <div id="imgContainer">
+      <img src="<%= img.img.url %>" alt="<%= img.img.filename %>" />
+    </div>
+    <% } %> <% } %>
+  </div>
 </div>

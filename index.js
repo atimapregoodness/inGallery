@@ -19,7 +19,10 @@ const appError = require('./utils/appError');
 const multer = require('multer');
 const MongoStore = require('connect-mongo');
 
+const bodyParser = require('body-parser');
+
 const { storage } = require('./cloudinary');
+const PublishImg = require("./models/publish");
 const upload = multer({ storage });
 
 // const upload = multer({ dest: "upload" });
@@ -46,6 +49,7 @@ const sessionConfig = {
   }
 };
 
+app.use(bodyParser.json());
 app.use(session(sessionConfig));
 app.use(flash());
 
@@ -84,8 +88,13 @@ app.get('/home', (req, res) => {
   res.render('index');
 });
 
-app.get('/explore', (req, res) => {
-  res.render('explore');
+app.get('/explore', async (req, res) => {
+  const skip = parseInt(req.query.skip);
+  const limit = parseInt(req.query.limit);
+
+  const imgs = await PublishImg.find({}).populate('user').skip(skip).limit(limit);
+  res.render('explore', { imgs });
+
 });
 
 

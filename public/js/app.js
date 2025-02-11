@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+
   const hTitle = document.querySelector('.title');
   const hItems = document.querySelector('.items');
   const arrowUp = document.querySelector('.arrow');
@@ -135,6 +136,12 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+
+
+
+
+
 
 
 
