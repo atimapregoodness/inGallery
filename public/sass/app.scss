@@ -5,6 +5,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lightGray);
 }
 :root {
   --darkGreen: #457c45;
@@ -17,6 +19,20 @@
   --greenBg: #addf96b4;
   --lightGreenHover: #8cbd80;
   --lightGray: #f8f8f8;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--lightGray);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--lightGray);
+  border-radius: 0.7em;
 }
 
 .noBackground {
