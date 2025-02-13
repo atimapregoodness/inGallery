@@ -21,7 +21,9 @@
   <div id="image-container" class="imgs">
     <% if (imgs.length) {%> <% for (let img of imgs){ %>
     <div id="imgContainer">
-      <img src="<%= img.img.url %>" alt="<%= img.img.filename %>" />
+      <a href="/explore/<%= img._id %>"
+        ><img src="<%= img.img.url %>" alt="<%= img.img.filename %>"
+      /></a>
     </div>
     <% } %> <% } %>
   </div>

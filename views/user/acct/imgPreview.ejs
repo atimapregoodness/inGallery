@@ -7,7 +7,8 @@
       <ul>
         <div class="first">
           <a href="/user/dashboard"
-            ><button><i class="fa-solid fa-circle-arrow-left"></i></button
+            ><button class="noBackground">
+              <i class="fa-solid fa-circle-arrow-left"></i></button
           ></a>
           <h1><%= imgs.img.filename %></h1>
         </div>
@@ -15,6 +16,7 @@
         <div class="icons">
           <li>
             <button
+              class="noBackground"
               id="noPadding"
               onclick="downloadImage('<%= imgs.img.url %>', '<%= imgs.img.filename %>')"
             >
@@ -23,12 +25,16 @@
           </li>
           <li>
             <a href="/user/dashboard/<%= imgs.img._id %>/edit">
-              <button><i class="fa-solid fa-pen-to-square"></i></button>
+              <button id="noBackground">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
             </a>
           </li>
           <li>
             <a href="/user/dashboard/<%= imgs.img._id %>/delete">
-              <button><i class="fa-solid fa-trash" id="delete"></i></button>
+              <button id="noBackground">
+                <i class="fa-solid fa-trash" id="delete"></i>
+              </button>
             </a>
           </li>
         </div>

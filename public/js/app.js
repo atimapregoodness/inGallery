@@ -11,6 +11,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // const infoBtn = document.querySelector('#infoBtn');
+
+  // if (infoBtn) {
+  //   infoBtn.addEventListener('click', () => {
+  //     const infoContainer = document.querySelector('.infoContainer');
+  //     infoContainer.classList.toggle('infoActive');
+  //   });
+  // }
+
+
   // const mACBtn = document.querySelector('motionAlertCloseBtn');
   // if (mACBtn) {
   //   mACBtn.addEventListener('click', () => {

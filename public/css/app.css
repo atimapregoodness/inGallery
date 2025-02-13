@@ -20,6 +20,14 @@
   --lightGray: #f8f8f8;
 }
 
+.noBackground {
+  background: none;
+}
+
+#noBackground {
+  background: none;
+}
+
 i {
   background: none;
 }
@@ -146,7 +154,11 @@ body {
 }
 
 .container {
-  padding-top: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   align-items: center; /* Center items horizontally */
   margin: 0 auto; /* Center the container itself */
 }
@@ -585,7 +597,7 @@ nav #logoutBtn #exitIcon {
 footer {
   height: auto;
   margin-bottom: 0;
-  margin-top: 50vh;
+  margin-top: 2vh;
   background-color: var(--lightGreenHover);
 }
 footer .footerContainer {
@@ -819,9 +831,6 @@ footer .social {
   display: inline-block;
   align-self: center;
   font-size: 30px;
-}
-#imgPreview .topBar .controlIcons button {
-  background: none;
 }
 #imgPreview .topBar .controlIcons i {
   margin-right: 0.5em;
@@ -1057,6 +1066,27 @@ footer .social {
   align-items: center;
 }
 
+.first {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: flex-start;
+}
+.first h1 {
+  padding-top: 0.5em;
+}
+.first i {
+  color: var(--darkGreen);
+  margin-right: 1em;
+  font-size: 35px;
+  transition: var(--transition);
+}
+.first i:hover {
+  color: var(--hoverGreen);
+  transition: var(--transition);
+}
+
 .exploreImg {
   padding: 5em;
 }
@@ -1075,6 +1105,220 @@ footer .social {
 }
 .exploreImg #imgContainer img {
   width: 20em;
+  border-radius: 0.4em;
+}
+
+#ExploreImgPreview {
+  height: 100vh;
+  padding-top: 4em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#ExploreImgPreview .topBar {
+  width: 100%;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+}
+#ExploreImgPreview .topBar .first {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+}
+#ExploreImgPreview .topBar .first i {
+  color: var(--darkGreen);
+  font-size: 35px;
+  transition: var(--transition);
+}
+#ExploreImgPreview .topBar .first i:hover {
+  color: var(--hoverGreen);
+  transition: var(--transition);
+}
+#ExploreImgPreview .topBar .header {
+  border-bottom: 1px solid var(--greenBg);
+  padding: 0.5em 1em;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
+}
+#ExploreImgPreview .topBar .controlIcons {
+  width: 100%;
+}
+#ExploreImgPreview .topBar .controlIcons ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#ExploreImgPreview .topBar .controlIcons ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  display: inline-block;
+  align-self: center;
+  margin-left: 0.5em;
+  font-size: 30px;
+}
+#ExploreImgPreview .topBar .controlIcons ul i {
+  margin-right: 0.5em;
+  font-size: 20px;
+  color: var(--darkGreen);
+}
+#ExploreImgPreview .topBar .controlIcons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 1em;
+  padding: 0.5em 1em;
+}
+#ExploreImgPreview .topBar .controlIcons #downloadBtn {
+  background-color: var(--darkGreen);
+  transition: var(--transition);
+  color: #ffffff;
+}
+#ExploreImgPreview .topBar .controlIcons #downloadBtn:hover {
+  background-color: var(--hoverGreen);
+  transition: var(--transition);
+}
+#ExploreImgPreview .topBar .controlIcons #downloadBtn i {
+  color: #fff;
+}
+#ExploreImgPreview .topBar .controlIcons #info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  width: 6em;
+  margin-left: 1em;
+}
+#ExploreImgPreview .topBar .controlIcons .icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+}
+#ExploreImgPreview .topBar .controlIcons .icons #noPadding {
+  padding: 0;
+}
+#ExploreImgPreview #infoBtn {
+  background-color: var(--lightGreen);
+  transition: var(--transition);
+  color: #000000;
+}
+#ExploreImgPreview #infoBtn i {
+  color: #000000;
+}
+#ExploreImgPreview #info {
+  display: none;
+}
+#ExploreImgPreview .infoContainer {
+  background-color: var(--lightGreen);
+  margin: auto;
+  width: 25em;
+  padding: 1em;
+  border-radius: 0.3em;
+  margin-top: 0em;
+}
+#ExploreImgPreview .infoContainer h1 {
+  text-transform: capitalize;
+}
+#ExploreImgPreview .infoContainer ol {
+  padding-top: 0.7em;
+}
+#ExploreImgPreview .infoContainer ol li {
+  line-height: 1.5em;
+  display: block;
+  font-size: 13px;
+}
+#ExploreImgPreview .infoContainer ol li span {
+  font-weight: 600px;
+}
+#ExploreImgPreview .imgSection2 {
+  width: 100%;
+  width: 100%;
+  padding-top: 0em;
+}
+#ExploreImgPreview .imgSection2 .imgPreview {
+  height: 70vh;
+  width: 100vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+#ExploreImgPreview .imgSection2 img {
+  display: block;
+  width: 15em;
+  transition: var(--transition);
+  object-fit: cover;
+  pointer-events: none;
+}
+#ExploreImgPreview .imgSection2 i {
+  color: var(--hoverGreen);
+  font-size: 25px;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+#ExploreImgPreview .imgSection2 button {
+  background: none;
+}
+#ExploreImgPreview .imgSection2 .footer {
+  width: 100%;
+  padding-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#ExploreImgPreview .section2 {
+  padding: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#ExploreImgPreview .section2 h1 {
+  font-size: 30px;
+  padding: 0.5em 1em;
+  border-bottom: 3px solid var(--greenBg);
+}
+#ExploreImgPreview .section2 .imgContainer {
+  padding-top: 2em;
+  transition: var(--transition);
+  overflow: auto;
+  height: 70vh;
+  transition: var(--transition);
+  grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
+  column-count: 4;
+  row-gap: 1em;
+  column-gap: 1em;
+}
+#ExploreImgPreview .section2 .imgContainer .img {
+  height: auto;
+  padding: 0.2em;
+}
+#ExploreImgPreview .section2 .imgContainer img {
+  overflow: hidden;
+  width: 8em;
+  cursor: pointer;
+  transition: var(--transition);
+  border-radius: 0.4em;
+}
+#ExploreImgPreview .section2 .imgContainer img:hover {
+  transform: scale(1.04);
+  transition: var(--transition);
 }
 
 @media (min-width: 576px) {

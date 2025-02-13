@@ -1,0 +1,101 @@
+<title>Explore - inGallery</title>
+<%- layout('layout/userBoilerplate') %>
+
+<div id="ExploreImgPreview">
+  <div class="firstSection">
+    <div class="topBar">
+      <div class="first">
+        <a href="/explore"
+          ><button id="noBackground">
+            <i class="fa-solid fa-circle-arrow-left"></i></button
+        ></a>
+      </div>
+      <h1 class="header">Image Preview</h1>
+      <div class="controlIcons">
+        <ul id="control">
+          <li>
+            <button
+              id="downloadBtn"
+              onclick="downloadImage('<%= imgs.img.url %>', '<%= imgs.img.filename %>')"
+            >
+              <i class="fa-solid fa-circle-down"></i> Get Image
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="imgSection2">
+      <div class="imgHeader"><%- include('partials/err') %></div>
+      <div class="imgPreview">
+        <img
+          src="<%= imgs.img.url %>"
+          alt="<%= imgs.img.filename %>"
+          id="zoomableImage"
+        />
+      </div>
+      <div class="footer">
+        <div>
+          <button id="zoomIn">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+          </button>
+          <input
+            type="range"
+            name="zoomInOut"
+            id="zoomInOut"
+            min="15"
+            max="1000"
+            value="15"
+          />
+          <button id="zoomOut">
+            <i class="fa-solid fa-magnifying-glass-minus"></i>
+          </button>
+          <button id="resetBtn"><i class="fa-solid fa-expand"></i></button>
+        </div>
+      </div>
+      <div id="info">
+        <div class="infoContainer">
+          <ol>
+            <h1>Image details:</h1>
+            <li><span>Filename:</span> <%= imgs.img.filename %></li>
+            <li><span>Category:</span> <%= imgs.category%></li>
+            <li><span>Description:</span> <%= imgs.description %></li>
+          </ol>
+          <ol>
+            <h1><%= imgs.user.username %></h1>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="section2">
+    <h1>You may also like</h1>
+
+    <div class="imgContainer">
+      <% for (let img of findCateogory) {%>
+      <div class="img">
+        <a href="/explore/<%= img._id %>"
+          ><img src="<%= img.img.url %>" alt=""
+        /></a>
+      </div>
+      <%} %>
+    </div>
+  </section>
+</div>
+
+<%- include('partials/footer') %>
+
+<script>
+  function downloadImage(url, filename) {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch((err) => console.error("Error downloading the image:", err));
+  }
+</script>

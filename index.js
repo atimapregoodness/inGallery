@@ -18,6 +18,7 @@ const flash = require('connect-flash');
 const appError = require('./utils/appError');
 const multer = require('multer');
 const MongoStore = require('connect-mongo');
+const UploadImg = require('./models/publish');
 
 const bodyParser = require('body-parser');
 
@@ -95,6 +96,17 @@ app.get('/explore', async (req, res) => {
   const imgs = await PublishImg.find({}).populate('user').skip(skip).limit(limit);
   res.render('explore', { imgs });
 
+});
+
+app.get('/explore/:id', async (req, res) => {
+  const { id } = req.params;
+  const user = req.user;
+
+  const imgs = await UploadImg.findById(id).populate('user');
+
+  const findCateogory = await UploadImg.find({ category: imgs.category });
+
+  res.render('imgPreview', { imgs, findCateogory });
 });
 
 

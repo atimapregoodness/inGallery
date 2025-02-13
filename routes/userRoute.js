@@ -45,13 +45,6 @@ router.get('/dashboard/:id', async (req, res) => {
 
     const imgs = await UploadImg.findById(id).populate('user');
 
-
-    // if (!publishedImg || publishedImg.length === 0) {
-    //   console.log('Published image not found');
-    //   return;
-    // }
-    // console.log(imgs);
-
     res.render('user/acct/imgPreview', { imgs });
   } else {
     req.flash('error', 'Please login first');
@@ -78,6 +71,7 @@ router.post('/upload', upload.single('img'), async (req, res) => {
       await newImg.save();
       req.user.uploadedImages.push(newImg._id);
       await req.user.save();
+      req.flash('success', 'Image Upload Successfully');
       res.redirect('/user/upload');
 
     } catch (err) {
