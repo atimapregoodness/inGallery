@@ -522,21 +522,31 @@ nav {
 .searchContainer {
   display: flex;
   flex-direction: column;
-
+  // background-image: url("/img/woman-art-exhibition.jpg");
+  // background-color: rgba(255, 255, 255, 0.979); /* Black with 50% opacity */
+  // background-blend-mode: overlay;
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   width: 100%;
-  height: 65vh;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0;
+  padding-top: 6em;
+  // border-bottom-right-radius: 40em;
 
   .text {
     margin: auto;
-    padding-top: 10em;
-    width: 100vh;
+    padding: 0;
+    width: 60em;
   }
   h1 {
-    font-size: 50px;
+    font-size: 70px;
     text-align: center;
 
     span {
-      font-size: 60px;
+      font-size: 80px;
       padding: 0 0.2em;
       text-align: center;
       border-bottom: 4px solid var(--greenBg);
@@ -556,7 +566,7 @@ nav {
       border-radius: 0.4em;
       font-size: 20px;
       padding: 0.5em 1em;
-      width: 28em;
+      width: 40em;
     }
 
     #submitBtn {
@@ -570,6 +580,41 @@ nav {
       &:hover {
         background-color: var(--hoverGreen);
       }
+    }
+  }
+  .category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+
+    grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));
+    column-gap: 3em;
+
+    a {
+      background-color: var(--lightGreen);
+      font-size: 14px;
+      text-decoration: none;
+      padding: 0.5em 1em;
+      // margin-left: 5em;
+
+      border-radius: 0.3em;
+      transition: var(--transition);
+      color: #000;
+
+      &:hover {
+        transform: scale(1.3);
+        transition: var(--transition);
+        background-color: var(--greenBg);
+        // color: #fff;
+      }
+    }
+
+    .linkActive {
+      transform: scale(1.3);
+      transition: var(--transition);
+      background-color: var(--greenBg);
     }
   }
 }
@@ -1581,5 +1626,17 @@ footer {
     }
   }
 }
+
+// .blurred-circle {
+//   width: 100px; /* Or any desired size */
+//   height: 100px; /* Or any desired size */
+//   border-radius: 50%; /* Makes it a circle */
+//   filter: blur(10px); /* Applies a blur effect */
+//   background: radial-gradient(
+//     circle at center,
+//     var(--greenBg),
+//     transparent
+//   ); /* Or any gradient you want */
+// }
 
 @import "mediaQueryStyle";
