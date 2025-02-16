@@ -100,7 +100,7 @@ app.get('/explore', async (req, res) => {
       const imgs = await PublishImg.find({
         $or: [
           { category: new RegExp(search, 'i') },
-          { name: new RegExp(search, 'i') },
+          { 'img.filename': new RegExp(search, 'i') },
           { description: new RegExp(search, 'i') }
         ]
       }).populate('user').skip(skip).limit(limit);
@@ -148,7 +148,7 @@ app.get('/explore/image/:id', async (req, res) => {
   const findCateogory = await PublishImg.find({
     $or: [
       { category: new RegExp(imgs.category, 'i') },
-      { name: new RegExp(imgs.name, 'i') },
+      { 'img.filename': new RegExp(imgs.filename, 'i') },
       { description: new RegExp(imgs.description, 'i') }
     ]
   }).populate('user').skip(skip).limit(limit);
