@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+
   // const infoBtn = document.querySelector('#infoBtn');
 
   // if (infoBtn) {

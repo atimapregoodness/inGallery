@@ -4,17 +4,35 @@
   <div class="text">
     <h1>Search for your <span>Favourite</span> images</h1>
   </div>
-  <form action="" id="searchForm">
+
+  <% if (search.length) { %>
+  <form action="/explore" id="searchForm" method="get" name="search">
     <input
       type="search"
       name="search"
       id="search"
       placeholder="Search free Photos"
+      value="<%= search %>"
     />
     <button type="submit" id="submitBtn">
       <i class="fa fa-search"></i>
     </button>
   </form>
+  <% } else { %>
+  <form action="/explore" id="searchForm" method="get" name="search">
+    <input
+      type="search"
+      name="search"
+      id="search"
+      placeholder="Search free Photos"
+      value=""
+    />
+    <button type="submit" id="submitBtn">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+  <% } %>
+
   <div class="category">
     <a
       href="/explore?search=people"
@@ -56,12 +74,14 @@
 
 <div class="exploreImg">
   <div id="image-container" class="imgs">
-    <% if (imgs.length) {%> <% for (let img of imgs){ %>
+    <% if (imgs.length) { %> <% imgs.forEach(function(img) { %>
     <div id="imgContainer">
-      <a href="/explore/<%= img._id %>"
-        ><img src="<%= img.img.url %>" alt="<%= img.img.filename %>"
-      /></a>
+      <a href="/explore/image/<%= img._id %>">
+        <img src="<%= img.img.url %>" alt="<%= img.img.filename %>" />
+      </a>
     </div>
-    <% } %> <% } %>
+    <% }); %> <% } else { %>
+    <h1>No Image Found !!!</h1>
+    <% } %>
   </div>
 </div>
