@@ -1,6 +1,7 @@
 <nav>
   <div class="logo">
     <a href="/home"><img src="/img/inGallery_logo_black.png" alt="logo" /></a>
+    <div class="navMenu"><span>|||</span></div>
   </div>
   <div class="navLinks">
     <ul>
@@ -35,7 +36,7 @@
         <div class="items">
           <div class="itemsContainer">
             <ul>
-              <li id="header"><%= currentUser.username %></li>
+              <h1 id="header"><%= currentUser.username %></h1>
               <a href="#"><li><%= currentUser.email %></li></a>
               <a href="#"><li>Account Setting</li></a>
               <a href="/logout"
