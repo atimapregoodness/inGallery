@@ -489,12 +489,12 @@ nav #logoutBtn #exitIcon {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   align-items: center;
   justify-content: center;
   padding: 1em 0;
   padding-top: 6em;
-  padding-bottom: 4em;
+  padding-bottom: 0em;
 }
 .searchContainer .text {
   margin: auto;
@@ -550,13 +550,15 @@ nav #logoutBtn #exitIcon {
   justify-content: center;
   margin-top: 2em;
   grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));
-  column-gap: 3em;
+  column-gap: 2em;
+  row-gap: 0.4em;
 }
 .searchContainer .category a {
   background-color: var(--lightGreen);
   font-size: 14px;
   text-decoration: none;
   padding: 0.5em 1em;
+  margin-left: 0;
   border-radius: 0.3em;
   transition: var(--transition);
   color: #000;
@@ -709,7 +711,6 @@ footer h1 {
 }
 footer .ulContainer {
   padding-top: 3em;
-  margin-right: 2em;
 }
 footer ul {
   list-style: none;
@@ -1829,7 +1830,7 @@ footer .social {
   .searchContainer h1 {
     padding: 0;
     margin: 0;
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
   }
   .searchContainer h1 span {
@@ -1855,8 +1856,8 @@ footer .social {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    column-gap: 0.5em;
-    row-gap: 0.5em;
+    column-gap: 0.8em;
+    row-gap: 0.8em;
   }
   .searchContainer .category a {
     font-size: 12px;
@@ -1960,7 +1961,7 @@ footer .social {
     background-color: var(--lightGreenHover);
   }
   footer .footerContainer {
-    padding: 1em 0;
+    padding: 1em;
     display: flex;
     width: auto;
     flex-direction: column;
@@ -1992,7 +1993,7 @@ footer .social {
     display: block;
   }
   footer h1 {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 0.5em;
   }
   footer .ulContainer {
@@ -2006,7 +2007,7 @@ footer .social {
   }
   footer ul li {
     line-height: 1.5em;
-    font-size: 12px;
+    font-size: 15px;
   }
   footer a {
     color: #000;
@@ -2019,7 +2020,7 @@ footer .social {
     border: 2px solid #000000;
     background: none;
     border-radius: 0.3em;
-    font-size: 13px;
+    font-size: 15px;
     padding: 0.7em;
   }
   footer button {
@@ -2479,8 +2480,8 @@ footer .social {
     width: auto;
     margin: auto;
     height: auto;
-    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-    column-count: 3;
+    grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
+    column-count: 2;
     justify-items: center;
   }
   .exploreImg #imgContainer {
@@ -2493,7 +2494,7 @@ footer .social {
     transition: var(--transition);
   }
   .exploreImg #imgContainer img {
-    width: 127px;
+    width: 190px;
     display: block;
     cursor: pointer;
     overflow: hidden;

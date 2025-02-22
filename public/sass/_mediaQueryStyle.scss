@@ -498,7 +498,7 @@
     h1 {
       padding: 0;
       margin: 0;
-      font-size: 30px;
+      font-size: 35px;
       text-align: center;
 
       span {
@@ -527,8 +527,8 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      column-gap: 0.5em;
-      row-gap: 0.5em;
+      column-gap: 0.8em;
+      row-gap: 0.8em;
 
       a {
         font-size: 12px;
@@ -651,7 +651,7 @@
     // color: #ffffff;
 
     .footerContainer {
-      padding: 1em 0;
+      padding: 1em;
       display: flex;
       width: auto;
       flex-direction: column;
@@ -688,7 +688,7 @@
     }
 
     h1 {
-      font-size: 14px;
+      font-size: 16px;
       margin-bottom: 0.5em;
     }
     .ulContainer {
@@ -703,7 +703,7 @@
 
       li {
         line-height: 1.5em;
-        font-size: 12px;
+        font-size: 15px;
       }
     }
     a {
@@ -719,7 +719,7 @@
       border: 2px solid #000000;
       background: none;
       border-radius: 0.3em;
-      font-size: 13px;
+      font-size: 15px;
       padding: 0.7em;
     }
 
@@ -1292,8 +1292,8 @@
       height: auto;
       // display: grid;
       // background-color: #000;
-      grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
-      column-count: 3;
+      grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
+      column-count: 2;
       justify-items: center;
     }
 
@@ -1308,7 +1308,7 @@
         // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       img {
-        width: 127px;
+        width: 190px;
         display: block;
         cursor: pointer;
         overflow: hidden;

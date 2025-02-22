@@ -546,12 +546,12 @@ nav {
   // background-position: center;
   // background-repeat: no-repeat;
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   align-items: center;
   justify-content: center;
   padding: 1em 0;
   padding-top: 6em;
-  padding-bottom: 4em;
+  padding-bottom: 0em;
   // border-bottom-right-radius: 40em;
 
   .text {
@@ -614,14 +614,15 @@ nav {
     margin-top: 2em;
 
     grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));
-    column-gap: 3em;
+    column-gap: 2em;
+    row-gap: 0.4em;
 
     a {
       background-color: var(--lightGreen);
       font-size: 14px;
       text-decoration: none;
       padding: 0.5em 1em;
-      // margin-left: 5em;
+      margin-left: 0;
 
       border-radius: 0.3em;
       transition: var(--transition);
@@ -799,7 +800,6 @@ footer {
   }
   .ulContainer {
     padding-top: 3em;
-    margin-right: 2em;
   }
 
   ul {
