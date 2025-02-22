@@ -486,31 +486,23 @@
   .searchContainer {
     display: flex;
     flex-direction: column;
-    // background-image: url("/img/woman-art-exhibition.jpg");
-    // background-color: rgba(255, 255, 255, 0.979); /* Black with 50% opacity */
-    // background-blend-mode: overlay;
-    // background-size: cover;
-    // background-position: center;
-    // background-repeat: no-repeat;
+    height: auto;
+    padding: 1em 0.5em;
+    padding-top: 8em;
     width: 100%;
-    height: 70vh;
-    align-items: center;
-    justify-content: center;
-    padding: 1em 0;
-    padding-top: 6em;
-    // border-bottom-right-radius: 40em;
 
     .text {
       margin: auto;
-      padding: 0;
-      width: 60em;
+      width: 90%;
     }
     h1 {
-      font-size: 70px;
+      padding: 0;
+      margin: 0;
+      font-size: 30px;
       text-align: center;
 
       span {
-        font-size: 80px;
+        font-size: 40px;
         padding: 0 0.2em;
         text-align: center;
         border-bottom: 4px solid var(--greenBg);
@@ -522,63 +514,25 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      width: 100%;
+      width: 95%;
+      margin-top: 0.5em;
 
       input {
-        border: 2px solid var(--darkGreen);
-        background: none;
-        border-radius: 0.4em;
-        font-size: 20px;
-        padding: 0.5em 1em;
-        width: 40em;
-      }
-
-      #submitBtn {
-        background-color: var(--darkGreen);
-        border-radius: 0.4em;
-        margin-left: 0.4em;
-        padding: 0.2em 1.3em;
-        font-size: 19px;
-        color: #ffffff;
-
-        &:hover {
-          background-color: var(--hoverGreen);
-        }
+        font-size: 15px;
+        padding: 0.5em;
       }
     }
     .category {
+      margin-top: 0.8em;
       display: flex;
       flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2em;
-
-      grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));
-      column-gap: 3em;
+      flex-wrap: wrap;
+      column-gap: 0.5em;
+      row-gap: 0.5em;
 
       a {
-        background-color: var(--lightGreen);
-        font-size: 14px;
-        text-decoration: none;
-        padding: 0.5em 1em;
-        // margin-left: 5em;
-
-        border-radius: 0.3em;
-        transition: var(--transition);
-        color: #000;
-
-        &:hover {
-          transform: scale(1.3);
-          transition: var(--transition);
-          background-color: var(--greenBg);
-          // color: #fff;
-        }
-      }
-
-      .linkActive {
-        transform: scale(1.3);
-        transition: var(--transition);
-        background-color: var(--greenBg);
+        font-size: 12px;
+        text-align: center;
       }
     }
   }
@@ -897,11 +851,14 @@
 
     .imgSection {
       height: auto;
+      width: 100%;
       margin: 0;
       margin-left: 0em;
-      padding: 0.8em;
-
-      margin-right: 0em;
+      padding: 0em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       .topBar {
         z-index: 2;
@@ -912,7 +869,8 @@
 
         width: 100%;
         position: sticky;
-        display: block;
+        display: flex;
+        flex-direction: column;
         padding: 1em 0em;
         padding-top: 3em;
         border-radius: 0.3em;
@@ -931,17 +889,20 @@
       .imageContainer {
         transition: var(--transition);
         margin-top: 1em;
-        padding: 0.5em;
+        padding: 0em;
         width: auto;
+        margin: auto;
         height: auto;
         // display: grid;
+        // background-color: #000;
         grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
         column-count: 3;
         row-gap: 0.3em;
         column-gap: 0.3em;
+        justify-items: center;
 
         img {
-          width: 120px;
+          width: 127px;
           display: block;
           cursor: pointer;
           overflow: hidden;
@@ -1322,15 +1283,23 @@
   }
 
   .exploreImg {
-    padding: 5em;
+    padding: 1em;
     .imgs {
-      grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-      column-count: 4;
-      column-gap: 1em;
+      margin-top: 0;
+      padding: 0em;
+      width: auto;
+      margin: auto;
+      height: auto;
+      // display: grid;
+      // background-color: #000;
+      grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+      column-count: 3;
+      justify-items: center;
     }
 
     #imgContainer {
-      padding-top: 2em;
+      padding: 0.4em;
+      margin: 0;
       transition: var(--transition);
 
       &:hover {
@@ -1339,7 +1308,11 @@
         // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       img {
-        width: 20em;
+        width: 127px;
+        display: block;
+        cursor: pointer;
+        overflow: hidden;
+        transition: transform 0.3s ease;
         border-radius: 0.4em;
       }
     }

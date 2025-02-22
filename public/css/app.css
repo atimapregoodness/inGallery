@@ -489,11 +489,12 @@ nav #logoutBtn #exitIcon {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   align-items: center;
   justify-content: center;
   padding: 1em 0;
   padding-top: 6em;
+  padding-bottom: 4em;
 }
 .searchContainer .text {
   margin: auto;
@@ -501,13 +502,13 @@ nav #logoutBtn #exitIcon {
   width: 60em;
 }
 .searchContainer h1 {
-  font-size: 70px;
+  font-size: 50px;
   margin-bottom: 0.3em;
   text-align: center;
 }
 .searchContainer h1 span {
-  font-size: 80px;
-  padding: 0 0.2em;
+  font-size: 60px;
+  padding: 0 0.5em;
   text-align: center;
   border-bottom: 4px solid var(--greenBg);
   color: var(--darkGreen);
@@ -516,27 +517,31 @@ nav #logoutBtn #exitIcon {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
-}
-.searchContainer #searchForm input {
-  border: 2px solid var(--darkGreen);
-  background: none;
+  border: 1px solid var(--darkGreen);
   border-radius: 0.4em;
   font-size: 20px;
-  padding: 0.5em 1em;
   text-align: center;
-  width: 45em;
+  width: 40em;
+  background-color: #fff;
+}
+.searchContainer #searchForm input {
+  border-radius: 0.4em;
+  font-size: 18px;
+  padding: 0.6em;
+  outline: none;
+  text-align: left;
+  background-color: #fff;
 }
 .searchContainer #searchForm #submitBtn {
-  background-color: var(--darkGreen);
-  border-radius: 0.4em;
-  margin-left: 0.4em;
-  padding: 0.2em 1.3em;
-  font-size: 19px;
-  color: #ffffff;
+  padding: 0.2em;
+  font-size: 15px;
+  color: var(--darkGreen);
+  background: none;
+  margin: 0.1em;
 }
-.searchContainer #searchForm #submitBtn:hover {
-  background-color: var(--hoverGreen);
+.searchContainer #searchForm #submitBtn i {
+  font-size: 20px;
+  padding: 0 1em;
 }
 .searchContainer .category {
   display: flex;
@@ -557,12 +562,12 @@ nav #logoutBtn #exitIcon {
   color: #000;
 }
 .searchContainer .category a:hover {
-  transform: scale(1.3);
+  transform: scale(1.1);
   transition: var(--transition);
   background-color: var(--greenBg);
 }
 .searchContainer .category .linkActive {
-  transform: scale(1.3);
+  transform: scale(1.1);
   transition: var(--transition);
   background-color: var(--greenBg);
 }
@@ -790,7 +795,7 @@ footer .social {
   text-decoration: none;
 }
 .sideBar ul li a button {
-  font-size: 17px;
+  font-size: 18px;
   padding: 0.4em 0.7em;
   text-align: left;
   background: none;
@@ -844,7 +849,7 @@ footer .social {
 .bodyContainer .imgSection .imageContainer {
   transition: var(--transition);
   margin-top: 8em;
-  padding: 1.5em;
+  padding: 1.5em 3em;
   width: auto;
   height: auto;
   grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
@@ -1812,24 +1817,23 @@ footer .social {
   .searchContainer {
     display: flex;
     flex-direction: column;
+    height: auto;
+    padding: 1em 0.5em;
+    padding-top: 8em;
     width: 100%;
-    height: 70vh;
-    align-items: center;
-    justify-content: center;
-    padding: 1em 0;
-    padding-top: 6em;
   }
   .searchContainer .text {
     margin: auto;
-    padding: 0;
-    width: 60em;
+    width: 90%;
   }
   .searchContainer h1 {
-    font-size: 70px;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
     text-align: center;
   }
   .searchContainer h1 span {
-    font-size: 80px;
+    font-size: 40px;
     padding: 0 0.2em;
     text-align: center;
     border-bottom: 4px solid var(--greenBg);
@@ -1839,54 +1843,24 @@ footer .social {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
+    width: 95%;
+    margin-top: 0.5em;
   }
   .searchContainer #searchForm input {
-    border: 2px solid var(--darkGreen);
-    background: none;
-    border-radius: 0.4em;
-    font-size: 20px;
-    padding: 0.5em 1em;
-    width: 40em;
-  }
-  .searchContainer #searchForm #submitBtn {
-    background-color: var(--darkGreen);
-    border-radius: 0.4em;
-    margin-left: 0.4em;
-    padding: 0.2em 1.3em;
-    font-size: 19px;
-    color: #ffffff;
-  }
-  .searchContainer #searchForm #submitBtn:hover {
-    background-color: var(--hoverGreen);
+    font-size: 15px;
+    padding: 0.5em;
   }
   .searchContainer .category {
+    margin-top: 0.8em;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2em;
-    grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));
-    column-gap: 3em;
+    flex-wrap: wrap;
+    column-gap: 0.5em;
+    row-gap: 0.5em;
   }
   .searchContainer .category a {
-    background-color: var(--lightGreen);
-    font-size: 14px;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    border-radius: 0.3em;
-    transition: var(--transition);
-    color: #000;
-  }
-  .searchContainer .category a:hover {
-    transform: scale(1.3);
-    transition: var(--transition);
-    background-color: var(--greenBg);
-  }
-  .searchContainer .category .linkActive {
-    transform: scale(1.3);
-    transition: var(--transition);
-    background-color: var(--greenBg);
+    font-size: 12px;
+    text-align: center;
   }
   .sectionTwo {
     width: 100%;
@@ -2156,17 +2130,22 @@ footer .social {
   }
   .bodyContainer .imgSection {
     height: auto;
+    width: 100%;
     margin: 0;
     margin-left: 0em;
-    padding: 0.8em;
-    margin-right: 0em;
+    padding: 0em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .bodyContainer .imgSection .topBar {
     z-index: 2;
     background-color: #fff;
     width: 100%;
     position: sticky;
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding: 1em 0em;
     padding-top: 3em;
     border-radius: 0.3em;
@@ -2182,16 +2161,18 @@ footer .social {
   .bodyContainer .imgSection .imageContainer {
     transition: var(--transition);
     margin-top: 1em;
-    padding: 0.5em;
+    padding: 0em;
     width: auto;
+    margin: auto;
     height: auto;
     grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
     column-count: 3;
     row-gap: 0.3em;
     column-gap: 0.3em;
+    justify-items: center;
   }
   .bodyContainer .imgSection .imageContainer img {
-    width: 120px;
+    width: 127px;
     display: block;
     cursor: pointer;
     overflow: hidden;
@@ -2490,15 +2471,21 @@ footer .social {
     transition: var(--transition);
   }
   .exploreImg {
-    padding: 5em;
+    padding: 1em;
   }
   .exploreImg .imgs {
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    column-count: 4;
-    column-gap: 1em;
+    margin-top: 0;
+    padding: 0em;
+    width: auto;
+    margin: auto;
+    height: auto;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    column-count: 3;
+    justify-items: center;
   }
   .exploreImg #imgContainer {
-    padding-top: 2em;
+    padding: 0.4em;
+    margin: 0;
     transition: var(--transition);
   }
   .exploreImg #imgContainer:hover {
@@ -2506,7 +2493,11 @@ footer .social {
     transition: var(--transition);
   }
   .exploreImg #imgContainer img {
-    width: 20em;
+    width: 127px;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
     border-radius: 0.4em;
   }
   #ExploreImgPreview {

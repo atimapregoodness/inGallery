@@ -3,14 +3,17 @@
   <div class="text">
     <% if(err.status === 404) {%>
     <img
-      src="/img/404 error with people holding the numbers-bro.png"
+      src="/assets/404 error with people holding the numbers-bro.png"
       alt="404_error_image"
     />
     <p>URL: <span><%= fullUrl %></span></p>
     <p>please check the <span>url</span> and refresh this page</p>
     <% } else{%>
     <p><%= err.message %></p>
-    <img src="/img/500 Internal Server Error-bro.png" alt="500_error_image" />
+    <img
+      src="/assets/500 Internal Server Error-bro.png"
+      alt="500_error_image"
+    />
     <% } %>
   </div>
   <a href="/home"
