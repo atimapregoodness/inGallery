@@ -223,8 +223,7 @@
     padding-bottom: 3em;
 
     .logo {
-      padding-left: 0.5em;
-      padding-right: 0.5em;
+      padding: 0 1em;
       display: grid;
       grid-template-columns: 1fr 1fr;
 
@@ -237,6 +236,10 @@
         flex-direction: column;
         align-items: flex-end;
         justify-content: center;
+
+        i {
+          font-size: 25px;
+        }
       }
     }
 
@@ -835,7 +838,7 @@
       }
     }
     #onlyText {
-      display: none;
+      font-size: 10px;
     }
     ul {
       display: flex;
@@ -856,6 +859,9 @@
             background: none;
             width: auto;
             border-radius: 0.4em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             &:hover {
               background: none;
@@ -907,8 +913,8 @@
         width: 100%;
         position: sticky;
         display: block;
-        padding-top: 1em;
-        padding: 1.5em 0em;
+        padding: 1em 0em;
+        padding-top: 3em;
         border-radius: 0.3em;
 
         h1 {
@@ -931,10 +937,11 @@
         // display: grid;
         grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
         column-count: 3;
-        column-gap: 0.5em;
+        row-gap: 0.3em;
+        column-gap: 0.3em;
 
         img {
-          width: 130px;
+          width: 120px;
           display: block;
           cursor: pointer;
           overflow: hidden;

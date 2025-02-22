@@ -50,30 +50,66 @@ document.addEventListener('DOMContentLoaded', function () {
   if (zoomInButton && zoomOutButton && zoomableImage && zoomInOut && resetBtn) {
     const scaleFactor = 30;
     const originalSize = 15;
-
+    // let isDragging = false;
+    // let startX, startY;
+    // let offsetX = 0, offsetY = 0;
 
     zoomInOut.addEventListener('change', function () {
-      zoomInValue = zoomInOut.value;
       zoomableImage.style.width = `${zoomInOut.value}em`;
     });
 
+    // 🔍 Zoom In button
     zoomInButton.addEventListener('click', function () {
       zoomInOut.value = parseInt(zoomInOut.value) + scaleFactor;
-
       zoomableImage.style.width = `${zoomInOut.value}em`;
     });
 
+    // 🔎 Zoom Out button
     zoomOutButton.addEventListener('click', function () {
-      zoomInOut.value = Math.max(15, zoomInOut.value - scaleFactor); // Prevent scaling below the original size
+      zoomInOut.value = Math.max(15, zoomInOut.value - scaleFactor);
       zoomableImage.style.width = `${zoomInOut.value}em`;
     });
 
+    // 🔄 Reset button
     resetBtn.addEventListener('click', () => {
       zoomInOut.value = originalSize;
       zoomableImage.style.width = `${originalSize}em`;
-
+      offsetX = 0;
+      offsetY = 0;
     });
+
+    // // 🖱 Mouse Wheel Zoom
+    // document.addEventListener("wheel", (e) => {
+    //   e.preventDefault();
+    //   if (e.deltaY < 0) {
+    //     zoomInOut.value = parseInt(zoomInOut.value) + scaleFactor;
+    //   } else {
+    //     zoomInOut.value = Math.max(15, zoomInOut.value - scaleFactor);
+    //   }
+    //   zoomableImage.style.width = `${zoomInOut.value}em`;
+    // });
+
+    // // 🖱 Dragging Functionality
+    // zoomableImage.addEventListener("mousedown", (e) => {
+    //   isDragging = true;
+    //   startX = e.clientX - offsetX;
+    //   startY = e.clientY - offsetY;
+    //   zoomableImage.style.cursor = "grabbing";
+    // });
+
+    // document.addEventListener("mousemove", (e) => {
+    //   if (!isDragging) return;
+    //   offsetX = e.clientX - startX;
+    //   offsetY = e.clientY - startY;
+    //   zoomableImage.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    // });
+
+    // document.addEventListener("mouseup", () => {
+    //   isDragging = false;
+    //   zoomableImage.style.cursor = "grab";
+    // });
   }
+
 
 
 

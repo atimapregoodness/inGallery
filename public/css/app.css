@@ -7,6 +7,7 @@
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--lightGray);
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -975,7 +976,6 @@ footer .social {
   width: 100%;
   margin: auto;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   overflow: auto;
@@ -983,8 +983,8 @@ footer .social {
 #imgPreview .imgSection2 img {
   display: block;
   width: 15em;
+  height: auto;
   transition: var(--transition);
-  object-fit: cover;
   pointer-events: none;
 }
 #imgPreview .imgSection2 i {
@@ -1586,8 +1586,7 @@ footer .social {
     padding-bottom: 3em;
   }
   nav .logo {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding: 0 1em;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -1599,6 +1598,9 @@ footer .social {
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
+  }
+  nav .logo .navMenu i {
+    font-size: 25px;
   }
   nav .navMenu {
     display: block;
@@ -2104,7 +2106,7 @@ footer .social {
     padding-right: 0em;
   }
   .sideBar #onlyText {
-    display: none;
+    font-size: 10px;
   }
   .sideBar ul {
     display: flex;
@@ -2126,6 +2128,9 @@ footer .social {
     background: none;
     width: auto;
     border-radius: 0.4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .sideBar ul li a button:hover {
     background: none;
@@ -2162,8 +2167,8 @@ footer .social {
     width: 100%;
     position: sticky;
     display: block;
-    padding-top: 1em;
-    padding: 1.5em 0em;
+    padding: 1em 0em;
+    padding-top: 3em;
     border-radius: 0.3em;
   }
   .bodyContainer .imgSection .topBar h1 {
@@ -2182,10 +2187,11 @@ footer .social {
     height: auto;
     grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
     column-count: 3;
-    column-gap: 0.5em;
+    row-gap: 0.3em;
+    column-gap: 0.3em;
   }
   .bodyContainer .imgSection .imageContainer img {
-    width: 130px;
+    width: 120px;
     display: block;
     cursor: pointer;
     overflow: hidden;

@@ -8,6 +8,7 @@
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--lightGray);
+  -webkit-tap-highlight-color: transparent;
 }
 :root {
   --darkGreen: #457c45;
@@ -1123,7 +1124,6 @@ footer {
       width: 100%;
       margin: auto;
       display: flex;
-      justify-content: center;
       flex-direction: column;
       align-items: center;
       overflow: auto;
@@ -1133,8 +1133,9 @@ footer {
       // overflow: hidden;
       display: block;
       width: 15em;
+      height: auto;
       transition: var(--transition);
-      object-fit: cover;
+      // object-fit: cover;
       pointer-events: none;
     }
 
@@ -1149,23 +1150,6 @@ footer {
       background: none;
     }
 
-    // input {
-    //   background: var(--lightGreen);
-    //   appearance: none;
-    //   border-radius: 2em;
-    //   width: auto;
-    //   outline: none;
-
-    //   -webkit-slider-thumb {
-    //     -webkit-appearance: none;
-    //     appearance: none;
-    //     width: 15px;
-    //     height: 15px;
-    //     border-radius: 50%;
-    //     background: var(--darkGreen);
-    //     cursor: pointer;
-    //   }
-    // }
     .footer {
       width: 100%;
       padding-top: 0.5em;
