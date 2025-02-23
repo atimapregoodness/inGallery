@@ -750,8 +750,9 @@
   .sideBar {
     margin: 0;
     padding: 0;
-    width: auto;
+    width: 0;
     height: auto;
+
     #contents {
       bottom: 0;
       left: 0;
@@ -761,19 +762,16 @@
       border-top: 2px solid #fff;
 
       height: auto;
-      padding: 0em;
       width: 100%;
-      padding: 10px;
+      padding: 0.2em;
 
-      padding-top: 3em;
       margin: 0;
       position: fixed;
       display: flex;
       z-index: 5;
-      align-items: left;
+      align-items: center;
       flex-direction: column;
-      padding-left: 0.7em;
-      padding-top: 0em;
+      justify-content: center;
     }
 
     #floatBtn {
@@ -800,21 +798,22 @@
       font-size: 10px;
     }
     ul {
+      padding: 0.3em 0;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
-      padding: 0.3em 1em;
-      padding-top: 0.8em;
+      justify-content: space-between;
 
       li {
         margin-top: 0;
         list-style: none;
+
         a {
           text-decoration: none;
 
           button {
             text-align: center;
-            padding: 0.4em;
+            padding: 0.5em;
+            margin: 0 0.3em;
             background: none;
             width: auto;
             border-radius: 0.4em;
@@ -850,9 +849,11 @@
   .bodyContainer {
     height: auto;
     display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 0;
-    // padding-top: 4em;
+    padding: 0.5em;
+    padding-top: 4em;
 
     .imgSection {
       height: auto;
@@ -895,8 +896,8 @@
         transition: var(--transition);
         margin-top: 1em;
         padding: 0em;
-        width: auto;
-        margin: auto;
+        width: 100%;
+        margin: 0;
         height: auto;
         // display: grid;
         // background-color: #000;
@@ -905,6 +906,7 @@
         row-gap: 0.3em;
         column-gap: 0.3em;
         justify-items: center;
+        align-items: center;
 
         img {
           width: 127px;
@@ -918,13 +920,13 @@
         .img {
           // background-color: var(--lightGreen);
           display: flex;
-          flex-direction: row;
+          width: 100%;
           justify-content: center;
           align-items: center;
           // break-inside: avoid;
+          margin: auto;
           margin-bottom: 1em;
           // margin-right: 4em;
-          position: relative;
           border-radius: 0.3em;
           // overflow: hidden;
 
