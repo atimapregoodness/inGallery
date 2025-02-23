@@ -858,16 +858,17 @@ footer {
   // background-color: var(--lightGray);
   // border-right: 2px solid var(--lightGreenHover);
   height: 100vh;
-  padding: 0em;
   width: 30vh;
-  padding-top: 3em;
-  margin: 0;
-  position: fixed;
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-  padding-left: 0.7em;
   padding-top: 5em;
+  padding-left: 0.5em;
+
+  #contents {
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+  }
 
   #floatBtn {
     button {
@@ -927,18 +928,21 @@ footer {
 .bodyContainer {
   height: 100vh;
   display: flex;
+  width: 100%;
+  // margin-left: 13em;
   // padding-top: 4em;
 
   .imgSection {
     height: 100vh;
-
-    margin-left: 13em;
     padding: 0.8em;
-
-    margin-right: 3em;
+    width: auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
 
     .topBar {
-      z-index: 9;
+      z-index: 17;
       // background-color: #ffffffd0;
       // -webkit-backdrop-filter: blur(10px); /* For Safari */
       // backdrop-filter: blur(10px); /* Apply the blur effect */
@@ -1172,7 +1176,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 100%;
 
   h1 {
     font-size: 30px;

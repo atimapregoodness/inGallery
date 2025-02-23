@@ -748,28 +748,33 @@
 
   //sidebar styles here ===========================================================
   .sideBar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    backdrop-filter: blur(10px); /* Apply the blur effect */
-    background-color: #ffffffe3;
-    border-top: 2px solid #fff;
-
-    height: auto;
-    padding: 0em;
-    width: 100%;
-    padding: 10px;
-
-    padding-top: 3em;
     margin: 0;
-    position: fixed;
-    display: flex;
-    z-index: 5;
-    align-items: left;
-    flex-direction: column;
-    padding-left: 0.7em;
-    padding-top: 0em;
+    padding: 0;
+    width: auto;
+    height: auto;
+    #contents {
+      bottom: 0;
+      left: 0;
+      -webkit-backdrop-filter: blur(10px); /* For Safari */
+      backdrop-filter: blur(10px); /* Apply the blur effect */
+      background-color: #ffffffe3;
+      border-top: 2px solid #fff;
+
+      height: auto;
+      padding: 0em;
+      width: 100%;
+      padding: 10px;
+
+      padding-top: 3em;
+      margin: 0;
+      position: fixed;
+      display: flex;
+      z-index: 5;
+      align-items: left;
+      flex-direction: column;
+      padding-left: 0.7em;
+      padding-top: 0em;
+    }
 
     #floatBtn {
       display: none;
@@ -1295,6 +1300,8 @@
       grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
       column-count: 2;
       justify-items: center;
+      column-gap: 0.2em;
+      row-gap: 0.2em;
     }
 
     #imgContainer {
@@ -1308,7 +1315,8 @@
         // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       img {
-        width: 190px;
+        width: 100%;
+        margin: 0;
         display: block;
         cursor: pointer;
         overflow: hidden;

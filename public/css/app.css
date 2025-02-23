@@ -758,16 +758,16 @@ footer .social {
 
 .sideBar {
   height: 100vh;
-  padding: 0em;
   width: 30vh;
-  padding-top: 3em;
-  margin: 0;
+  padding-top: 5em;
+  padding-left: 0.5em;
+}
+.sideBar #contents {
+  height: 100vh;
   position: fixed;
   display: flex;
   align-items: left;
   flex-direction: column;
-  padding-left: 0.7em;
-  padding-top: 5em;
 }
 .sideBar #floatBtn button {
   background-color: var(--hoverGreen);
@@ -820,15 +820,19 @@ footer .social {
 .bodyContainer {
   height: 100vh;
   display: flex;
+  width: 100%;
 }
 .bodyContainer .imgSection {
   height: 100vh;
-  margin-left: 13em;
   padding: 0.8em;
-  margin-right: 3em;
+  width: auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
 }
 .bodyContainer .imgSection .topBar {
-  z-index: 9;
+  z-index: 17;
   background-color: #fff;
   width: 100%;
   position: fixed;
@@ -1016,7 +1020,7 @@ footer .social {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 100%;
 }
 .noImg h1 {
   font-size: 30px;
@@ -2044,7 +2048,12 @@ footer .social {
     margin-left: 0em;
   }
   .sideBar {
-    position: fixed;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+  }
+  .sideBar #contents {
     bottom: 0;
     left: 0;
     -webkit-backdrop-filter: blur(10px); /* For Safari */
@@ -2483,6 +2492,8 @@ footer .social {
     grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
     column-count: 2;
     justify-items: center;
+    column-gap: 0.2em;
+    row-gap: 0.2em;
   }
   .exploreImg #imgContainer {
     padding: 0.4em;
@@ -2494,7 +2505,8 @@ footer .social {
     transition: var(--transition);
   }
   .exploreImg #imgContainer img {
-    width: 190px;
+    width: 100%;
+    margin: 0;
     display: block;
     cursor: pointer;
     overflow: hidden;
