@@ -1052,6 +1052,23 @@ footer {
         font-size: 20px;
         color: var(--darkGreen);
       }
+      #isPublished {
+        background-color: var(--darkGreen);
+        transition: var(--transition);
+        padding: 1em;
+        color: #ffffff;
+        border-radius: 1em;
+        cursor: not-allowed;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.5;
+
+        i {
+          color: #fff;
+        }
+      }
 
       #publishBtn {
         background-color: var(--darkGreen);
@@ -1059,6 +1076,10 @@ footer {
         padding: 1em;
         color: #ffffff;
         border-radius: 1em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
           background-color: var(--hoverGreen);

@@ -41,11 +41,12 @@ router.get('/dashboard', async (req, res) => {
 router.get('/dashboard/:id', async (req, res) => {
   if (req.isAuthenticated()) {
     const { id } = req.params;
-    const user = req.user;
 
     const imgs = await UploadImg.findById(id).populate('user');
 
-    res.render('user/acct/imgPreview', { imgs });
+    const isPublished = await PublishImg.findById(id).populate('user');
+
+    res.render('user/acct/imgPreview', { imgs, isPublished });
   } else {
     req.flash('error', 'Please login first');
     res.redirect('/login');
@@ -94,7 +95,7 @@ router.get('/dashboard/:id/publish', async (req, res) => {
 
       const imgs = await UploadImg.findById(id);
 
-      const publishedImg = new PublishImg({ img: imgs.img, category: imgs.category, description: imgs.description, user: req.user._id });
+      const publishedImg = new PublishImg({ img: imgs.img, category: imgs.category, description: imgs.description, user: req.user._id, _id: imgs._id });
 
       const getImg = await PublishImg.find({
         img: imgs.img,
@@ -106,21 +107,28 @@ router.get('/dashboard/:id/publish', async (req, res) => {
       if (getImg.length) {
         req.flash('error', 'Image has already been published');
       } else {
+        req.user.publishedImages.push(publishedImg._id);
+        await req.user.save();
         await publishedImg.save();
         req.flash('success', 'Image successfully published');
-        console.log('Image successfully published');
       }
       res.redirect(`/user/dashboard/${id}`);
 
     } catch (err) {
       req.flash('error', `${err.message}`);
+      console.log(err);
+      res.redirect(`/user/dashboard/${id}`);
     }
 
   } else {
     req.flash('error', 'Please login first');
     res.redirect('/login');
   }
+
 });
+
+
+
 
 
 

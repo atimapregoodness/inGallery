@@ -981,6 +981,17 @@
           font-size: 20px;
           color: var(--darkGreen);
         }
+        #isPublished {
+          background-color: var(--darkGreen);
+          transition: var(--transition);
+          padding: 1em;
+          color: #ffffff;
+          border-radius: 1em;
+
+          i {
+            color: #fff;
+          }
+        }
 
         #publishBtn {
           background-color: var(--darkGreen);

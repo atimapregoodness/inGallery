@@ -136,24 +136,48 @@ app.get('/explore', async (req, res) => {
 
 
 app.get('/explore/image/:id', async (req, res) => {
-  const { id } = req.params;
-  const user = req.user;
-  const skip = parseInt(req.query.skip) || 0;
-  const limit = parseInt(req.query.limit) || 30;
+  try {
+    const { id } = req.params;
 
-  const imgs = await UploadImg.findById(id).populate('user');
+    const user = req.user;
+    const skip = parseInt(req.query.skip) || 0;
+    const limit = parseInt(req.query.limit) || 30;
+
+    const imgs = await UploadImg.findById(id).populate('user');
+    const findImg = await PublishImg.findById(imgs._id).populate('user');
 
 
+    if (user && findImg && imgs) {
+      const userId = req.user._id.toString();
+      const findImgId = findImg.user._id.toString();
 
-  const findCateogory = await PublishImg.find({
-    $or: [
-      { category: new RegExp(imgs.category, 'i') },
-      { 'img.filename': new RegExp(imgs.filename, 'i') },
-      { description: new RegExp(imgs.description, 'i') }
-    ]
-  }).populate('user').skip(skip).limit(limit);
+      if (userId !== findImgId && !findImg.views.includes(user._id)) {
+        findImg.views.push(user._id);
+        await findImg.save();
+        // console.log('user is not the owner');
+      } else if (findImg.views.includes(user._id)) {
+        // console.log('user has already viewed the image');
+      } else {
+        // console.log('user is the owner');
+      }
+    }
 
-  res.render('imgPreview', { imgs, findCateogory });
+    let views = findImg.views.length;
+
+    const findCateogory = await PublishImg.find({
+      $or: [
+        { category: new RegExp(imgs.category, 'i') },
+        { 'img.filename': new RegExp(imgs.filename, 'i') },
+        { description: new RegExp(imgs.description, 'i') }
+      ]
+    }).populate('user').skip(skip).limit(limit);
+
+    res.render('imgPreview', { imgs, findCateogory, views });
+
+  } catch (err) {
+    console.log(err);
+    res.redirect('/explore');
+  }
 });
 
 

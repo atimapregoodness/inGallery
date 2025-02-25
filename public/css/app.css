@@ -917,12 +917,32 @@ footer .social {
   font-size: 20px;
   color: var(--darkGreen);
 }
+#imgPreview .topBar .controlIcons #isPublished {
+  background-color: var(--darkGreen);
+  transition: var(--transition);
+  padding: 1em;
+  color: #ffffff;
+  border-radius: 1em;
+  cursor: not-allowed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+#imgPreview .topBar .controlIcons #isPublished i {
+  color: #fff;
+}
 #imgPreview .topBar .controlIcons #publishBtn {
   background-color: var(--darkGreen);
   transition: var(--transition);
   padding: 1em;
   color: #ffffff;
   border-radius: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 #imgPreview .topBar .controlIcons #publishBtn:hover {
   background-color: var(--hoverGreen);
@@ -2236,6 +2256,16 @@ footer .social {
     margin-right: 0.5em;
     font-size: 20px;
     color: var(--darkGreen);
+  }
+  #imgPreview .topBar .controlIcons #isPublished {
+    background-color: var(--darkGreen);
+    transition: var(--transition);
+    padding: 1em;
+    color: #ffffff;
+    border-radius: 1em;
+  }
+  #imgPreview .topBar .controlIcons #isPublished i {
+    color: #fff;
   }
   #imgPreview .topBar .controlIcons #publishBtn {
     background-color: var(--darkGreen);

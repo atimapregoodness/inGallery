@@ -40,9 +40,16 @@
         </div>
 
         <li id="publish">
+          <% if (isPublished){ %>
+          <button id="isPublished" disabled>
+            <i class="fa-solid fa-circle-check"></i>Published
+          </button>
+          <% } else {%>
           <button id="publishBtn" class="popUpBtn">
             <i class="fa-solid fa-cloud-arrow-up"></i>Publish Image
           </button>
+          <% } %>
+
           <div class="popUpBox">
             <div class="publishContent" id="popUpContent">
               <img src="<%= imgs.img.url %>" alt="<%= imgs.img.filename %>" />

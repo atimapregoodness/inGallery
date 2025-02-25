@@ -13,6 +13,11 @@ const publishImg = new mongoose.Schema({
     type: String,
     required: true
   },
+  views: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }],
+
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

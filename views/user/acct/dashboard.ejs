@@ -6,19 +6,21 @@
   <div class="imgsSection">
     <div class="imgSection">
       <div class="topBar">
-        <h1><i class="fa-solid fa-images"></i> My Photos</h1>
-        <a href="/user/upload" id="topBtn"
-          ><button
-            id="<% if(currentPage === '/user/upload'){ %>buttonActive<% } %>"
-          >
-            <i class="fa-solid fa-plus"></i> New
-          </button>
-        </a>
+        <div id="contents">
+          <h1><i class="fa-solid fa-images"></i> My Photos</h1>
+          <a href="/user/upload" id="topBtn"
+            ><button
+              id="<% if(currentPage === '/user/upload'){ %>buttonActive<% } %>"
+            >
+              <i class="fa-solid fa-plus"></i> New
+            </button>
+          </a>
 
-        <div class="controlIcons">
-          <ul>
-            <li><%= numberOfImgs %> Photos</li>
-          </ul>
+          <div class="controlIcons">
+            <ul>
+              <li><%= numberOfImgs %> Photos</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="imageContainer">
