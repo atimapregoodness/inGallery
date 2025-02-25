@@ -43,7 +43,7 @@
               <h1 id="header"><%= currentUser.username %></h1>
               <a href="#"><li><%= currentUser.email %></li></a>
               <a href="#"><li>Account Setting</li></a>
-              <a href="/logout"
+              <a href="/auth/logout"
                 ><li>
                   <button id="logoutBtn">
                     <img
@@ -72,16 +72,18 @@
         </div>
         <div class="items">
           <div class="itemsContainer">
-            <a href="/signup"
+            <a href="/auth/signup"
               ><li>
                 <button id="<% if(currentPage === '/signup'){ %>active<% } %>">
                   <i class="fa-solid fa-plus"></i>Signup
                 </button>
               </li></a
             >
-            <a href="/login"
+            <a href="/auth/login"
               ><li>
-                <button id="<% if(currentPage === '/login'){ %>active<% } %>">
+                <button
+                  id="<% if(currentPage === '/auth/login'){ %>active<% } %>"
+                >
                   <i class="fa-solid fa-right-to-bracket"></i>Login
                 </button>
               </li></a

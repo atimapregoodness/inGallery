@@ -8,7 +8,7 @@ router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect('/user/dashboard');
   } else {
-    res.render('user/login');
+    res.render('user/auth/login');
   }
 });
 
@@ -16,7 +16,7 @@ router.get('/signup', (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect('/user/dashboard');
   } else {
-    res.render('user/signup');
+    res.render('user/auth/signup');
   }
 });
 
@@ -26,10 +26,10 @@ router.post('/signup', async (req, res) => {
     const user = new User({ username, email });
     const regstUser = await User.register(user, password);
     req.flash('success', 'Account Created Successfully');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   } catch (e) {
     req.flash('error', e.message);
-    res.redirect('/signup');
+    res.redirect('/auth/signup');
   }
 });
 

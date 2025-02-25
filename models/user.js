@@ -19,7 +19,8 @@ const userSchema = new Schema({
   favorites: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'favorites',
-  }]
+  }],
+  createdAt: { type: Date, default: Date.now },
 });
 
 userSchema.plugin(passportLocalMongoose);

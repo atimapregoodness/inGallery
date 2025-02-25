@@ -22,7 +22,8 @@ const publishImg = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }
+  },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const PublishImg = mongoose.model('PublishImg', publishImg);
