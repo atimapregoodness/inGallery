@@ -1,16 +1,12 @@
-const express = require('express');
-const router = express.Router();
+
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const UploadImg = require('../models/upload');
 const PublishImg = require('../models/publish');
 const upload = multer({ storage });
 const path = require('path');
-const user = require('../models/user');
-// const upload = multer({ dest: "upload" });
 
-
-router.get('/dashboard', async (req, res) => {
+exports.getDashboard = async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const user = req.user;
@@ -34,11 +30,10 @@ router.get('/dashboard', async (req, res) => {
   else {
     req.flash('error', 'Please login first');
     res.redirect('/login');
-
   }
-});
+};
 
-router.get('/dashboard/:id', async (req, res) => {
+exports.getDashboardImages = async (req, res) => {
   if (req.isAuthenticated()) {
     const { id } = req.params;
 
@@ -51,9 +46,9 @@ router.get('/dashboard/:id', async (req, res) => {
     req.flash('error', 'Please login first');
     res.redirect('/login');
   }
-});
+};
 
-router.get('/upload', async (req, res) => {
+exports.getUpload = async (req, res) => {
   if (req.isAuthenticated()) {
 
     res.render('user/acct/upload');
@@ -61,9 +56,9 @@ router.get('/upload', async (req, res) => {
     req.flash('error', 'Please login first');
     res.redirect('/login');
   }
-});
+};
 
-router.post('/upload', upload.single('img'), async (req, res) => {
+exports.uploadImg = async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const img = { url: req.file.path, filename: path.basename(req.file.originalname) };
@@ -85,9 +80,9 @@ router.post('/upload', upload.single('img'), async (req, res) => {
     req.flash('error', 'Please login first');
     res.redirect('/login');
   }
-});
+};
 
-router.get('/dashboard/:id/publish', async (req, res) => {
+exports.publishImg = async (req, res) => {
   if (req.isAuthenticated()) {
 
     try {
@@ -124,13 +119,4 @@ router.get('/dashboard/:id/publish', async (req, res) => {
     req.flash('error', 'Please login first');
     res.redirect('/login');
   }
-
-});
-
-
-
-
-
-
-
-module.exports = router;
+};

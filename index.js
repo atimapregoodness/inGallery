@@ -6,24 +6,19 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const ejsMate = require('ejs-mate');
-const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const session = require('express-session');
-const routes = require('./routes/indexRoutes');
+const routes = require('./routes');
 const flash = require('connect-flash');
 const appError = require('./utils/appError');
-const multer = require('multer');
 const MongoStore = require('connect-mongo');
-const UploadImg = require('./models/publish');
+const cors = require("cors");
 
 const bodyParser = require('body-parser');
 
-const { storage } = require('./cloudinary');
-const PublishImg = require("./models/publish");
-const upload = multer({ storage });
 const morgan = require('morgan');
 const moment = require('moment');
 
@@ -53,6 +48,9 @@ const sessionConfig = {
   }
 };
 
+
+
+
 morgan.token("date", () => moment().format("YYYY-MM-DD HH:mm:ss"));
 
 app.use(morgan(':method :url :status :response-time ms - [:date]'));
@@ -60,6 +58,8 @@ app.use(morgan(':method :url :status :response-time ms - [:date]'));
 app.use(bodyParser.json());
 app.use(session(sessionConfig));
 app.use(flash());
+
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());

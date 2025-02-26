@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
     try {
       const imgs = await PublishImg.find({}).populate('user').skip(skip).limit(limit);
       res.render('explore', { imgs });
+
     } catch (error) {
       console.error(error);
       res.redirect('/explore');
