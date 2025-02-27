@@ -58,6 +58,17 @@ const methodOverride = require('method-override');
 
 app.use(methodOverride('_method'));
 
+app.use((req, res, next) => {
+  // Do not update the previous URL on the first request (when there's no referrer)
+  if (req.session) {
+    req.session.previousUrl = req.session.currentUrl || req.headers.referer;
+    req.session.currentUrl = req.originalUrl;
+  }
+
+  res.locals.previousUrl = req.session?.previousUrl || "/"; // Default to home if none
+  next();
+});
+
 
 morgan.token("date", () => moment().format("YYYY-MM-DD HH:mm:ss"));
 
@@ -106,18 +117,31 @@ ejs.fileLoader = function (filePath) {
   return fs.readFileSync(absolutePath, 'utf8');
 };
 
+app.use((req, res, next) => {
+  // Do not update the previous URL on the first request (when there's no referrer)
+  if (req.session) {
+    req.session.previousUrl = req.session.currentUrl || req.headers.referer;
+    req.session.currentUrl = req.originalUrl;
+  }
+
+  res.locals.previousUrl = req.session?.previousUrl || "/"; // Default to home if none
+  next();
+});
 app.use('/', routes);
+
+app.get('/back', (req, res) => {
+  res.redirect(req.session.previousUrl);
+});
 
 app.all('*', (req, res, next) => {
   next(new appError('Page not found', 404));
 });
 
 app.use((err, req, res, next) => {
-  const { status = 500 } = err;
-  if (!err.message) {
-    err.message = 'something went wrong';
-  }
-  res.status(status).render('error/errorPage', { err, url: req.originalUrl });
+  console.error(`[ERROR] ${err.message}`);
+  console.error(`Previous URL: ${res.locals.previousUrl}`);
+
+  res.status(err.status || 500).render('error/errorPage', { err, previousUrl: res.locals.previousUrl });
 });
 
 app.listen(3000, () => {

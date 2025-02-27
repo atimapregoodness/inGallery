@@ -4,18 +4,19 @@ const { getDashboardImages, getUpload, uploadImg, publishImg, getDashboard, dele
 const multer = require("multer");
 const { storage } = require("../../cloudinary");
 const upload = multer({ storage });
+const wrapAsync = require('../../utils/wrapAssync');
 
 
-router.get('/dashboard', getDashboard);
+router.get('/dashboard', wrapAsync(getDashboard));
 
-router.get('/dashboard/:id', getDashboardImages);
+router.get('/dashboard/:id', wrapAsync(getDashboardImages));
 
-router.get('/upload', getUpload);
+router.get('/upload', wrapAsync(getUpload));
 
-router.post('/upload', upload.single('img'), uploadImg);
+router.post('/upload', upload.single('img'), wrapAsync(uploadImg));
 
-router.get('/dashboard/:id/publish', publishImg);
+router.get('/dashboard/:id/publish', wrapAsync(publishImg));
 
-router.get('/dashboard/:id/delete', deleteImg);
+router.get('/dashboard/:id/delete', wrapAsync(deleteImg));
 
 module.exports = router;

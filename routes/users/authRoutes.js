@@ -3,17 +3,18 @@ const router = express.Router();
 const passport = require('passport');
 
 const { getLogin, getSignup, postSignup, postLogin, getLogout } = require('../../controllers/authController');
+const wrapAsync = require('../../utils/wrapAssync');
 
-router.get('/login', getLogin);
+router.get('/login', wrapAsync(getLogin));
 
-router.post('/login', postLogin);
+router.post('/login', wrapAsync(postLogin));
 
-router.get('/signup', getSignup);
+router.get('/signup', wrapAsync(getSignup));
 
-router.post('/signup', postSignup);
+router.post('/signup', wrapAsync(postSignup));
 
 
-router.get('/logout', getLogout);
+router.get('/logout', wrapAsync(getLogout));
 
 
 

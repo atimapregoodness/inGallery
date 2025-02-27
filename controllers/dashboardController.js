@@ -20,7 +20,6 @@ exports.getDashboard = async (req, res) => {
 
       const numberOfImgs = images.length;
 
-
       res.render('user/acct/dashboard', { userDetails, imgDetails, numberOfImgs });
 
     } catch (err) {
@@ -51,7 +50,6 @@ exports.getDashboardImages = async (req, res) => {
 
 exports.getUpload = async (req, res) => {
   if (req.isAuthenticated()) {
-
     res.render('user/acct/upload');
   } else {
     req.flash('error', 'Please login first');

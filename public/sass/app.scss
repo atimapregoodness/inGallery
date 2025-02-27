@@ -1716,11 +1716,13 @@ footer {
 
   h1 {
     font-size: 17px;
+    color: var(--red);
   }
 
-  h3 {
-    font-size: 12px;
-  }
+  // h2 {
+  //   font-size: 12px;
+  //   text-decoration: dashed;
+  // }
 
   h3 {
     font-size: 10px;
@@ -1739,8 +1741,11 @@ footer {
     display: block;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     padding-bottom: 0.4em;
+    border-bottom: 1px solid var(--greenBg);
+    width: 100%;
+    padding: 1em 3em;
   }
 
   .btns {
@@ -1772,7 +1777,12 @@ footer {
         background-color: var(--hoverGreen);
         transition: var(--transition);
       }
+      #whiteIcon {
+        color: #ffffff;
+        font-size: 15px;
+      }
     }
+
     #deleteYesBtn {
       color: #ffffff;
       background-color: var(--redBg);
@@ -1780,11 +1790,6 @@ footer {
       &:hover {
         background-color: var(--red);
         transition: var(--transition);
-      }
-
-      #deleteIcon {
-        color: #ffffff;
-        font-size: 15px;
       }
     }
   }

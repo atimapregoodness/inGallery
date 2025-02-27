@@ -1,6 +1,7 @@
 
 const PublishImg = require('../models/publish');
 const UploadImg = require('../models/upload');
+const appError = require('../utils/appError');
 
 
 exports.getExplore = async (req, res) => {
@@ -34,7 +35,7 @@ exports.getExplore = async (req, res) => {
   }
 };
 
-exports.getImg = async (req, res) => {
+exports.getImg = async (req, res, next) => {
 
   const { id } = req.params;
 
@@ -43,8 +44,8 @@ exports.getImg = async (req, res) => {
   const limit = parseInt(req.query.limit) || 30;
 
   const imgs = await UploadImg.findById(id).populate('user');
-  const findImg = await PublishImg.findById(imgs._id).populate('user');
 
+  const findImg = await PublishImg.findById(imgs._id).populate('user');
 
   if (user && findImg && imgs) {
     const userId = req.user._id.toString();
@@ -62,6 +63,12 @@ exports.getImg = async (req, res) => {
   }
 
   let views = findImg.views.length;
+
+  if (!views && !imgs) {
+    const err = new appError('Image not found', 404);
+    console.log(`Error: ======= ${err.message, err.status}`);
+    return next(err);
+  }
 
   const findCateogory = await PublishImg.find({
     $or: [
