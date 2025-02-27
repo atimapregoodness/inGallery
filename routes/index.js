@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import routes
-const profileRoutes = require("./users/profileRoutes");
+const profileRoutes = require("./users/dashboardRoutes");
 const authRoutes = require("./users/authRoutes");
 const exploreRoutes = require("./exploreRoutes");
 const homeRoutes = require("./homeRoutes");

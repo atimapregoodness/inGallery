@@ -5,6 +5,7 @@ const UploadImg = require('../models/upload');
 const PublishImg = require('../models/publish');
 const upload = multer({ storage });
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
 
 exports.getDashboard = async (req, res) => {
   if (req.isAuthenticated()) {
@@ -61,7 +62,10 @@ exports.getUpload = async (req, res) => {
 exports.uploadImg = async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      const img = { url: req.file.path, filename: path.basename(req.file.originalname) };
+      const img = {
+        url: req.file.path,
+        filename: req.file.path.split('/').slice(-2).join('/') // Extracts folder/filename
+      };
       const { category, description } = req.body;
       const newImg = new UploadImg({ img, category, description, user: req.user._id });
       await newImg.save();
@@ -118,5 +122,60 @@ exports.publishImg = async (req, res) => {
   } else {
     req.flash('error', 'Please login first');
     res.redirect('/login');
+  }
+};
+
+exports.deleteImg = async (req, res) => {
+  if (req.isAuthenticated()) {
+    try {
+      const { id } = req.params;
+
+      // Find the image in Uploads and Published collections
+      const imgToDelete = await UploadImg.findById(id);
+      const publishedImgDelete = await PublishImg.findById(id);
+
+      // Check if the image exists
+      if (!imgToDelete) {
+        console.log('Image not found');
+        req.flash('error', 'Image not found');
+        return res.redirect('/user/dashboard');
+      }
+
+      // Convert user IDs to string for comparison
+      const imgOwnerId = imgToDelete.user.toString();
+      const currentUserId = req.user._id.toString();
+
+      console.log(imgOwnerId, currentUserId);
+
+      // Check if the logged-in user is the owner of the image
+      if (imgOwnerId !== currentUserId) {
+        req.flash('error', 'Unauthorized action');
+        return res.redirect('/user/dashboard');
+      }
+
+      // Extract Cloudinary public ID (folder/filename)
+      const publicId = imgToDelete.img.filename;
+
+      console.log("Deleting image from Cloudinary:", publicId);
+
+      // Delete from Cloudinary
+      await cloudinary.uploader.destroy(publicId);
+
+      console.log(publicId);
+
+      // Remove from database
+      // await UploadImg.findByIdAndDelete(id);
+
+      // if (publishedImgDelete) {
+      //   await PublishImg.findByIdAndDelete(id);
+      // }
+
+      req.flash('success', 'Image deleted successfully');
+      res.redirect('/user/dashboard');
+    } catch (err) {
+      console.error(err);
+      req.flash('error', 'An error occurred while deleting the image');
+      res.redirect('/user/dashboard');
+    }
   }
 };

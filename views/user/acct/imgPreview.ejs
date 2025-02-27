@@ -24,18 +24,29 @@
             </button>
           </li>
           <li>
-            <a href="/user/dashboard/<%= imgs.img._id %>/edit">
+            <a href="/user/dashboard/edit/<%= imgs._id %>">
               <button id="noBackground">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
             </a>
           </li>
           <li>
-            <a href="/user/dashboard/<%= imgs.img._id %>/delete">
-              <button id="noBackground">
-                <i class="fa-solid fa-trash" id="delete"></i>
-              </button>
-            </a>
+            <button id="noBackground">
+              <i class="fa-solid fa-trash" id="delete"></i>
+            </button>
+
+            <div class="deletePopup">
+              <img src="<%= imgs.img.url %>" alt="<%= imgs.img.filename %>" />
+              <h3>Filename: <%= imgs.img.filename %></h3>
+              <h2>Do you wish to publish this image to Web?</h2>
+              <div class="btns">
+                <a
+                  href="/user/dashboard/<%= imgs._id %>/delete?_method=DELETE"
+                  method="POST"
+                  ><button type="button">Yes</button></a
+                >
+              </div>
+            </div>
           </li>
         </div>
 

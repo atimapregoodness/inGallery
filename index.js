@@ -4,7 +4,9 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 const path = require('path');
+
 const app = express();
+const ejs = require('ejs');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const User = require('./models/user');
@@ -21,6 +23,8 @@ const bodyParser = require('body-parser');
 
 const morgan = require('morgan');
 const moment = require('moment');
+const fs = require('fs');
+
 
 // const wrapAsync = require('./utils/wrapAsync');
 
@@ -49,6 +53,10 @@ const sessionConfig = {
 };
 
 
+
+const methodOverride = require('method-override');
+
+app.use(methodOverride('_method'));
 
 
 morgan.token("date", () => moment().format("YYYY-MM-DD HH:mm:ss"));
@@ -82,12 +90,21 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+
+app.set('view engine', 'ejs');
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('views', path.join(__dirname, 'views'));
+
 app.engine('ejs', ejsMate);
+
+ejs.fileLoader = function (filePath) {
+  const absolutePath = path.resolve(__dirname, 'views', filePath);
+  return fs.readFileSync(absolutePath, 'utf8');
+};
 
 app.use('/', routes);
 
