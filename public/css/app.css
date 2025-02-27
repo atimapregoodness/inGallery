@@ -1421,6 +1421,130 @@ footer .social {
   transition: var(--transition);
 }
 
+.deletePopup {
+  z-index: -10;
+  transition: var(--transition);
+  position: absolute;
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  backdrop-filter: blur(10px); /* Apply the blur effect */
+  background-color: rgba(255, 255, 255, 0.7333333333);
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.deletePopup #popUpContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+  border: 1px solid var(--greenBg);
+  transform: scale(0);
+  transition: var(--transition);
+}
+.deletePopup img {
+  pointer-events: none;
+  width: 100px;
+  padding-bottom: 1em;
+}
+.deletePopup h4 {
+  font-size: 10px;
+  margin-bottom: 0.5em;
+  color: var(--red);
+}
+.deletePopup h1 {
+  font-size: 17px;
+}
+.deletePopup h3 {
+  font-size: 12px;
+}
+.deletePopup h3 {
+  font-size: 10px;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+}
+.deletePopup p {
+  font-weight: 400;
+  padding-left: 0.3em;
+  color: #000;
+  font-size: 10px;
+}
+.deletePopup #imgInfo {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.4em;
+}
+.deletePopup .btns {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 60%;
+  font-size: 15px;
+  padding: 0.5em;
+}
+.deletePopup .btns a {
+  background: var(--darkGreen);
+  color: var(--darkGreen);
+  border-radius: 0.3em;
+  border: none;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #ffffff;
+  transition: var(--transition);
+  width: 5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.deletePopup .btns a:hover {
+  background-color: var(--hoverGreen);
+  transition: var(--transition);
+}
+.deletePopup .btns #deleteYesBtn {
+  color: #ffffff;
+  background-color: var(--redBg);
+}
+.deletePopup .btns #deleteYesBtn:hover {
+  background-color: var(--red);
+  transition: var(--transition);
+}
+.deletePopup .btns #deleteYesBtn #deleteIcon {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.deleteActiveBox {
+  opacity: 1;
+  z-index: 10;
+  transition: ease-in 0.5s;
+  display: block;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.deleteActiveBox #popUpContent {
+  transform: scale(1.07);
+  transition: var(--transition);
+}
+
 @media only screen and (max-width: 600px) {
   .reveal {
     transform: translateY(2em);

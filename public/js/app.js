@@ -131,6 +131,23 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
+  const deleteBtn = document.querySelector('.deleteBtn');
+  const deletePopup = document.querySelector('.deletePopup');
+  const deleteCloseBtn = document.querySelector('#deleteCloseBtn');
+
+  if (deletePopup && deleteBtn && deleteCloseBtn) {
+    deleteBtn.addEventListener('click', () => {
+      deletePopup.classList.add('deleteActiveBox');
+    });
+  }
+
+  if (deletePopup && deleteCloseBtn) {
+    deleteCloseBtn.addEventListener('click', () => {
+      deletePopup.classList.remove('deleteActiveBox');
+    });
+  }
+
+
   window.addEventListener('scroll', reveal);
   function reveal() {
     let reveals = document.querySelectorAll('.reveal');

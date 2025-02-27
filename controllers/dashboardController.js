@@ -154,21 +154,26 @@ exports.deleteImg = async (req, res) => {
       }
 
       // Extract Cloudinary public ID (folder/filename)
-      const publicId = imgToDelete.img.filename;
+      const publicId = imgToDelete.img.filename.replace(/\.[^/.]+$/, "");
 
-      console.log("Deleting image from Cloudinary:", publicId);
+      console.log("Deleting image from Cloudinary: ===========", publicId);
 
       // Delete from Cloudinary
-      await cloudinary.uploader.destroy(publicId);
+      await cloudinary.uploader.destroy(publicId, (error, result) => {
+        if (error) {
+          console.error('Cloudinary Delete Error:', error);
+        } else {
+          console.log('Cloudinary Delete Result:', result);
+        }
+      });;
 
-      console.log(publicId);
 
-      // Remove from database
-      // await UploadImg.findByIdAndDelete(id);
+      // Remove from database;
+      await UploadImg.findByIdAndDelete(id);
 
-      // if (publishedImgDelete) {
-      //   await PublishImg.findByIdAndDelete(id);
-      // }
+      if (publishedImgDelete) {
+        await PublishImg.findByIdAndDelete(id);
+      }
 
       req.flash('success', 'Image deleted successfully');
       res.redirect('/user/dashboard');
