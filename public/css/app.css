@@ -914,7 +914,7 @@ footer .social {
 }
 #imgPreview .topBar .controlIcons i {
   margin-right: 0.5em;
-  font-size: 20px;
+  font-size: 23px;
   color: var(--darkGreen);
 }
 #imgPreview .topBar .controlIcons #isPublished {
@@ -965,9 +965,9 @@ footer .social {
 #imgPreview .topBar .controlIcons .icons {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 60%;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 80%;
   margin: auto;
 }
 #imgPreview .topBar .controlIcons .icons #noPadding {
@@ -1007,10 +1007,16 @@ footer .social {
   margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   overflow: auto;
 }
+#imgPreview .imgSection2 .img {
+  width: auto;
+  height: auto;
+  margin: auto;
+}
 #imgPreview .imgSection2 img {
+  display: flex;
+  flex-direction: column;
   display: block;
   width: 15em;
   height: auto;
@@ -2360,12 +2366,10 @@ footer .social {
   }
   #imgPreview .topBar {
     padding: 1em;
-    width: 95%;
-    margin: auto;
+    width: 99%;
   }
   #imgPreview .topBar .controlIcons ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: block;
   }
   #imgPreview .topBar .controlIcons li {
     display: flex;
@@ -2375,12 +2379,11 @@ footer .social {
     list-style: none;
     display: inline-block;
     align-self: center;
-    font-size: 30px;
+    font-size: 13px;
   }
   #imgPreview .topBar .controlIcons i {
-    margin-right: 0.5em;
+    margin-right: 0.1em;
     font-size: 20px;
-    color: var(--darkGreen);
   }
   #imgPreview .topBar .controlIcons #isPublished {
     background-color: var(--darkGreen);
@@ -2388,6 +2391,12 @@ footer .social {
     padding: 1em;
     color: #ffffff;
     border-radius: 1em;
+    cursor: not-allowed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
   }
   #imgPreview .topBar .controlIcons #isPublished i {
     color: #fff;
@@ -2398,6 +2407,10 @@ footer .social {
     padding: 1em;
     color: #ffffff;
     border-radius: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
   #imgPreview .topBar .controlIcons #publishBtn:hover {
     background-color: var(--hoverGreen);
@@ -2422,55 +2435,32 @@ footer .social {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 60%;
+    width: 100%;
     margin: auto;
-  }
-  #imgPreview .topBar .controlIcons .icons #noPadding {
-    padding: 0;
-  }
-  #imgPreview .topBar .controlIcons .first {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    align-items: flex-start;
-  }
-  #imgPreview .topBar .controlIcons .first h1 {
+    border-top: 1px solid var(--greenBg);
     padding-top: 0.5em;
   }
+  #imgPreview .topBar .controlIcons .first {
+    margin-bottom: 1em;
+  }
+  #imgPreview .topBar .controlIcons .first h1 {
+    padding-top: 0;
+    font-size: 10px;
+  }
   #imgPreview .topBar .controlIcons .first i {
-    color: var(--darkGreen);
-    margin-right: 1em;
-    font-size: 35px;
-    transition: var(--transition);
-  }
-  #imgPreview .topBar .controlIcons .first i:hover {
-    color: var(--hoverGreen);
-    transition: var(--transition);
-  }
-  #imgPreview .topBar #delete {
-    color: var(--red);
+    margin-right: 0.2em;
+    font-size: 30px;
   }
   #imgPreview .imgSection2 {
     width: 100%;
-    width: 100%;
     padding-top: 0em;
   }
-  #imgPreview .imgSection2 .imgPreview {
-    height: 70vh;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-  }
   #imgPreview .imgSection2 img {
+    overflow: hidden;
     display: block;
     width: 15em;
+    height: auto;
     transition: var(--transition);
-    object-fit: cover;
     pointer-events: none;
   }
   #imgPreview .imgSection2 i {

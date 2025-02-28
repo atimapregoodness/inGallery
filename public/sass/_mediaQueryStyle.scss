@@ -954,14 +954,11 @@
 
     .topBar {
       padding: 1em;
-      // background-color: var(--lightGray);
-      width: 95%;
-      margin: auto;
+      width: 99%;
 
       .controlIcons {
         ul {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
+          display: block;
         }
 
         li {
@@ -972,14 +969,11 @@
           list-style: none;
           display: inline-block;
           align-self: center;
-
-          // padding-left: 2em;
-          font-size: 30px;
+          font-size: 13px;
         }
         i {
-          margin-right: 0.5em;
+          margin-right: 0.1em;
           font-size: 20px;
-          color: var(--darkGreen);
         }
         #isPublished {
           background-color: var(--darkGreen);
@@ -987,6 +981,12 @@
           padding: 1em;
           color: #ffffff;
           border-radius: 1em;
+          cursor: not-allowed;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          opacity: 0.5;
 
           i {
             color: #fff;
@@ -999,6 +999,10 @@
           padding: 1em;
           color: #ffffff;
           border-radius: 1em;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
 
           &:hover {
             background-color: var(--hoverGreen);
@@ -1028,64 +1032,37 @@
           flex-direction: row;
           justify-content: space-around;
           align-items: center;
-          width: 60%;
+          width: 100%;
           margin: auto;
-
-          #noPadding {
-            padding: 0;
-          }
+          border-top: 1px solid var(--greenBg);
+          padding-top: 0.5em;
         }
         .first {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-self: center;
-          align-items: flex-start;
+          margin-bottom: 1em;
 
           h1 {
-            padding-top: 0.5em;
+            padding-top: 0;
+            font-size: 10px;
           }
 
           i {
-            color: var(--darkGreen);
-            margin-right: 1em;
-            font-size: 35px;
-            transition: var(--transition);
-
-            &:hover {
-              color: var(--hoverGreen);
-              transition: var(--transition);
-            }
+            margin-right: 0.2em;
+            font-size: 30px;
           }
         }
-      }
-
-      #delete {
-        color: var(--red);
       }
     }
     .imgSection2 {
       width: 100%;
-      width: 100%;
       padding-top: 0em;
 
-      .imgPreview {
-        height: 70vh;
-        width: 100%;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        overflow: auto;
-      }
-
       img {
-        // overflow: hidden;
+        overflow: hidden;
         display: block;
         width: 15em;
+        height: auto;
         transition: var(--transition);
-        object-fit: cover;
+        // object-fit: cover;
         pointer-events: none;
       }
 
@@ -1100,23 +1077,6 @@
         background: none;
       }
 
-      // input {
-      //   background: var(--lightGreen);
-      //   appearance: none;
-      //   border-radius: 2em;
-      //   width: auto;
-      //   outline: none;
-
-      //   -webkit-slider-thumb {
-      //     -webkit-appearance: none;
-      //     appearance: none;
-      //     width: 15px;
-      //     height: 15px;
-      //     border-radius: 50%;
-      //     background: var(--darkGreen);
-      //     cursor: pointer;
-      //   }
-      // }
       .footer {
         width: 100%;
         padding-top: 0.5em;
@@ -1127,7 +1087,6 @@
       }
     }
   }
-
   .noImg {
     display: flex;
     flex-direction: column;
@@ -1537,24 +1496,6 @@
       button {
         background: none;
       }
-
-      // input {
-      //   background: var(--lightGreen);
-      //   appearance: none;
-      //   border-radius: 2em;
-      //   width: auto;
-      //   outline: none;
-
-      //   -webkit-slider-thumb {
-      //     -webkit-appearance: none;
-      //     appearance: none;
-      //     width: 15px;
-      //     height: 15px;
-      //     border-radius: 50%;
-      //     background: var(--darkGreen);
-      //     cursor: pointer;
-      //   }
-      // }
       .footer {
         width: 100%;
         padding-top: 0.5em;

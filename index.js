@@ -112,11 +112,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.engine('ejs', ejsMate);
 
-ejs.fileLoader = function (filePath) {
-  const absolutePath = path.resolve(__dirname, 'views', filePath);
-  return fs.readFileSync(absolutePath, 'utf8');
-};
-
 app.use((req, res, next) => {
   // Do not update the previous URL on the first request (when there's no referrer)
   if (req.session) {
