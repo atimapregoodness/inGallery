@@ -37,6 +37,15 @@
   border-radius: 0.7em;
 }
 
+html {
+  zoom: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .noBackground {
   background: none;
 }
@@ -266,11 +275,15 @@ form .terms a {
   background-color: #104b10;
 }
 
+.noSidebar {
+  display: none;
+}
+
 nav {
+  position: fixed;
   z-index: 999;
   padding: 0.5em;
   padding-bottom: 0;
-  position: fixed;
   -webkit-backdrop-filter: blur(10px); /* For Safari */
   backdrop-filter: blur(10px); /* Apply the blur effect */
   background-color: rgba(255, 255, 255, 0.8901960784);
@@ -955,6 +968,7 @@ footer .social {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 #imgPreview .topBar .controlIcons #publish {
   display: flex;
@@ -976,17 +990,19 @@ footer .social {
 #imgPreview .topBar .controlIcons .first {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-self: center;
-  align-items: flex-start;
+  align-items: center;
 }
 #imgPreview .topBar .controlIcons .first h1 {
-  padding-top: 0.5em;
+  padding: 0;
+  margin: 0;
 }
 #imgPreview .topBar .controlIcons .first i {
   color: var(--darkGreen);
   margin-right: 1em;
-  font-size: 35px;
+  font-size: 50px;
+  padding: 0;
   transition: var(--transition);
 }
 #imgPreview .topBar .controlIcons .first i:hover {
@@ -1739,12 +1755,16 @@ footer .social {
   #closeBtn {
     background-color: #104b10;
   }
+  .noSidebar {
+    display: block;
+  }
   nav {
     z-index: 999;
     width: 100%;
     height: auto;
     display: block;
     padding-bottom: 3em;
+    position: fixed;
   }
   nav .logo {
     padding: 0 1em;
@@ -2361,8 +2381,9 @@ footer .social {
     font-size: 13px;
   }
   #imgPreview {
-    height: 100vh;
+    height: auto;
     padding-top: 4em;
+    margin: 0;
   }
   #imgPreview .topBar {
     padding: 1em;
@@ -2437,23 +2458,24 @@ footer .social {
     align-items: center;
     width: 100%;
     margin: auto;
-    border-top: 1px solid var(--greenBg);
-    padding-top: 0.5em;
+    border-bottom: 1px solid var(--greenBg);
+    padding-bottom: 0.5em;
   }
   #imgPreview .topBar .controlIcons .first {
-    margin-bottom: 1em;
-  }
-  #imgPreview .topBar .controlIcons .first h1 {
-    padding-top: 0;
-    font-size: 10px;
-  }
-  #imgPreview .topBar .controlIcons .first i {
-    margin-right: 0.2em;
-    font-size: 30px;
+    display: none;
   }
   #imgPreview .imgSection2 {
     width: 100%;
     padding-top: 0em;
+    height: auto;
+  }
+  #imgPreview .imgSection2 .imgPreview {
+    height: 60vh;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
   }
   #imgPreview .imgSection2 img {
     overflow: hidden;
@@ -2611,10 +2633,13 @@ footer .social {
     flex-direction: row;
     justify-content: center;
     align-self: center;
-    align-items: flex-start;
+    align-items: center;
   }
   .first h1 {
     padding-top: 0.5em;
+  }
+  .first .icons {
+    width: 100%;
   }
   .first i {
     color: var(--darkGreen);

@@ -37,6 +37,15 @@
   border-radius: 0.7em;
 }
 
+html {
+  zoom: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .noBackground {
   background: none;
 }
@@ -282,11 +291,15 @@ form {
   background-color: #104b10;
 }
 
+.noSidebar {
+  display: none;
+}
+
 nav {
+  position: fixed;
   z-index: 999;
   padding: 0.5em;
   padding-bottom: 0;
-  position: fixed;
   -webkit-backdrop-filter: blur(10px); /* For Safari */
   backdrop-filter: blur(10px); /* Apply the blur effect */
   background-color: #ffffffe3;
@@ -1095,6 +1108,7 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
       }
 
       #publish {
@@ -1119,18 +1133,20 @@ footer {
       .first {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-self: center;
-        align-items: flex-start;
+        align-items: center;
 
         h1 {
-          padding-top: 0.5em;
+          padding: 0;
+          margin: 0;
         }
 
         i {
           color: var(--darkGreen);
           margin-right: 1em;
-          font-size: 35px;
+          font-size: 50px;
+          padding: 0;
           transition: var(--transition);
 
           &:hover {
@@ -1159,6 +1175,7 @@ footer {
       // align-items: center;
       overflow: auto;
     }
+
     .img {
       width: auto;
       height: auto;
