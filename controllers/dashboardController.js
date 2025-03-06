@@ -29,7 +29,7 @@ exports.getDashboard = async (req, res) => {
   }
   else {
     req.flash('error', 'Please login first');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 };
 
@@ -44,7 +44,7 @@ exports.getDashboardImages = async (req, res) => {
     res.render('user/acct/imgPreview', { imgs, isPublished });
   } else {
     req.flash('error', 'Please login first');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 };
 
@@ -53,7 +53,7 @@ exports.getUpload = async (req, res) => {
     res.render('user/acct/upload');
   } else {
     req.flash('error', 'Please login first');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 };
 
@@ -80,7 +80,7 @@ exports.uploadImg = async (req, res) => {
 
   } else {
     req.flash('error', 'Please login first');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 };
 
@@ -119,7 +119,7 @@ exports.publishImg = async (req, res) => {
 
   } else {
     req.flash('error', 'Please login first');
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 };
 

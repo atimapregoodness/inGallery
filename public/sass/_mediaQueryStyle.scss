@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .reveal {
     transform: translateY(2em);
     opacity: 0;
@@ -105,6 +105,35 @@
 
   button {
     cursor: pointer;
+  }
+
+  #floatAdd {
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 0.5em;
+    margin-bottom: 13vh;
+    z-index: 80;
+
+    button {
+      -moz-box-shadow: 0 0 10px #2b2b2b;
+      -webkit-box-shadow: 0 0 10px #2b2b2b;
+      box-shadow: 0px 0px 10px #2b2b2b;
+      background-color: var(--hoverGreen);
+      font-size: 17px;
+      padding: 0.7em 1.5em;
+      text-align: left;
+      color: #ffffff;
+      width: auto;
+
+      border-radius: 3em;
+      transition: var(--transition);
+
+      i {
+        padding-right: 0.4em;
+      }
+    }
   }
 
   body {
@@ -233,7 +262,7 @@
       grid-template-columns: 1fr 1fr;
 
       img {
-        width: 140px;
+        width: 150px;
       }
 
       .navMenu {
@@ -761,14 +790,14 @@
     #contents {
       bottom: 0;
       left: 0;
-      -webkit-backdrop-filter: blur(10px); /* For Safari */
-      backdrop-filter: blur(10px); /* Apply the blur effect */
-      background-color: #ffffffe3;
-      border-top: 2px solid #fff;
+      -webkit-backdrop-filter: var(--blur1);
+      backdrop-filter: var(--blur1);
+      background-color: var(--blurBg);
+      border: none;
 
       height: auto;
       width: 100%;
-      padding: 0.2em;
+      padding: 0.2em 0.5em;
 
       margin: 0;
       position: fixed;
@@ -806,7 +835,7 @@
       padding: 0.3em 0;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-around;
 
       li {
         margin-top: 0;
@@ -814,11 +843,9 @@
 
         a {
           text-decoration: none;
-
           button {
             text-align: center;
-            padding: 0.5em;
-            margin: 0 0.3em;
+            margin: 0;
             background: none;
             width: auto;
             border-radius: 0.4em;
@@ -832,8 +859,9 @@
             }
 
             i {
-              font-size: 24px;
-              padding: 0.3em;
+              font-size: 20px;
+              padding: 0em;
+              margin-bottom: 0.3em;
             }
           }
         }
@@ -873,9 +901,6 @@
 
       .topBar {
         z-index: 2;
-        // background-color: #ffffffd0;
-        // -webkit-backdrop-filter: blur(10px); /* For Safari */
-        // backdrop-filter: blur(10px); /* Apply the blur effect */
         background-color: #fff;
 
         width: 100%;
@@ -900,8 +925,9 @@
       .imageContainer {
         transition: var(--transition);
         margin-top: 1em;
-        padding: 0em;
+        padding: 0.4em;
         width: 100%;
+        padding-bottom: 5em;
         margin: 0;
         height: auto;
         // display: grid;
@@ -914,7 +940,7 @@
         align-items: center;
 
         img {
-          width: 127px;
+          width: 100px;
           display: block;
           cursor: pointer;
           overflow: hidden;
@@ -1076,8 +1102,8 @@
       i {
         color: var(--hoverGreen);
         font-size: 25px;
-        padding-right: 1em;
-        padding-left: 1em;
+        padding-right: 0em;
+        padding-left: 0em;
       }
 
       button {
@@ -1087,10 +1113,18 @@
       .footer {
         width: 100%;
         padding-top: 0.5em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          #resetBtn {
+            margin-left: 2em;
+          }
+          input {
+            margin: 0 1em;
+          }
+        }
       }
     }
   }
@@ -1132,9 +1166,6 @@
     z-index: -10;
     transition: var(--transition);
     position: absolute;
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    backdrop-filter: blur(10px); /* Apply the blur effect */
-    background-color: #ffffffbb;
 
     height: 100vh;
     top: 0;
@@ -1490,7 +1521,7 @@
       img {
         // overflow: hidden;
         display: block;
-        width: 15em;
+        width: 8em;
         transition: var(--transition);
         object-fit: cover;
         pointer-events: none;
@@ -1568,16 +1599,29 @@
       }
     }
   }
+  .deletePopup {
+    margin: 0;
 
-  // .blurred-circle {
-  //   width: 100px; /* Or any desired size */
-  //   height: 100px; /* Or any desired size */
-  //   border-radius: 50%; /* Makes it a circle */
-  //   filter: blur(10px); /* Applies a blur effect */
-  //   background: radial-gradient(
-  //     circle at center,
-  //     var(--greenBg),
-  //     transparent
-  //   ); /* Or any gradient you want */
-  // }
+    #popUpContent {
+      padding: 1em 2em;
+      width: 90%;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    img {
+      width: 80px;
+      padding-bottom: 0.5em;
+    }
+
+    #imgInfo {
+      padding-bottom: 0.4em;
+      width: 100%;
+      padding: 0.3em;
+    }
+
+    .btns {
+      width: 80%;
+    }
+  }
 }

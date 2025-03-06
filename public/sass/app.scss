@@ -11,9 +11,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 :root {
+  --blur1: blur(10px); /* For Safari */
+  --blurBg: #ffffffb4;
   --darkGreen: #457c45;
   --lightGreen: #e8f0fe;
-  --redBg: #ff7474;
+  --redBg: #3d1b1b;
   --red: #ff0000;
   --lightRed: #ffdede;
   --transition: all 0.5s;
@@ -37,13 +39,13 @@
   border-radius: 0.7em;
 }
 
-html {
-  zoom: 1;
+#floatAdd {
+  display: none;
 }
-
-img {
-  max-width: 100%;
-  height: auto;
+body {
+  background-color: #ffffff;
+  background: #ffffff;
+  width: 100%;
 }
 
 .noBackground {
@@ -300,9 +302,9 @@ nav {
   z-index: 999;
   padding: 0.5em;
   padding-bottom: 0;
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: #ffffffe3;
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
 
   width: 100%;
   display: grid;
@@ -1254,9 +1256,9 @@ footer {
   z-index: -10;
   transition: var(--transition);
   position: absolute;
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: #ffffffbb;
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
 
   height: 100vh;
   top: 0;
@@ -1695,9 +1697,9 @@ footer {
   z-index: -10;
   transition: var(--transition);
   position: absolute;
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: #ffffffbb;
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
 
   // background-color: #008a00;
 
@@ -1736,11 +1738,13 @@ footer {
     font-size: 10px;
     margin-bottom: 0.5em;
     color: var(--red);
+    text-align: center;
   }
 
   h1 {
     font-size: 17px;
     color: var(--red);
+    text-align: center;
   }
 
   // h2 {

@@ -11,9 +11,11 @@
 }
 
 :root {
+  --blur1: blur(10px); /* For Safari */
+  --blurBg: #ffffffb4;
   --darkGreen: #457c45;
   --lightGreen: #e8f0fe;
-  --redBg: #ff7474;
+  --redBg: #3d1b1b;
   --red: #ff0000;
   --lightRed: #ffdede;
   --transition: all 0.5s;
@@ -37,13 +39,14 @@
   border-radius: 0.7em;
 }
 
-html {
-  zoom: 1;
+#floatAdd {
+  display: none;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+body {
+  background-color: #ffffff;
+  background: #ffffff;
+  width: 100%;
 }
 
 .noBackground {
@@ -284,9 +287,9 @@ nav {
   z-index: 999;
   padding: 0.5em;
   padding-bottom: 0;
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: rgba(255, 255, 255, 0.8901960784);
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
   width: 100%;
   display: grid;
   align-items: center;
@@ -1090,9 +1093,9 @@ footer .social {
   z-index: -10;
   transition: var(--transition);
   position: absolute;
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: rgba(255, 255, 255, 0.7333333333);
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
   height: 100vh;
   top: 0;
   left: 0;
@@ -1447,9 +1450,9 @@ footer .social {
   z-index: -10;
   transition: var(--transition);
   position: absolute;
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  backdrop-filter: blur(10px); /* Apply the blur effect */
-  background-color: rgba(255, 255, 255, 0.7333333333);
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
   height: 100vh;
   top: 0;
   left: 0;
@@ -1482,10 +1485,12 @@ footer .social {
   font-size: 10px;
   margin-bottom: 0.5em;
   color: var(--red);
+  text-align: center;
 }
 .deletePopup h1 {
   font-size: 17px;
   color: var(--red);
+  text-align: center;
 }
 .deletePopup h3 {
   font-size: 10px;
@@ -1568,7 +1573,7 @@ footer .social {
   transition: var(--transition);
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .reveal {
     transform: translateY(2em);
     opacity: 0;
@@ -1662,6 +1667,31 @@ footer .social {
   }
   button {
     cursor: pointer;
+  }
+  #floatAdd {
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 0.5em;
+    margin-bottom: 13vh;
+    z-index: 80;
+  }
+  #floatAdd button {
+    -moz-box-shadow: 0 0 10px #2b2b2b;
+    -webkit-box-shadow: 0 0 10px #2b2b2b;
+    box-shadow: 0px 0px 10px #2b2b2b;
+    background-color: var(--hoverGreen);
+    font-size: 17px;
+    padding: 0.7em 1.5em;
+    text-align: left;
+    color: #ffffff;
+    width: auto;
+    border-radius: 3em;
+    transition: var(--transition);
+  }
+  #floatAdd button i {
+    padding-right: 0.4em;
   }
   body {
     background-color: #ffffff;
@@ -1772,7 +1802,7 @@ footer .social {
     grid-template-columns: 1fr 1fr;
   }
   nav .logo img {
-    width: 140px;
+    width: 150px;
   }
   nav .logo .navMenu {
     display: flex;
@@ -2227,13 +2257,13 @@ footer .social {
   .sideBar #contents {
     bottom: 0;
     left: 0;
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    backdrop-filter: blur(10px); /* Apply the blur effect */
-    background-color: rgba(255, 255, 255, 0.8901960784);
-    border-top: 2px solid #fff;
+    -webkit-backdrop-filter: var(--blur1);
+    backdrop-filter: var(--blur1);
+    background-color: var(--blurBg);
+    border: none;
     height: auto;
     width: 100%;
-    padding: 0.2em;
+    padding: 0.2em 0.5em;
     margin: 0;
     position: fixed;
     display: flex;
@@ -2264,7 +2294,7 @@ footer .social {
     padding: 0.3em 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .sideBar ul li {
     margin-top: 0;
@@ -2275,8 +2305,7 @@ footer .social {
   }
   .sideBar ul li a button {
     text-align: center;
-    padding: 0.5em;
-    margin: 0 0.3em;
+    margin: 0;
     background: none;
     width: auto;
     border-radius: 0.4em;
@@ -2289,8 +2318,9 @@ footer .social {
     background-color: var(--greenBg);
   }
   .sideBar ul li a button i {
-    font-size: 24px;
-    padding: 0.3em;
+    font-size: 20px;
+    padding: 0em;
+    margin-bottom: 0.3em;
   }
   .sideBar ul li button {
     display: flex;
@@ -2342,8 +2372,9 @@ footer .social {
   .bodyContainer .imgSection .imageContainer {
     transition: var(--transition);
     margin-top: 1em;
-    padding: 0em;
+    padding: 0.4em;
     width: 100%;
+    padding-bottom: 5em;
     margin: 0;
     height: auto;
     grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
@@ -2354,7 +2385,7 @@ footer .social {
     align-items: center;
   }
   .bodyContainer .imgSection .imageContainer img {
-    width: 127px;
+    width: 100px;
     display: block;
     cursor: pointer;
     overflow: hidden;
@@ -2488,8 +2519,8 @@ footer .social {
   #imgPreview .imgSection2 i {
     color: var(--hoverGreen);
     font-size: 25px;
-    padding-right: 1em;
-    padding-left: 1em;
+    padding-right: 0em;
+    padding-left: 0em;
   }
   #imgPreview .imgSection2 button {
     background: none;
@@ -2497,10 +2528,17 @@ footer .social {
   #imgPreview .imgSection2 .footer {
     width: 100%;
     padding-top: 0.5em;
+  }
+  #imgPreview .imgSection2 .footer div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+  }
+  #imgPreview .imgSection2 .footer div #resetBtn {
+    margin-left: 2em;
+  }
+  #imgPreview .imgSection2 .footer div input {
+    margin: 0 1em;
   }
   .noImg {
     display: flex;
@@ -2534,9 +2572,6 @@ footer .social {
     z-index: -10;
     transition: var(--transition);
     position: absolute;
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    backdrop-filter: blur(10px); /* Apply the blur effect */
-    background-color: rgba(255, 255, 255, 0.7333333333);
     height: 100vh;
     top: 0;
     left: 0;
@@ -2836,7 +2871,7 @@ footer .social {
   }
   #ExploreImgPreview .imgSection2 img {
     display: block;
-    width: 15em;
+    width: 8em;
     transition: var(--transition);
     object-fit: cover;
     pointer-events: none;
@@ -2896,5 +2931,26 @@ footer .social {
   #ExploreImgPreview .section2 .imgContainer img:hover {
     transform: scale(1.04);
     transition: var(--transition);
+  }
+  .deletePopup {
+    margin: 0;
+  }
+  .deletePopup #popUpContent {
+    padding: 1em 2em;
+    width: 90%;
+    overflow: hidden;
+    margin: 0;
+  }
+  .deletePopup img {
+    width: 80px;
+    padding-bottom: 0.5em;
+  }
+  .deletePopup #imgInfo {
+    padding-bottom: 0.4em;
+    width: 100%;
+    padding: 0.3em;
+  }
+  .deletePopup .btns {
+    width: 80%;
   }
 }/*# sourceMappingURL=app.css.map */
