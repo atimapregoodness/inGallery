@@ -136,10 +136,6 @@
     }
   }
 
-  body {
-    background-color: #ffffff;
-  }
-
   .container {
     display: flex;
     flex-direction: column;
@@ -681,7 +677,6 @@
     height: auto;
     margin-bottom: 0;
     margin-top: 0vh;
-    background-color: var(--lightGreenHover);
     // color: #ffffff;
 
     .footerContainer {
@@ -702,7 +697,6 @@
       align-items: center;
       justify-content: center;
       padding: 0.4em;
-      background-color: var(--lightGreen);
       border-radius: 0.5em;
 
       img {
@@ -764,13 +758,6 @@
       border-radius: 0.3em;
       margin-left: 0.2em;
       font-size: 12px;
-      background-color: #000000;
-      color: #ffffff;
-
-      &:hover {
-        color: #ffffff;
-        background-color: #000000;
-      }
     }
     i {
       padding-right: 0.4em;
@@ -901,8 +888,6 @@
 
       .topBar {
         z-index: 2;
-        background-color: #fff;
-
         width: 100%;
         position: sticky;
         display: flex;
@@ -913,7 +898,6 @@
 
         h1 {
           font-size: 30px;
-          color: var(--hoverGreen);
           padding: 0.5 0em;
 
           i {
@@ -1008,10 +992,7 @@
           font-size: 20px;
         }
         #isPublished {
-          background-color: var(--darkGreen);
-          transition: var(--transition);
           padding: 1em;
-          color: #ffffff;
           border-radius: 1em;
           cursor: not-allowed;
           display: flex;
@@ -1026,24 +1007,12 @@
         }
 
         #publishBtn {
-          background-color: var(--darkGreen);
-          transition: var(--transition);
           padding: 1em;
-          color: #ffffff;
           border-radius: 1em;
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: center;
-
-          &:hover {
-            background-color: var(--hoverGreen);
-            transition: var(--transition);
-          }
-
-          i {
-            color: #fff;
-          }
         }
 
         h1 {
@@ -1066,7 +1035,6 @@
           align-items: center;
           width: 100%;
           margin: auto;
-          border-bottom: 1px solid var(--greenBg);
           padding-bottom: 0.5em;
         }
         .first {
@@ -1100,7 +1068,6 @@
       }
 
       i {
-        color: var(--hoverGreen);
         font-size: 25px;
         padding-right: 0em;
         padding-left: 0em;
@@ -1185,9 +1152,6 @@
       width: auto;
       padding: 1em 2em;
       border-radius: 0.5em;
-      background-color: #ffffff;
-      border: 1px solid var(--greenBg);
-      transform: scale(0);
       transition: var(--transition);
       // box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.1);
     }
@@ -1201,7 +1165,6 @@
     h3 {
       font-size: 10px;
       margin-bottom: 0.5em;
-      color: var(--darkGreen);
     }
 
     h2 {
@@ -1219,29 +1182,12 @@
       padding: 0.5em;
 
       a {
-        background: var(--darkGreen);
-        color: var(--darkGreen);
         border-radius: 0.3em;
         border: none;
         padding: 0.5em 1em;
         text-decoration: none;
         color: #ffffff;
         transition: var(--transition);
-
-        &:hover {
-          background-color: var(--hoverGreen);
-          transition: var(--transition);
-        }
-      }
-
-      #closeButton {
-        color: #ffffff;
-        background-color: var(--redBg);
-
-        &:hover {
-          background-color: var(--red);
-          transition: var(--transition);
-        }
       }
     }
   }
@@ -1288,15 +1234,8 @@
     }
 
     i {
-      color: var(--darkGreen);
       margin-right: 1em;
       font-size: 35px;
-      transition: var(--transition);
-
-      &:hover {
-        color: var(--hoverGreen);
-        transition: var(--transition);
-      }
     }
   }
 
@@ -1406,7 +1345,6 @@
           i {
             margin-right: 0.5em;
             font-size: 20px;
-            color: var(--darkGreen);
           }
         }
 
@@ -1417,21 +1355,6 @@
           flex-direction: row;
           border-radius: 1em;
           padding: 0.5em 1em;
-        }
-
-        #downloadBtn {
-          background-color: var(--darkGreen);
-          transition: var(--transition);
-          color: #ffffff;
-
-          &:hover {
-            background-color: var(--hoverGreen);
-            transition: var(--transition);
-          }
-
-          i {
-            color: #fff;
-          }
         }
 
         #info {

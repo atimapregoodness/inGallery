@@ -5,24 +5,29 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: #fff;
   scrollbar-width: thin;
   scrollbar-color: var(--lightGray);
   -webkit-tap-highlight-color: transparent;
+  font-weight: 400;
 }
 
 :root {
-  --blur1: blur(10px); /* For Safari */
-  --blurBg: #ffffffb4;
-  --darkGreen: #457c45;
-  --lightGreen: #e8f0fe;
-  --redBg: #3d1b1b;
+  --blur1: blur(10px);
+  --blurBg: #1b1a1de3;
+  --darkGreen: #2f4d40;
+  --lightGreen: #558a73;
+  --redBg: #dd0000;
   --red: #ff0000;
   --lightRed: #ffdede;
   --transition: all 0.5s;
-  --hoverGreen: #294729;
-  --greenBg: #addf96b4;
-  --lightGreenHover: #8cbd80;
+  --hoverGreen: #273f34;
+  --grabBg: #bec2c5;
+  --lightGreenHover: #111111d3;
   --lightGray: #f8f8f8;
+  --backgroundColor: #1b1a1d;
+  --border: 1px solid #bec2c575;
+  --gray: #29282c;
 }
 
 ::-webkit-scrollbar {
@@ -44,8 +49,7 @@
 }
 
 body {
-  background-color: #ffffff;
-  background: #ffffff;
+  background-color: var(--backgroundColor);
   width: 100%;
 }
 
@@ -63,10 +67,6 @@ i {
 
 a {
   cursor: pointer;
-}
-
-body {
-  background-color: #ffffff;
 }
 
 .reveal {
@@ -95,6 +95,12 @@ body {
   transition: all 1s;
   opacity: 1;
   z-index: -1;
+}
+
+section {
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
 }
 
 .errPageContainer {
@@ -182,10 +188,6 @@ button {
   cursor: pointer;
 }
 
-body {
-  background-color: #ffffff;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -205,7 +207,8 @@ form {
 form #header {
   font-size: 25px;
   text-align: center;
-  color: #000000;
+  color: #ffffff;
+  font-weight: 600;
 }
 form div {
   margin-top: 0.8em;
@@ -213,7 +216,7 @@ form div {
 }
 form input {
   border-radius: 0 0.5em 0.5em 0;
-  background-color: var(--lightGreen);
+  background-color: var(--grabBg);
   color: #000000;
   border: none;
   padding: 0.5em;
@@ -224,8 +227,8 @@ form .inputContainer {
   flex-direction: row;
 }
 form .inputContainer i {
-  background-color: var(--greenBg);
-  color: #000000;
+  background-color: var(--darkGreen);
+  color: #ffffff;
   display: flex;
   border-radius: 0.5em 0 0 0.5em;
   align-items: center;
@@ -252,7 +255,8 @@ form .btns button:hover {
   background-color: var(--hoverGreen);
 }
 form .btns a {
-  color: var(--red);
+  text-align: center;
+  color: var(--grabBg);
 }
 form .btns i {
   padding-right: 0.4em;
@@ -284,9 +288,8 @@ form .terms a {
 
 nav {
   position: fixed;
-  z-index: 999;
-  padding: 0.5em;
-  padding-bottom: 0;
+  z-index: 800;
+  padding: 0.2em;
   -webkit-backdrop-filter: var(--blur1);
   backdrop-filter: var(--blur1);
   background-color: var(--blurBg);
@@ -296,6 +299,7 @@ nav {
   grid-template-columns: 1fr 1fr;
 }
 nav .logo {
+  padding-top: 0.5em;
   padding-left: 1em;
 }
 nav .logo img {
@@ -318,20 +322,29 @@ nav .navLinks ul {
 nav .navLinks li {
   font-size: 15px;
   list-style: none;
+  padding: 0.4em 0.7em;
+  transition: var(--transition);
+}
+nav .navLinks li:hover {
+  transition: var(--transition);
+  color: #fff;
+  border-radius: 0.4em;
+  background-color: var(--hoverGreen);
 }
 nav .navLinks a {
   color: #000000;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 3em;
+  margin-left: 2em;
   transition: none;
   text-decoration: none;
 }
 nav .navLinks #navActive {
-  padding: 0.5em;
-  color: var(--darkGreen);
-  border-bottom: 2px solid var(--darkGreen);
+  color: #fff;
+  border-radius: 0.4em;
+  transition: var(--transition);
+  background-color: var(--hoverGreen);
 }
 nav .hamborger {
   margin-left: 5em;
@@ -363,8 +376,11 @@ nav .hamborger .active {
   display: block;
 }
 nav .hamborger .itemsContainer {
-  border: 1px solid #c1e4b1;
-  background-color: #ffffff;
+  z-index: 999;
+  border: var(--border);
+  background-color: var(--backgroundColor);
+  backdrop-filter: var(--blur1);
+  -webkit-backdrop-filter: var(--blur1);
   border-radius: 0.3em;
   padding: 0.5em;
 }
@@ -375,8 +391,8 @@ nav .hamborger .itemsContainer li {
   width: 100%;
 }
 nav .hamborger .itemsContainer li button {
-  background: rgba(255, 255, 255, 0.2745098039);
-  color: #000000;
+  background-color: var(--darkGreen);
+  color: #fff;
   border-radius: 0.3em;
   border: none;
   margin-top: 0.3em;
@@ -384,7 +400,10 @@ nav .hamborger .itemsContainer li button {
   width: 100%;
 }
 nav .hamborger .itemsContainer li button:hover {
-  background-color: var(--lightGreenHover);
+  background-color: var(--hoverGreen);
+}
+nav .hamborger .itemsContainer li:hover {
+  background: none;
 }
 nav .hamborger .itemsContainer a {
   margin-left: 0;
@@ -394,17 +413,20 @@ nav .hamborger .title {
   z-index: 10;
   margin-top: 0.3em;
 }
+nav .hamborger .title li:hover {
+  background: none;
+}
 nav .hamborger .title button {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0.5em 1em;
   cursor: pointer;
-  background-color: var(--greenBg);
+  background: none;
+  border: var(--border);
   margin-left: -0.5em;
-  border-radius: 0.7em;
+  border-radius: 3em;
   color: #000000;
-  border: none;
 }
 nav .hamborger .title button .arrow {
   transition: var(--transition);
@@ -439,7 +461,7 @@ nav #logoutBtn #exitIcon {
 }
 
 .bodyContainer {
-  padding-top: 2em;
+  padding-top: 4em;
 }
 .bodyContainer .gridContents {
   width: 90%;
@@ -448,6 +470,7 @@ nav #logoutBtn #exitIcon {
 .bodyContainer .gridContents h1 {
   text-align: left;
   font-size: 70px;
+  font-weight: 600;
 }
 .bodyContainer .gridContents h3 {
   padding-top: 1em;
@@ -458,8 +481,8 @@ nav #logoutBtn #exitIcon {
 .bodyContainer .gridContents h3 span {
   font-size: 20px;
   padding: 0 0.2em;
-  border-bottom: 4px solid var(--greenBg);
-  color: var(--darkGreen);
+  border-bottom: 2px solid var(--lightGreen);
+  color: var(--lightGreen);
 }
 .bodyContainer a {
   text-decoration: none;
@@ -479,6 +502,23 @@ nav #logoutBtn #exitIcon {
   font-size: 19px;
 }
 .bodyContainer #getBtn:hover {
+  background-color: var(--hoverGreen);
+}
+.bodyContainer #getStarted {
+  z-index: 10;
+  width: 10em;
+  font-weight: 600;
+  background-color: var(--darkGreen);
+  margin-top: 2em;
+  border-radius: 0.3em;
+  padding: 0.7em 1.3em;
+  font-size: 19px;
+  color: #ffffff;
+  transition: var(--transition);
+}
+.bodyContainer #getStarted:hover {
+  color: #ffffff;
+  transition: var(--transition);
   background-color: var(--hoverGreen);
 }
 .bodyContainer #arrow {
@@ -520,25 +560,28 @@ nav #logoutBtn #exitIcon {
 .searchContainer h1 {
   font-size: 50px;
   margin-bottom: 0.3em;
+  font-weight: 400;
   text-align: center;
+  font-weight: 600;
 }
 .searchContainer h1 span {
   font-size: 60px;
   padding: 0 0.5em;
   text-align: center;
-  border-bottom: 4px solid var(--greenBg);
-  color: var(--darkGreen);
+  border-bottom: 4px solid var(--lightGreen);
+  font-weight: 600;
+  color: var(--lightGreen);
 }
 .searchContainer #searchForm {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 1px solid var(--darkGreen);
+  border: var(--border);
   border-radius: 0.4em;
   font-size: 20px;
   text-align: center;
   width: 40em;
-  background-color: #fff;
+  background-color: var(--gray);
 }
 .searchContainer #searchForm input {
   border-radius: 0.4em;
@@ -546,7 +589,8 @@ nav #logoutBtn #exitIcon {
   padding: 0.6em;
   outline: none;
   text-align: left;
-  background-color: #fff;
+  background-color: var(--gray);
+  color: #fff;
 }
 .searchContainer #searchForm #submitBtn {
   padding: 0.2em;
@@ -556,6 +600,7 @@ nav #logoutBtn #exitIcon {
   margin: 0.1em;
 }
 .searchContainer #searchForm #submitBtn i {
+  color: var(--grabBg);
   font-size: 20px;
   padding: 0 1em;
 }
@@ -570,30 +615,31 @@ nav #logoutBtn #exitIcon {
   row-gap: 0.4em;
 }
 .searchContainer .category a {
-  background-color: var(--lightGreen);
+  background-color: var(--gray);
   font-size: 14px;
   text-decoration: none;
   padding: 0.5em 1em;
   margin-left: 0;
   border-radius: 0.3em;
   transition: var(--transition);
-  color: #000;
+  color: #ffffff;
 }
 .searchContainer .category a:hover {
   transform: scale(1.1);
   transition: var(--transition);
-  background-color: var(--greenBg);
+  background-color: var(--darkGreen);
 }
 .searchContainer .category .linkActive {
   transform: scale(1.1);
   transition: var(--transition);
-  background-color: var(--greenBg);
+  background-color: var(--darkGreen);
 }
 
 .sectionTwo {
+  background-color: var(--gray);
   width: 100%;
   height: auto;
-  padding: 2em;
+  padding: 5em 2em;
   display: flex;
   margin: 0;
   flex-direction: column;
@@ -611,7 +657,7 @@ nav #logoutBtn #exitIcon {
   width: 400px;
 }
 .sectionTwo .grid .gridContents {
-  width: 80vh;
+  width: 90%;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -624,12 +670,12 @@ nav #logoutBtn #exitIcon {
   font-size: 15px;
   padding-left: 1.3em;
   font-weight: 300;
-  color: #000000;
+  color: var(--grabBg);
 }
 .sectionTwo .grid .gridContents #listHead {
   padding-top: 0.7em;
   font-size: 20px;
-  color: var(--darkGreen);
+  color: #fff;
   font-weight: 600;
 }
 .sectionTwo .grid .gridContents i {
@@ -641,23 +687,26 @@ nav #logoutBtn #exitIcon {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 7em 25em;
+  padding: 7em 15%;
+  width: 100%;
+  margin: auto;
   text-align: center;
 }
 .sectionThree h1 {
   font-size: 70px;
-  border: 2px solid var(--greenBg);
+  border: var(--border);
   border-radius: 0.4em;
   padding: 0.4em;
 }
 .sectionThree h1 i {
   font-size: 60px;
   padding-right: 0.3em;
-  color: var(--darkGreen);
+  color: #fff;
 }
 .sectionThree h2 {
   padding-top: 1em;
-  font-size: 20px;
+  font-size: 25px;
+  color: var(--grabBg);
 }
 .sectionThree h3 {
   background-color: #fff;
@@ -666,6 +715,9 @@ nav #logoutBtn #exitIcon {
   border-radius: 0.3em;
   font-weight: 200;
   font-size: 20px;
+}
+.sectionThree a {
+  width: auto;
 }
 .sectionThree #getBtn {
   z-index: 10;
@@ -683,11 +735,47 @@ nav #logoutBtn #exitIcon {
   background-color: var(--hoverGreen);
 }
 
+.blurBgLeft {
+  position: absolute;
+  z-index: -1;
+  background-color: var(--grabBg);
+  width: 50%;
+  height: 50%;
+  border-radius: 100em;
+  margin-top: 5em;
+  left: 0;
+}
+
+.blurBgCenter {
+  position: absolute;
+  z-index: -1;
+  background-color: var(--grabBg);
+  width: 10em;
+  height: 5em;
+  border-radius: 100em;
+  margin: auto;
+  margin-top: 5em;
+  margin-left: 50%;
+}
+
+.blurBgRight {
+  position: absolute;
+  z-index: -1;
+  background-color: var(--grabBg);
+  width: 50%;
+  height: 40%;
+  border-radius: 100em;
+  margin-top: 9em;
+  right: 0;
+}
+
 footer {
   height: auto;
   margin-bottom: 0;
-  margin-top: 2vh;
-  background-color: var(--lightGreenHover);
+  margin-top: 7vh;
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
 }
 footer .footerContainer {
   padding: 2em;
@@ -706,7 +794,6 @@ footer .logo {
   align-items: center;
   justify-content: center;
   padding: 1em;
-  background-color: var(--lightGreen);
   border-radius: 0.5em;
 }
 footer .logo img {
@@ -716,6 +803,8 @@ footer .logo h2 {
   margin-left: 1em;
   font-size: 12px;
   padding: 0.2em;
+  color: var(--grabBg);
+  font-weight: 400;
 }
 footer .footerLinks {
   display: grid;
@@ -732,26 +821,27 @@ footer ul {
   list-style: none;
 }
 footer ul li {
+  color: var(--grabBg);
   line-height: 2em;
   font-size: 14px;
 }
 footer a {
-  color: #000;
+  color: var(--grabBg);
   text-decoration: none;
 }
 footer a:hover {
   text-decoration: underline;
 }
 footer input {
-  border: 2px solid #000000;
+  border: var(--border);
   background: none;
   border-radius: 0.3em;
   font-size: 13px;
   padding: 0.7em;
 }
 footer button {
-  background: none;
-  border: 2px solid #000;
+  background: var(--darkGreen);
+  border: var(--border);
   padding: 0.7em 1em;
   border-radius: 0.3em;
   margin-left: 0.2em;
@@ -759,10 +849,11 @@ footer button {
 }
 footer button:hover {
   color: #ffffff;
-  background-color: #000000;
+  background-color: var(--hoverGreen);
 }
 footer i {
   padding-right: 0.4em;
+  color: var(--grabBg);
 }
 footer .social {
   margin-left: 7em;
@@ -774,19 +865,23 @@ footer .social {
 
 .sideBar {
   height: 100vh;
-  width: 30vh;
-  padding-top: 5em;
-  padding-left: 0.5em;
+  width: 35vh;
+  padding-top: 7em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .sideBar #contents {
   height: 100vh;
   position: fixed;
   display: flex;
-  align-items: left;
   flex-direction: column;
+  width: 30vh;
 }
 .sideBar #floatBtn button {
-  background-color: var(--hoverGreen);
+  background-color: var(--darkGreen);
   font-size: 17px;
   padding: 0.7em 1.5em;
   text-align: left;
@@ -797,9 +892,6 @@ footer .social {
 }
 .sideBar #floatBtn button i {
   padding-right: 0.4em;
-}
-.sideBar i {
-  padding-right: 0.7em;
 }
 .sideBar ul {
   padding-top: 2em;
@@ -813,24 +905,32 @@ footer .social {
 }
 .sideBar ul li a button {
   font-size: 18px;
-  padding: 0.4em 0.7em;
-  text-align: left;
+  padding: 0.7em 1em;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   background: none;
-  width: 9em;
+  width: 100%;
+  margin: auto;
   border-radius: 0.4em;
 }
 .sideBar ul li a button:hover {
   background: none;
-  background-color: var(--greenBg);
+  background-color: var(--darkGreen);
+}
+.sideBar ul li a button i {
+  padding-right: 0.5em;
+  font-size: 20px;
 }
 .sideBar ul li button {
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 #buttonActive {
-  background-color: var(--greenBg);
+  background-color: var(--darkGreen);
 }
 
 .bodyContainer {
@@ -849,7 +949,7 @@ footer .social {
 }
 .bodyContainer .imgSection .topBar {
   z-index: 17;
-  background-color: #fff;
+  background-color: var(--backgroundColor);
   width: 100%;
   position: fixed;
   display: flex;
@@ -857,12 +957,13 @@ footer .social {
   flex-direction: row;
   align-items: center;
   padding: 1.5em 2em;
-  border-radius: 0.3em;
+  border-radius: 0em;
 }
 .bodyContainer .imgSection .topBar h1 {
-  font-size: 50px;
-  color: var(--hoverGreen);
+  font-size: 40px;
+  color: #fff;
   padding: 0.5 1em;
+  font-weight: 600;
 }
 .bodyContainer .imgSection .topBar h1 i {
   font-size: 40px;
@@ -870,7 +971,7 @@ footer .social {
 .bodyContainer .imgSection .imageContainer {
   transition: var(--transition);
   margin-top: 8em;
-  padding: 1.5em 3em;
+  padding: 3em 3em;
   width: auto;
   height: auto;
   grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
@@ -931,7 +1032,7 @@ footer .social {
 #imgPreview .topBar .controlIcons i {
   margin-right: 0.5em;
   font-size: 23px;
-  color: var(--darkGreen);
+  color: var(--grabBg);
 }
 #imgPreview .topBar .controlIcons #isPublished {
   background-color: var(--darkGreen);
@@ -1002,7 +1103,7 @@ footer .social {
   margin: 0;
 }
 #imgPreview .topBar .controlIcons .first i {
-  color: var(--darkGreen);
+  color: var(--lightGreen);
   margin-right: 1em;
   font-size: 50px;
   padding: 0;
@@ -1013,7 +1114,7 @@ footer .social {
   transition: var(--transition);
 }
 #imgPreview .topBar #delete {
-  color: var(--red);
+  color: var(--grabBg);
 }
 #imgPreview .imgSection2 {
   width: 100%;
@@ -1042,8 +1143,45 @@ footer .social {
   transition: var(--transition);
   pointer-events: none;
 }
+#imgPreview .imgSection2 input[type=range] {
+  -webkit-appearance: none; /* Remove default appearance */
+  width: 8em; /* Full-width */
+  height: 8px; /* Height of the slider */
+  background: var(--gray); /* Background color */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Transparency */
+  transition: opacity 0.2s; /* Transition for hover effect */
+  border-radius: 50em;
+}
+#imgPreview .imgSection2 input[type=range]:hover {
+  opacity: 1; /* Full opacity on hover */
+}
+#imgPreview .imgSection2 input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default appearance */
+  appearance: none; /* Remove default appearance */
+  width: 20px; /* Width of the thumb */
+  height: 20px; /* Height of the thumb */
+  border-radius: 50%; /* Round thumb */
+  background: var(--darkGreen); /* Thumb color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.2s; /* Transition for hover effect */
+}
+#imgPreview .imgSection2 input[type=range]::-webkit-slider-thumb:hover {
+  background: var(--hoverGreen); /* Thumb color on hover */
+}
+#imgPreview .imgSection2 input[type=range]::-moz-range-thumb {
+  width: 25px; /* Width of the thumb */
+  height: 25px; /* Height of the thumb */
+  border-radius: 50%; /* Round thumb */
+  background: var(--darkGreen); /* Thumb color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.2s; /* Transition for hover effect */
+}
+#imgPreview .imgSection2 input[type=range]::-moz-range-thumb:hover {
+  background: var(--hoverGreen); /* Thumb color on hover */
+}
 #imgPreview .imgSection2 i {
-  color: var(--hoverGreen);
+  color: var(--grabBg);
   font-size: 25px;
   padding-right: 1em;
   padding-left: 1em;
@@ -1114,8 +1252,8 @@ footer .social {
   width: auto;
   padding: 1em 2em;
   border-radius: 0.5em;
-  background-color: #ffffff;
-  border: 1px solid var(--greenBg);
+  background-color: var(--gray);
+  border: var(--border);
   transform: scale(0);
   transition: var(--transition);
 }
@@ -1127,7 +1265,7 @@ footer .social {
 .popUpBox h3 {
   font-size: 10px;
   margin-bottom: 0.5em;
-  color: var(--darkGreen);
+  color: #fff;
 }
 .popUpBox h2 {
   font-size: 17px;
@@ -1144,12 +1282,11 @@ footer .social {
 }
 .popUpBox .btns a {
   background: var(--darkGreen);
-  color: var(--darkGreen);
+  color: white;
   border-radius: 0.3em;
   border: none;
   padding: 0.5em 1em;
   text-decoration: none;
-  color: #ffffff;
   transition: var(--transition);
 }
 .popUpBox .btns a:hover {
@@ -1263,7 +1400,7 @@ footer .social {
   transition: var(--transition);
 }
 #ExploreImgPreview .topBar .header {
-  border-bottom: 1px solid var(--greenBg);
+  border-bottom: 1px solid var(--grabBg);
   padding: 0.5em 1em;
   padding: 0;
   font-size: 20px;
@@ -1416,7 +1553,7 @@ footer .social {
 #ExploreImgPreview .section2 h1 {
   font-size: 30px;
   padding: 0.5em 1em;
-  border-bottom: 3px solid var(--greenBg);
+  border-bottom: 3px solid var(--grabBg);
 }
 #ExploreImgPreview .section2 .imgContainer {
   padding-top: 2em;
@@ -1471,8 +1608,8 @@ footer .social {
   width: auto;
   padding: 1em 2em;
   border-radius: 0.5em;
-  background-color: #ffffff;
-  border: 1px solid var(--greenBg);
+  background-color: var(--gray);
+  border: var(--border);
   transform: scale(0);
   transition: var(--transition);
 }
@@ -1484,24 +1621,25 @@ footer .social {
 .deletePopup h4 {
   font-size: 10px;
   margin-bottom: 0.5em;
-  color: var(--red);
+  color: #fff;
   text-align: center;
 }
 .deletePopup h1 {
   font-size: 17px;
   color: var(--red);
+  font-weight: 600;
   text-align: center;
 }
 .deletePopup h3 {
   font-size: 10px;
-  color: #000;
+  color: #fff;
   display: flex;
   flex-direction: row;
 }
 .deletePopup p {
   font-weight: 400;
   padding-left: 0.3em;
-  color: #000;
+  color: var(--grabBg);
   font-size: 10px;
 }
 .deletePopup #imgInfo {
@@ -1510,7 +1648,7 @@ footer .social {
   flex-direction: column;
   align-items: left;
   padding-bottom: 0.4em;
-  border-bottom: 1px solid var(--greenBg);
+  border-bottom: var(--border);
   width: 100%;
   padding: 1em 3em;
 }
@@ -1692,9 +1830,6 @@ footer .social {
   }
   #floatAdd button i {
     padding-right: 0.4em;
-  }
-  body {
-    background-color: #ffffff;
   }
   .container {
     display: flex;
@@ -2163,7 +2298,6 @@ footer .social {
     height: auto;
     margin-bottom: 0;
     margin-top: 0vh;
-    background-color: var(--lightGreenHover);
   }
   footer .footerContainer {
     padding: 1em;
@@ -2182,7 +2316,6 @@ footer .social {
     align-items: center;
     justify-content: center;
     padding: 0.4em;
-    background-color: var(--lightGreen);
     border-radius: 0.5em;
   }
   footer .logo img {
@@ -2235,12 +2368,6 @@ footer .social {
     border-radius: 0.3em;
     margin-left: 0.2em;
     font-size: 12px;
-    background-color: #000000;
-    color: #ffffff;
-  }
-  footer button:hover {
-    color: #ffffff;
-    background-color: #000000;
   }
   footer i {
     padding-right: 0.4em;
@@ -2352,7 +2479,6 @@ footer .social {
   }
   .bodyContainer .imgSection .topBar {
     z-index: 2;
-    background-color: #fff;
     width: 100%;
     position: sticky;
     display: flex;
@@ -2363,7 +2489,6 @@ footer .social {
   }
   .bodyContainer .imgSection .topBar h1 {
     font-size: 30px;
-    color: var(--hoverGreen);
     padding: 0.5 0em;
   }
   .bodyContainer .imgSection .topBar h1 i {
@@ -2438,10 +2563,7 @@ footer .social {
     font-size: 20px;
   }
   #imgPreview .topBar .controlIcons #isPublished {
-    background-color: var(--darkGreen);
-    transition: var(--transition);
     padding: 1em;
-    color: #ffffff;
     border-radius: 1em;
     cursor: not-allowed;
     display: flex;
@@ -2454,22 +2576,12 @@ footer .social {
     color: #fff;
   }
   #imgPreview .topBar .controlIcons #publishBtn {
-    background-color: var(--darkGreen);
-    transition: var(--transition);
     padding: 1em;
-    color: #ffffff;
     border-radius: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  }
-  #imgPreview .topBar .controlIcons #publishBtn:hover {
-    background-color: var(--hoverGreen);
-    transition: var(--transition);
-  }
-  #imgPreview .topBar .controlIcons #publishBtn i {
-    color: #fff;
   }
   #imgPreview .topBar .controlIcons h1 {
     display: flex;
@@ -2489,7 +2601,6 @@ footer .social {
     align-items: center;
     width: 100%;
     margin: auto;
-    border-bottom: 1px solid var(--greenBg);
     padding-bottom: 0.5em;
   }
   #imgPreview .topBar .controlIcons .first {
@@ -2517,7 +2628,6 @@ footer .social {
     pointer-events: none;
   }
   #imgPreview .imgSection2 i {
-    color: var(--hoverGreen);
     font-size: 25px;
     padding-right: 0em;
     padding-left: 0em;
@@ -2590,9 +2700,6 @@ footer .social {
     width: auto;
     padding: 1em 2em;
     border-radius: 0.5em;
-    background-color: #ffffff;
-    border: 1px solid var(--greenBg);
-    transform: scale(0);
     transition: var(--transition);
   }
   .popUpBox img {
@@ -2603,7 +2710,6 @@ footer .social {
   .popUpBox h3 {
     font-size: 10px;
     margin-bottom: 0.5em;
-    color: var(--darkGreen);
   }
   .popUpBox h2 {
     font-size: 17px;
@@ -2619,25 +2725,11 @@ footer .social {
     padding: 0.5em;
   }
   .popUpBox .btns a {
-    background: var(--darkGreen);
-    color: var(--darkGreen);
     border-radius: 0.3em;
     border: none;
     padding: 0.5em 1em;
     text-decoration: none;
     color: #ffffff;
-    transition: var(--transition);
-  }
-  .popUpBox .btns a:hover {
-    background-color: var(--hoverGreen);
-    transition: var(--transition);
-  }
-  .popUpBox .btns #closeButton {
-    color: #ffffff;
-    background-color: var(--redBg);
-  }
-  .popUpBox .btns #closeButton:hover {
-    background-color: var(--red);
     transition: var(--transition);
   }
   .activeBox {
@@ -2677,14 +2769,8 @@ footer .social {
     width: 100%;
   }
   .first i {
-    color: var(--darkGreen);
     margin-right: 1em;
     font-size: 35px;
-    transition: var(--transition);
-  }
-  .first i:hover {
-    color: var(--hoverGreen);
-    transition: var(--transition);
   }
   .exploreImg {
     padding: 1em;
@@ -2780,7 +2866,6 @@ footer .social {
   #ExploreImgPreview .topBar .controlIcons ul i {
     margin-right: 0.5em;
     font-size: 20px;
-    color: var(--darkGreen);
   }
   #ExploreImgPreview .topBar .controlIcons button {
     display: flex;
@@ -2789,18 +2874,6 @@ footer .social {
     flex-direction: row;
     border-radius: 1em;
     padding: 0.5em 1em;
-  }
-  #ExploreImgPreview .topBar .controlIcons #downloadBtn {
-    background-color: var(--darkGreen);
-    transition: var(--transition);
-    color: #ffffff;
-  }
-  #ExploreImgPreview .topBar .controlIcons #downloadBtn:hover {
-    background-color: var(--hoverGreen);
-    transition: var(--transition);
-  }
-  #ExploreImgPreview .topBar .controlIcons #downloadBtn i {
-    color: #fff;
   }
   #ExploreImgPreview .topBar .controlIcons #info {
     display: flex;
