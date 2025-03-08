@@ -1,8 +1,19 @@
 <nav>
   <div class="logo">
-    <a href="/home"><img src="/assets/inGallery_logo.png" alt="logo" /></a>
-    <div class="navMenu">
-      <span><i class="fa-solid fa-bars"></i></span>
+    <a href="/home"
+      ><img src="/assets/inGallery_logo_black.png" alt="logo" class="logo"
+    /></a>
+    <div class="noDisplay">
+      <label class="theme-switch">
+        <input type="checkbox" class="mode-toggle2" />
+        <span class="slider">
+          <i class="icon sun"><i class="fa-solid fa-sun"></i></i>
+          <i class="icon moon"><i class="fa-solid fa-moon"></i></i>
+        </span>
+      </label>
+      <div class="navMenu">
+        <span><i class="fa-solid fa-bars"></i></span>
+      </div>
     </div>
   </div>
   <div class="navLinks">
@@ -35,6 +46,7 @@
               </button></li
           ></a>
         </div>
+
         <div class="items">
           <div class="itemsContainer">
             <ul>
@@ -90,7 +102,15 @@
         </div>
       </div>
       <% } %>
+      <div class="trueDisplay">
+        <label class="theme-switch">
+          <input type="checkbox" class="mode-toggle" />
+          <span class="slider">
+            <i class="icon sun"><i class="fa-solid fa-sun"></i></i>
+            <i class="icon moon"><i class="fa-solid fa-moon"></i></i>
+          </span>
+        </label>
+      </div>
     </ul>
-    <ul></ul>
   </div>
 </nav>

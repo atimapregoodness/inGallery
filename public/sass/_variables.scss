@@ -1,0 +1,40 @@
+:root {
+  //lightTheme
+  --blur1: blur(10px);
+  --blurBg: #ffffffe3;
+  --darkGreen: #2f4d40;
+  --lightGreen: #558a73;
+  --redBg: #dd0000;
+  --red: #ff0000;
+  --lightRed: #ffdede;
+  --transition: all 0.5s;
+  --hoverGreen: #273f34;
+  --grabBg: #000000;
+  --lightGreenHover: #111111d3;
+  --lightGray: #f8f8f8;
+  --backgroundColor: #ffffff;
+  --border: 1px solid #bec2c575;
+  --gray: #ffffff;
+  --color: #000000;
+}
+
+.dark-mode {
+  //darkTheme
+  --r: blur(10px);
+  --blurBg: #1b1a1de3;
+  // --darkGreen: #2f4d40;
+  // --lightGreen: #558a73;
+  // --redBg: #dd0000;
+  // --red: #ff0000;
+  --lightRed: #ffdede;
+  --transition: all 0.5s;
+  --hoverGreen: #273f34;
+  --grabBg: #bec2c5;
+  --lightGreenHover: #111111d3;
+  --lightGray: #f8f8f8;
+  --backgroundColor: #1b1a1d;
+  --border: 1px solid #bec2c575;
+  --gray: #29282c;
+  --color: #ffffff;
+  // --gray: #29282c;
+}

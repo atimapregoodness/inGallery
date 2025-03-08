@@ -1,24 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
-* {
-  font-family: "Poppins", serif;
-  font-size: 14px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: #fff;
-  scrollbar-width: thin;
-  scrollbar-color: var(--lightGray);
-  -webkit-tap-highlight-color: transparent;
-  font-weight: 400;
-}
-
 :root {
   --blur1: blur(10px);
-  --blurBg: #1b1a1de3;
+  --blurBg: #ffffffe3;
   --darkGreen: #2f4d40;
   --lightGreen: #558a73;
   --redBg: #dd0000;
   --red: #ff0000;
+  --lightRed: #ffdede;
+  --transition: all 0.5s;
+  --hoverGreen: #273f34;
+  --grabBg: #000000;
+  --lightGreenHover: #111111d3;
+  --lightGray: #f8f8f8;
+  --backgroundColor: #ffffff;
+  --border: 1px solid #bec2c575;
+  --gray: #ffffff;
+  --color: #000000;
+}
+
+.dark-mode {
+  --r: blur(10px);
+  --blurBg: #1b1a1de3;
   --lightRed: #ffdede;
   --transition: all 0.5s;
   --hoverGreen: #273f34;
@@ -28,6 +30,20 @@
   --backgroundColor: #1b1a1d;
   --border: 1px solid #bec2c575;
   --gray: #29282c;
+  --color: #ffffff;
+}
+
+* {
+  font-family: "Poppins", serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lightGray);
+  -webkit-tap-highlight-color: transparent;
+  font-weight: 400;
+  color: var(--color);
 }
 
 ::-webkit-scrollbar {
@@ -118,7 +134,7 @@ section {
 .errPageContainer button {
   margin-top: 1em;
   background-color: var(--darkGreen);
-  color: #ffffff;
+  color: var(--color);
   border-radius: 0.3em;
   border: none;
   padding: 0.5em 1em;
@@ -184,6 +200,14 @@ button {
   background-color: var(--lightRed);
 }
 
+.noDisplay {
+  display: none;
+}
+
+.trueDisplay {
+  display: block;
+}
+
 button {
   cursor: pointer;
 }
@@ -207,7 +231,7 @@ form {
 form #header {
   font-size: 25px;
   text-align: center;
-  color: #ffffff;
+  color: var(--color);
   font-weight: 600;
 }
 form div {
@@ -217,7 +241,7 @@ form div {
 form input {
   border-radius: 0 0.5em 0.5em 0;
   background-color: var(--grabBg);
-  color: #000000;
+  color: var(--color);
   border: none;
   padding: 0.5em;
   width: 100%;
@@ -256,7 +280,7 @@ form .btns button:hover {
 }
 form .btns a {
   text-align: center;
-  color: var(--grabBg);
+  color: var(--);
 }
 form .btns i {
   padding-right: 0.4em;
@@ -286,6 +310,93 @@ form .terms a {
   display: none;
 }
 
+/* Switch container */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+
+/* Hide default checkbox */
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider background */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none;
+  border: var(--border);
+  border-radius: 30px;
+  transition: 0.4s;
+}
+.slider i {
+  color: #fff;
+}
+
+/* Moving circle */
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 2px;
+  background-color: #1b1a1d;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* Icons */
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Sun icon (light mode) */
+.sun {
+  left: 8px;
+  opacity: 1;
+}
+
+/* Moon icon (dark mode) */
+.moon {
+  right: 8px;
+  opacity: 0;
+}
+
+/* When checkbox is checked (Dark Mode) */
+input:checked + .slider {
+  background-color: #1b1a1d;
+}
+
+input:checked + .slider::before {
+  transform: translateX(30px);
+  background-color: var(--toggle-circle);
+}
+
+/* Show moon, hide sun when dark mode */
+input:checked + .slider .sun {
+  opacity: 0;
+}
+
+input:checked + .slider .moon {
+  opacity: 1;
+}
+
 nav {
   position: fixed;
   z-index: 800;
@@ -297,6 +408,7 @@ nav {
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 1fr;
+  height: auto;
 }
 nav .logo {
   padding-top: 0.5em;
@@ -312,7 +424,7 @@ nav .navLinks {
   display: flex;
   flex-direction: column;
   align-items: end;
-  padding-right: 8em;
+  padding-right: 4em;
   margin-bottom: 0.3em;
 }
 nav .navLinks ul {
@@ -351,6 +463,9 @@ nav .hamborger {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+nav .hamborger .contents {
+  display: flex;
 }
 nav .hamborger ul {
   display: block;
@@ -590,7 +705,7 @@ nav #logoutBtn #exitIcon {
   outline: none;
   text-align: left;
   background-color: var(--gray);
-  color: #fff;
+  color: var(--color);
 }
 .searchContainer #searchForm #submitBtn {
   padding: 0.2em;
@@ -600,7 +715,7 @@ nav #logoutBtn #exitIcon {
   margin: 0.1em;
 }
 .searchContainer #searchForm #submitBtn i {
-  color: var(--grabBg);
+  color: #fff;
   font-size: 20px;
   padding: 0 1em;
 }
@@ -1147,7 +1262,7 @@ footer .social {
   -webkit-appearance: none; /* Remove default appearance */
   width: 8em; /* Full-width */
   height: 8px; /* Height of the slider */
-  background: var(--gray); /* Background color */
+  background: var(--grabBg); /* Background color */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Transparency */
   transition: opacity 0.2s; /* Transition for hover effect */
@@ -1750,15 +1865,11 @@ footer .social {
   }
   .errPageContainer button {
     margin-top: 1em;
-    background-color: var(--darkGreen);
     color: #ffffff;
     border-radius: 0.3em;
     border: none;
     padding: 0.5em 1em;
     width: auto;
-  }
-  .errPageContainer button:hover {
-    background-color: var(--hoverGreen);
   }
   .errPageContainer h1 {
     font-size: 20px;
@@ -1794,17 +1905,6 @@ footer .social {
   }
   #alert button i {
     font-size: 15px;
-  }
-  .alertSuccess {
-    border: var(--darkGreen) 1px solid;
-    background-color: var(--lightGreen);
-  }
-  .alertError {
-    border: var(--redBg) 1px solid;
-    background-color: var(--lightRed);
-  }
-  button {
-    cursor: pointer;
   }
   #floatAdd {
     display: block;
@@ -1849,7 +1949,6 @@ footer .social {
   form #header {
     font-size: 25px;
     text-align: center;
-    color: #000000;
   }
   form div {
     margin-top: 0.8em;
@@ -1857,8 +1956,6 @@ footer .social {
   }
   form input {
     border-radius: 0 0.5em 0.5em 0;
-    background-color: var(--lightGreen);
-    color: #000000;
     border: none;
     padding: 0.5em;
     width: 100%;
@@ -1868,8 +1965,6 @@ footer .social {
     flex-direction: row;
   }
   form .inputContainer i {
-    background-color: var(--greenBg);
-    color: #000000;
     display: flex;
     border-radius: 0.5em 0 0 0.5em;
     align-items: center;
@@ -1884,19 +1979,11 @@ footer .social {
   }
   form .btns button {
     margin-top: 0.5em;
-    background-color: var(--darkGreen);
-    color: #ffffff;
     border-radius: 0.3em;
     border: none;
     padding: 0.5em 1em;
     width: 100%;
     margin-bottom: 0.5em;
-  }
-  form .btns button:hover {
-    background-color: var(--hoverGreen);
-  }
-  form .btns a {
-    color: var(--red);
   }
   form .btns i {
     padding-right: 0.4em;
@@ -1917,33 +2004,43 @@ footer .social {
   form .terms a {
     font-size: 13px;
   }
-  #closeBtn {
-    background-color: #104b10;
-  }
   .noSidebar {
     display: block;
+  }
+  .noDisplay {
+    margin-top: -0.5em;
+    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .trueDisplay {
+    display: none;
+  }
+  .theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    margin-top: 0em;
+    margin-right: 2em;
   }
   nav {
     z-index: 999;
     width: 100%;
-    height: auto;
     display: block;
-    padding-bottom: 3em;
+    padding-bottom: 0em;
     position: fixed;
+    height: auto;
   }
   nav .logo {
-    padding: 0 1em;
+    padding: 0.4em 1em;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
   nav .logo img {
-    width: 150px;
-  }
-  nav .logo .navMenu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
+    width: 120px;
   }
   nav .logo .navMenu i {
     font-size: 25px;
@@ -1985,8 +2082,6 @@ footer .social {
   }
   nav .navLinks #navActive {
     padding: 0em 0.5em;
-    color: var(--darkGreen);
-    border-bottom: 2px solid var(--darkGreen);
   }
   nav .navLinksActive {
     transition: var(--transition);
@@ -2014,7 +2109,6 @@ footer .social {
   nav .hamborger a {
     margin-left: 0;
     padding: 0;
-    color: #000000;
     text-decoration: none;
   }
   nav .hamborger .items {
@@ -2028,8 +2122,6 @@ footer .social {
     display: block;
   }
   nav .hamborger .itemsContainer {
-    border: 1px solid #c1e4b1;
-    background-color: #ffffff;
     border-radius: 0.3em;
     padding: 1em;
   }
@@ -2040,16 +2132,11 @@ footer .social {
     width: 100%;
   }
   nav .hamborger .itemsContainer li button {
-    background: rgba(255, 255, 255, 0.2745098039);
-    color: #000000;
     border-radius: 0.3em;
     border: none;
     margin-top: 0.3em;
     padding: 0.5em 1em;
     width: 100%;
-  }
-  nav .hamborger .itemsContainer li button:hover {
-    background-color: var(--lightGreenHover);
   }
   nav .hamborger .itemsContainer a {
     margin-left: 0;
@@ -2065,15 +2152,11 @@ footer .social {
     align-items: center;
     padding: 0.5em 1em;
     cursor: pointer;
-    background-color: var(--greenBg);
     margin-left: -0.5em;
     border-radius: 0.7em;
-    color: #000000;
     border: none;
   }
   nav .hamborger .title button .arrow {
-    transition: var(--transition);
-    color: #000000;
     padding-left: 1em;
   }
   nav .hamborger .title button #userIcon {
@@ -2087,19 +2170,12 @@ footer .social {
     font-size: 30px;
   }
   nav #logoutBtn {
-    background-color: var(--red);
     width: auto;
     display: flex;
     align-items: center;
   }
-  nav #logoutBtn:hover {
-    background-color: #d80a0a;
-  }
   nav #logoutBtn #exitIcon {
     padding-right: 0.3em;
-  }
-  #active {
-    background-color: var(--lightGreenHover);
   }
   .bodyContainer {
     padding-top: 2em;
@@ -2120,21 +2196,14 @@ footer .social {
   .bodyContainer .gridContents h3 span {
     font-size: 20px;
     padding: 0 0.2em;
-    border-bottom: 4px solid var(--greenBg);
-    color: var(--darkGreen);
   }
   .bodyContainer #getBtn {
     width: 30vh;
     font-weight: 600;
-    color: #fff;
-    background-color: var(--darkGreen);
     margin-top: 2em;
     border-radius: 0.3em;
     padding: 0.7em 1.3em;
     font-size: 19px;
-  }
-  .bodyContainer #getBtn:hover {
-    background-color: var(--hoverGreen);
   }
   .bodyContainer #arrow {
     padding-left: 0.5em;
@@ -2177,8 +2246,6 @@ footer .social {
     font-size: 40px;
     padding: 0 0.2em;
     text-align: center;
-    border-bottom: 4px solid var(--greenBg);
-    color: var(--darkGreen);
   }
   .searchContainer #searchForm {
     display: flex;
@@ -2237,12 +2304,10 @@ footer .social {
     font-size: 15px;
     padding-left: 1.3em;
     font-weight: 300;
-    color: #000000;
   }
   .sectionTwo .grid .gridContents #listHead {
     padding-top: 0.7em;
     font-size: 20px;
-    color: var(--darkGreen);
     font-weight: 600;
   }
   .sectionTwo .grid .gridContents i {
@@ -2258,21 +2323,18 @@ footer .social {
   }
   .sectionThree h1 {
     font-size: 70px;
-    border: 2px solid var(--greenBg);
     border-radius: 0.4em;
     padding: 0.4em;
   }
   .sectionThree h1 i {
     font-size: 60px;
     padding-right: 0.3em;
-    color: var(--darkGreen);
   }
   .sectionThree h2 {
     padding-top: 1em;
     font-size: 20px;
   }
   .sectionThree h3 {
-    background-color: #fff;
     margin-top: 1em;
     padding: 0.5em 1em;
     border-radius: 0.3em;
@@ -2283,16 +2345,10 @@ footer .social {
     z-index: 10;
     width: auto;
     font-weight: 600;
-    background-color: var(--darkGreen);
     margin-top: 2em;
     border-radius: 0.3em;
     padding: 0.7em 1.3em;
     font-size: 19px;
-    color: #ffffff;
-  }
-  .sectionThree #getBtn:hover {
-    color: #ffffff;
-    background-color: var(--hoverGreen);
   }
   footer {
     height: auto;
@@ -2348,14 +2404,9 @@ footer .social {
     font-size: 15px;
   }
   footer a {
-    color: #000;
     text-decoration: none;
   }
-  footer a:hover {
-    text-decoration: underline;
-  }
   footer input {
-    border: 2px solid #000000;
     background: none;
     border-radius: 0.3em;
     font-size: 15px;
@@ -2377,7 +2428,7 @@ footer .social {
   }
   .sideBar {
     margin: 0;
-    padding: 0;
+    padding: 0 1em;
     width: 0;
     height: auto;
   }
@@ -2403,10 +2454,8 @@ footer .social {
     display: none;
   }
   .sideBar #topBtn button {
-    background-color: var(--hoverGreen);
     padding: 0.7em;
     text-align: center;
-    color: #ffffff;
     width: auto;
     border-radius: 3em;
     transition: var(--transition);
@@ -2418,7 +2467,8 @@ footer .social {
     font-size: 10px;
   }
   .sideBar ul {
-    padding: 0.3em 0;
+    padding: 0;
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -2439,10 +2489,7 @@ footer .social {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .sideBar ul li a button:hover {
-    background: none;
-    background-color: var(--greenBg);
+    padding: 0.5em 0.8em;
   }
   .sideBar ul li a button i {
     font-size: 20px;
@@ -2453,9 +2500,6 @@ footer .social {
     display: flex;
     align-items: center;
     flex-direction: row;
-  }
-  #buttonActive {
-    background-color: var(--greenBg);
   }
   .bodyContainer {
     height: auto;
@@ -2540,6 +2584,7 @@ footer .social {
     height: auto;
     padding-top: 4em;
     margin: 0;
+    position: relative;
   }
   #imgPreview .topBar {
     padding: 1em;
@@ -2571,9 +2616,6 @@ footer .social {
     align-items: center;
     justify-content: center;
     opacity: 0.5;
-  }
-  #imgPreview .topBar .controlIcons #isPublished i {
-    color: #fff;
   }
   #imgPreview .topBar .controlIcons #publishBtn {
     padding: 1em;
@@ -2612,7 +2654,7 @@ footer .social {
     height: auto;
   }
   #imgPreview .imgSection2 .imgPreview {
-    height: 60vh;
+    height: 70vh;
     width: 100%;
     margin: auto;
     display: flex;
@@ -2637,12 +2679,21 @@ footer .social {
   }
   #imgPreview .imgSection2 .footer {
     width: 100%;
-    padding-top: 0.5em;
+    bottom: 0;
+    margin-bottom: 7em;
+    display: flex;
+    position: fixed;
+    padding: 2em 0;
   }
   #imgPreview .imgSection2 .footer div {
     display: flex;
     flex-direction: row;
     align-items: center;
+    -webkit-backdrop-filter: var(--blur1);
+    backdrop-filter: var(--blur1);
+    background-color: var(--blurBg);
+    padding: 1.5em;
+    border-radius: 5em;
   }
   #imgPreview .imgSection2 .footer div #resetBtn {
     margin-left: 2em;
@@ -2666,11 +2717,9 @@ footer .social {
   }
   .noImg #floatBtn button {
     margin-top: 0.5em;
-    background-color: var(--hoverGreen);
     font-size: 17px;
     padding: 0.7em 1.5em;
     text-align: left;
-    color: #ffffff;
     width: auto;
     border-radius: 3em;
     transition: var(--transition);
@@ -2697,7 +2746,7 @@ footer .social {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: auto;
+    width: 90%;
     padding: 1em 2em;
     border-radius: 0.5em;
     transition: var(--transition);
@@ -2710,9 +2759,11 @@ footer .social {
   .popUpBox h3 {
     font-size: 10px;
     margin-bottom: 0.5em;
+    text-align: center;
   }
   .popUpBox h2 {
     font-size: 17px;
+    text-align: center;
   }
   .popUpBox .btns {
     margin-top: 1em;
@@ -2729,7 +2780,6 @@ footer .social {
     border: none;
     padding: 0.5em 1em;
     text-decoration: none;
-    color: #ffffff;
     transition: var(--transition);
   }
   .activeBox {
@@ -2832,11 +2882,10 @@ footer .social {
     transition: var(--transition);
   }
   #ExploreImgPreview .topBar .first i:hover {
-    color: var(--hoverGreen);
     transition: var(--transition);
   }
   #ExploreImgPreview .topBar .header {
-    border-bottom: 1px solid var(--greenBg);
+    border-bottom: var(--border);
     padding: 0.5em 1em;
     padding: 0;
     font-size: 20px;
@@ -2893,14 +2942,6 @@ footer .social {
   }
   #ExploreImgPreview .topBar .controlIcons .icons #noPadding {
     padding: 0;
-  }
-  #ExploreImgPreview #infoBtn {
-    background-color: var(--lightGreen);
-    transition: var(--transition);
-    color: #000000;
-  }
-  #ExploreImgPreview #infoBtn i {
-    color: #000000;
   }
   #ExploreImgPreview #info {
     display: none;
@@ -2976,7 +3017,7 @@ footer .social {
   #ExploreImgPreview .section2 h1 {
     font-size: 30px;
     padding: 0.5em 1em;
-    border-bottom: 3px solid var(--greenBg);
+    border-bottom: var(--border);
   }
   #ExploreImgPreview .section2 .imgContainer {
     padding-top: 2em;

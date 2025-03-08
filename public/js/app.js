@@ -1,6 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOM fully loaded and parsed');
 
+  const toggleButton = document.querySelector('.mode-toggle');
+  const toggleButton2 = document.querySelector('.mode-toggle2');
+  const body = document.body;
+  const logos = document.querySelectorAll('.logo');
+
+  // Check if dark mode is saved in localStorage
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');  // Apply dark mode
+    toggleButton.checked = true;  // Toggle switch ON
+    toggleButton2.checked = true;  // Toggle switch ON
+    logos.forEach(logo => logo.src = '/assets/inGallery_logo.png');
+
+  }
+
+  // Listen for toggle switch changes
+  toggleButton.addEventListener('change', () => {
+    if (toggleButton.checked) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+      body.style.transition = 'background-color 0.5s ease';
+      logos.forEach(logo => logo.src = '/assets/inGallery_logo.png');
+
+
+    } else {
+      body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+      body.style.transition = 'background-color 0.5s ease';
+      logos.forEach(logo => logo.src = '/assets/inGallery_logo_black.png');
+    }
+  });
+
+  toggleButton2.addEventListener('change', () => {
+    if (toggleButton2.checked) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+      body.style.transition = 'background-color 0.5s ease';
+      logo.src = '/assets/inGallery_logo.png';
+
+
+    } else {
+      body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+      body.style.transition = 'background-color 0.5s ease';
+      logo.src = '/assets/inGallery_logo_black.png';
+    }
+  });
+
 
   const closeBtn = document.querySelector('#closeBtn');
 
@@ -188,7 +235,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const hTitle = document.querySelector('.title');
   const hItems = document.querySelector('.items');
   const arrowUp = document.querySelector('.arrow');
-  const body = document.querySelector('body');
 
   hTitle.addEventListener('click', () => {
     hItems.classList.toggle('active');
