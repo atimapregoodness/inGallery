@@ -14,8 +14,9 @@
   --lightGray: #f8f8f8;
   --backgroundColor: #ffffff;
   --border: 1px solid #bec2c575;
-  --gray: #ffffff;
+  --gray: #29282c;
   --color: #000000;
+  --inputColor: #ffff;
 }
 
 .dark-mode {
@@ -30,6 +31,7 @@
   --backgroundColor: #1b1a1d;
   --border: 1px solid #bec2c575;
   --gray: #29282c;
+  --inputColor: #29282c;
   --color: #ffffff;
 }
 
@@ -58,6 +60,18 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--lightGray);
   border-radius: 0.7em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--inputColor) inset !important;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color) !important;
 }
 
 #floatAdd {
@@ -696,26 +710,26 @@ nav #logoutBtn #exitIcon {
   font-size: 20px;
   text-align: center;
   width: 40em;
-  background-color: var(--gray);
+  background-color: var(--inputColor);
 }
 .searchContainer #searchForm input {
-  border-radius: 0.4em;
+  border-radius: 0.4em 0 0 0.4em;
   font-size: 18px;
   padding: 0.6em;
   outline: none;
   text-align: left;
-  background-color: var(--gray);
+  background-color: var(--inputColor);
   color: var(--color);
 }
 .searchContainer #searchForm #submitBtn {
   padding: 0.2em;
   font-size: 15px;
-  color: var(--darkGreen);
+  color: var(--color);
   background: none;
   margin: 0.1em;
 }
 .searchContainer #searchForm #submitBtn i {
-  color: #fff;
+  color: var(--color);
   font-size: 20px;
   padding: 0 1em;
 }
@@ -751,12 +765,14 @@ nav #logoutBtn #exitIcon {
 }
 
 .sectionTwo {
-  background-color: var(--gray);
-  width: 100%;
+  margin-top: 4em;
+  border-radius: 0.5em;
+  border: var(--border);
+  width: 80%;
+  margin: auto;
   height: auto;
-  padding: 5em 2em;
+  padding: 2em;
   display: flex;
-  margin: 0;
   flex-direction: column;
   align-self: center;
 }
@@ -790,7 +806,7 @@ nav #logoutBtn #exitIcon {
 .sectionTwo .grid .gridContents #listHead {
   padding-top: 0.7em;
   font-size: 20px;
-  color: #fff;
+  color: var(--color);
   font-weight: 600;
 }
 .sectionTwo .grid .gridContents i {
@@ -956,15 +972,18 @@ footer input {
 }
 footer button {
   background: var(--darkGreen);
-  border: var(--border);
+  color: #fff;
   padding: 0.7em 1em;
   border-radius: 0.3em;
   margin-left: 0.2em;
   font-size: 12px;
 }
 footer button:hover {
-  color: #ffffff;
+  color: #fff;
   background-color: var(--hoverGreen);
+}
+footer button i {
+  color: #fff;
 }
 footer i {
   padding-right: 0.4em;

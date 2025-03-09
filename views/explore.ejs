@@ -70,7 +70,7 @@
     >
     <a
       href="/explore?search=others"
-      class="<%= currentPage === '/explore?search=others' ? 'linkActive' : '' %>"
+      class="<%= currentPage.startsWith('/explore?search=') && currentPage !== '/explore?search=technology' && currentPage !== '/explore?search=background' && currentPage !== '/explore?search=wallpaper' && currentPage !== '/explore?search=animal' && currentPage !== '/explore?search=nature' && currentPage !== '/explore?search=people' ? 'linkActive' : '' %>"
       >Others</a
     >
   </div>
