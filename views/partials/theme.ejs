@@ -1,0 +1,19 @@
+<style>
+  /* Hide the page until the correct theme is applied */
+  html {
+    visibility: hidden;
+  }
+</style>
+<script>
+  (function () {
+    let theme = localStorage.getItem("theme") || "light";
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark-mode");
+    } else {
+      document.documentElement.classList.remove("dark-mode");
+    }
+
+    document.documentElement.style.visibility = "visible"; // Show page after applying theme
+  })();
+</script>

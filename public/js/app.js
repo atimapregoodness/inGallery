@@ -1,52 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOM fully loaded and parsed');
 
+  const body = document.body;
+
   const toggleButton = document.querySelector('.mode-toggle');
   const toggleButton2 = document.querySelector('.mode-toggle2');
-  const body = document.body;
   const logos = document.querySelectorAll('.logo');
 
-  // Check if dark mode is saved in localStorage
-  if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');  // Apply dark mode
-    toggleButton.checked = true;  // Toggle switch ON
-    toggleButton2.checked = true;  // Toggle switch ON
-    logos.forEach(logo => logo.src = '/assets/inGallery_logo.png');
+  //theme changer ===========================================================
+  if (body && logos && toggleButton && toggleButton2) {
+    function setTheme(isDark) {
+      document.documentElement.classList.toggle('dark-mode', isDark);
 
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      body.style.transition = 'all 0.5s ease';
+      logos.forEach(logo => logo.src = isDark ? '/assets/inGallery_logo.png' : '/assets/inGallery_logo_black.png');
+      toggleButton.checked = isDark;
+      toggleButton2.checked = isDark;
+    }
+
+    // Check if dark mode is saved in localStorage
+    setTheme(localStorage.getItem('theme') === 'dark');
+
+    // Listen for toggle switch changes
+    toggleButton.addEventListener('change', () => setTheme(toggleButton.checked));
+    toggleButton2.addEventListener('change', () => setTheme(toggleButton2.checked));
   }
-
-  // Listen for toggle switch changes
-  toggleButton.addEventListener('change', () => {
-    if (toggleButton.checked) {
-      body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-      body.style.transition = 'background-color 0.5s ease';
-      logos.forEach(logo => logo.src = '/assets/inGallery_logo.png');
-
-
-    } else {
-      body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-      body.style.transition = 'background-color 0.5s ease';
-      logos.forEach(logo => logo.src = '/assets/inGallery_logo_black.png');
-    }
-  });
-
-  toggleButton2.addEventListener('change', () => {
-    if (toggleButton2.checked) {
-      body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-      body.style.transition = 'background-color 0.5s ease';
-      logo.src = '/assets/inGallery_logo.png';
-
-
-    } else {
-      body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-      body.style.transition = 'background-color 0.5s ease';
-      logo.src = '/assets/inGallery_logo_black.png';
-    }
-  });
 
 
   const closeBtn = document.querySelector('#closeBtn');
