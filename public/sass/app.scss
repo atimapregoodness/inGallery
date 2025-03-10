@@ -413,7 +413,7 @@ nav {
   height: auto;
 
   .logo {
-    padding-top: 0.5em;
+    padding: 0.1em;
     padding-left: 1em;
 
     img {
@@ -441,6 +441,7 @@ nav {
       list-style: none;
       padding: 0.4em 0.7em;
       transition: var(--transition);
+      color: var(--color);
 
       &:hover {
         transition: var(--transition);
@@ -451,7 +452,7 @@ nav {
     }
 
     a {
-      color: #000000;
+      color: #fff;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -811,7 +812,7 @@ nav {
 }
 
 .sectionTwo {
-  margin-top: 4em;
+  margin-top: 13em;
   border-radius: 0.5em;
   border: var(--border);
   width: 80%;
@@ -1107,6 +1108,7 @@ footer {
       transition: var(--transition);
 
       i {
+        color: #fff;
         padding-right: 0.4em;
       }
     }
@@ -1129,15 +1131,30 @@ footer {
           background: none;
           width: 100%;
           margin: auto;
+          transition: var(--transition);
           border-radius: 0.4em;
           // background-color: var(--gray);
           // border: var(--border);
 
           &:hover {
-            background: none;
             background-color: var(--darkGreen);
+            // transform: translateX(0.3em);
+            transition: var(--transition);
+            i {
+              color: #fff;
+            }
+
+            span {
+              color: #fff;
+            }
           }
+
+          span {
+            color: var(--color);
+          }
+
           i {
+            color: var(--color);
             padding-right: 0.5em;
             font-size: 20px;
           }
@@ -1155,6 +1172,14 @@ footer {
 
 #buttonActive {
   background-color: var(--darkGreen);
+
+  i {
+    color: #fff;
+  }
+
+  span {
+    color: #fff;
+  }
 }
 
 .bodyContainer {
@@ -1192,7 +1217,7 @@ footer {
 
       h1 {
         font-size: 40px;
-        color: #fff;
+        color: var(--color);
         padding: 0.5 1em;
         font-weight: 600;
 
@@ -1984,7 +2009,7 @@ footer {
     width: auto;
     padding: 1em 2em;
     border-radius: 0.5em;
-    background-color: var(--gray);
+    background-color: var(--backgroundColor);
     border: var(--border);
     transform: scale(0);
     transition: var(--transition);
@@ -2000,7 +2025,7 @@ footer {
   h4 {
     font-size: 10px;
     margin-bottom: 0.5em;
-    color: #fff;
+    color: var(--color);
     text-align: center;
   }
 
@@ -2018,14 +2043,15 @@ footer {
 
   h3 {
     font-size: 10px;
-    color: #fff;
+    color: var(--color);
     display: flex;
     flex-direction: row;
+    font-weight: 600;
   }
   p {
     font-weight: 400;
     padding-left: 0.3em;
-    color: var(--grabBg);
+    color: var(--color);
     font-size: 10px;
   }
 

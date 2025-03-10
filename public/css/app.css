@@ -20,7 +20,6 @@
 }
 
 .dark-mode {
-  --r: blur(10px);
   --blurBg: #1b1a1de3;
   --lightRed: #ffdede;
   --transition: all 0.5s;
@@ -425,7 +424,7 @@ nav {
   height: auto;
 }
 nav .logo {
-  padding-top: 0.5em;
+  padding: 0.1em;
   padding-left: 1em;
 }
 nav .logo img {
@@ -450,6 +449,7 @@ nav .navLinks li {
   list-style: none;
   padding: 0.4em 0.7em;
   transition: var(--transition);
+  color: var(--color);
 }
 nav .navLinks li:hover {
   transition: var(--transition);
@@ -458,7 +458,7 @@ nav .navLinks li:hover {
   background-color: var(--hoverGreen);
 }
 nav .navLinks a {
-  color: #000000;
+  color: #fff;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -765,7 +765,7 @@ nav #logoutBtn #exitIcon {
 }
 
 .sectionTwo {
-  margin-top: 4em;
+  margin-top: 13em;
   border-radius: 0.5em;
   border: var(--border);
   width: 80%;
@@ -1025,6 +1025,7 @@ footer .social {
   transition: var(--transition);
 }
 .sideBar #floatBtn button i {
+  color: #fff;
   padding-right: 0.4em;
 }
 .sideBar ul {
@@ -1047,13 +1048,24 @@ footer .social {
   background: none;
   width: 100%;
   margin: auto;
+  transition: var(--transition);
   border-radius: 0.4em;
 }
 .sideBar ul li a button:hover {
-  background: none;
   background-color: var(--darkGreen);
+  transition: var(--transition);
+}
+.sideBar ul li a button:hover i {
+  color: #fff;
+}
+.sideBar ul li a button:hover span {
+  color: #fff;
+}
+.sideBar ul li a button span {
+  color: var(--color);
 }
 .sideBar ul li a button i {
+  color: var(--color);
   padding-right: 0.5em;
   font-size: 20px;
 }
@@ -1065,6 +1077,12 @@ footer .social {
 
 #buttonActive {
   background-color: var(--darkGreen);
+}
+#buttonActive i {
+  color: #fff;
+}
+#buttonActive span {
+  color: #fff;
 }
 
 .bodyContainer {
@@ -1095,7 +1113,7 @@ footer .social {
 }
 .bodyContainer .imgSection .topBar h1 {
   font-size: 40px;
-  color: #fff;
+  color: var(--color);
   padding: 0.5 1em;
   font-weight: 600;
 }
@@ -1742,7 +1760,7 @@ footer .social {
   width: auto;
   padding: 1em 2em;
   border-radius: 0.5em;
-  background-color: var(--gray);
+  background-color: var(--backgroundColor);
   border: var(--border);
   transform: scale(0);
   transition: var(--transition);
@@ -1755,7 +1773,7 @@ footer .social {
 .deletePopup h4 {
   font-size: 10px;
   margin-bottom: 0.5em;
-  color: #fff;
+  color: var(--color);
   text-align: center;
 }
 .deletePopup h1 {
@@ -1766,14 +1784,15 @@ footer .social {
 }
 .deletePopup h3 {
   font-size: 10px;
-  color: #fff;
+  color: var(--color);
   display: flex;
   flex-direction: row;
+  font-weight: 600;
 }
 .deletePopup p {
   font-weight: 400;
   padding-left: 0.3em;
-  color: var(--grabBg);
+  color: var(--color);
   font-size: 10px;
 }
 .deletePopup #imgInfo {
@@ -1884,7 +1903,6 @@ footer .social {
   }
   .errPageContainer button {
     margin-top: 1em;
-    color: #ffffff;
     border-radius: 0.3em;
     border: none;
     padding: 0.5em 1em;
@@ -2061,6 +2079,9 @@ footer .social {
   nav .logo img {
     width: 140px;
   }
+  nav .logo .navMenu {
+    margin-right: 1em;
+  }
   nav .logo .navMenu i {
     font-size: 25px;
   }
@@ -2090,7 +2111,6 @@ footer .social {
     list-style: none;
   }
   nav .navLinks a {
-    color: #000000;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2896,7 +2916,6 @@ footer .social {
     align-items: center;
   }
   #ExploreImgPreview .topBar .first i {
-    color: var(--darkGreen);
     font-size: 35px;
     transition: var(--transition);
   }
@@ -2966,7 +2985,6 @@ footer .social {
     display: none;
   }
   #ExploreImgPreview .infoContainer {
-    background-color: var(--lightGreen);
     margin: auto;
     width: 25em;
     padding: 1em;
@@ -3010,7 +3028,6 @@ footer .social {
     pointer-events: none;
   }
   #ExploreImgPreview .imgSection2 i {
-    color: var(--hoverGreen);
     font-size: 25px;
     padding-right: 1em;
     padding-left: 1em;
