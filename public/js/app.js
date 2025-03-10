@@ -241,6 +241,21 @@ document.addEventListener('DOMContentLoaded', function () {
   //   arrowUp.classList.remove('arrowDown');
   // });
 
+  const imgInp = document.querySelector('.previewInput');
+  const imgPreview = document.querySelector('#imgPreview');
+
+  if (imgInp && imgPreview) {
+    imgInp.onchange = () => {
+      const [file] = imgInp.files;
+      if (file) {
+        const image = document.createElement('img');
+        image.src = URL.createObjectURL(file);
+        imgPreview.innerHTML = '';
+        imgPreview.appendChild(image);
+      }
+    };
+  }
+
 });
 
 

@@ -202,6 +202,75 @@
     }
   }
 
+  #uploadForm {
+    width: 95%;
+    margin-top: 2em;
+    margin-bottom: 3em;
+
+    #uploadHeader {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .container2 {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    #imgInput {
+      display: block;
+      input {
+        margin-top: 0.5em;
+        width: 20em;
+      }
+
+      #imgPreview {
+        width: 20em;
+        height: 15em;
+        overflow: hidden;
+        padding: 0.4em;
+
+        img {
+          width: 70%;
+          object-fit: contain;
+        }
+      }
+    }
+
+    p {
+      margin-top: 0.4em;
+    }
+
+    #noteTxt {
+      font-size: 12px;
+    }
+
+    #description {
+      width: 100%;
+      padding: 0.4em;
+      font-size: 14px;
+    }
+
+    label {
+      font-size: 17px;
+    }
+
+    select {
+      padding: 0.3em;
+    }
+
+    button {
+      padding: 0.4em 0.7em;
+      font-size: 16px;
+      border-radius: 0.4em;
+      margin-top: 0.5em;
+
+      i {
+        padding-right: 0.3em;
+      }
+    }
+  }
+
   .noSidebar {
     display: block;
   }

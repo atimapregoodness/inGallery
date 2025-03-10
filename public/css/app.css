@@ -315,6 +315,88 @@ form .terms a {
   font-size: 13px;
 }
 
+#uploadForm {
+  width: 50em;
+}
+#uploadForm #uploadHeader {
+  color: var(--color);
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+}
+#uploadForm .container2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#uploadForm #imgInput {
+  display: block;
+}
+#uploadForm #imgInput input {
+  background-color: var(--backgroundColor);
+  color: var(--color);
+  margin-top: 0.5em;
+  border: var(--border);
+  width: 20em;
+}
+#uploadForm #imgInput #imgPreview {
+  width: 20em;
+  height: 15em;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.4em;
+}
+#uploadForm #imgInput #imgPreview img {
+  width: 70%;
+  object-fit: contain;
+}
+#uploadForm #imgInput .previewImput {
+  border-radius: 0em;
+}
+#uploadForm p {
+  margin-top: 0.4em;
+}
+#uploadForm #noteTxt {
+  font-size: 12px;
+  font-style: italic;
+}
+#uploadForm #note {
+  color: red;
+}
+#uploadForm #description {
+  width: 100%;
+  padding: 0.4em;
+  font-size: 14px;
+  background-color: var(--backgroundColor);
+}
+#uploadForm label {
+  font-size: 17px;
+}
+#uploadForm select {
+  background-color: var(--backgroundColor);
+  padding: 0.3em;
+}
+#uploadForm button {
+  background-color: var(--darkGreen);
+  padding: 0.4em 0.7em;
+  font-size: 16px;
+  border-radius: 0.4em;
+  margin-top: 0.5em;
+  transition: var(--transition);
+  border: var(--border);
+  color: #fff;
+}
+#uploadForm button i {
+  color: #fff;
+  padding-right: 0.3em;
+}
+#uploadForm button:hover {
+  background-color: var(--hoverGreen);
+  transition: var(--transition);
+}
+
 #closeBtn {
   background-color: #104b10;
 }
@@ -1404,7 +1486,7 @@ footer .social {
   width: auto;
   padding: 1em 2em;
   border-radius: 0.5em;
-  background-color: var(--gray);
+  background-color: var(--backgroundColor);
   border: var(--border);
   transform: scale(0);
   transition: var(--transition);
@@ -1417,9 +1499,10 @@ footer .social {
 .popUpBox h3 {
   font-size: 10px;
   margin-bottom: 0.5em;
-  color: #fff;
+  color: var(--color);
 }
 .popUpBox h2 {
+  font-weight: 600;
   font-size: 17px;
 }
 .popUpBox .btns {
@@ -2040,6 +2123,62 @@ footer .social {
   }
   form .terms a {
     font-size: 13px;
+  }
+  #uploadForm {
+    width: 95%;
+    margin-top: 2em;
+    margin-bottom: 3em;
+  }
+  #uploadForm #uploadHeader {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  #uploadForm .container2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #uploadForm #imgInput {
+    display: block;
+  }
+  #uploadForm #imgInput input {
+    margin-top: 0.5em;
+    width: 20em;
+  }
+  #uploadForm #imgInput #imgPreview {
+    width: 20em;
+    height: 15em;
+    overflow: hidden;
+    padding: 0.4em;
+  }
+  #uploadForm #imgInput #imgPreview img {
+    width: 70%;
+    object-fit: contain;
+  }
+  #uploadForm p {
+    margin-top: 0.4em;
+  }
+  #uploadForm #noteTxt {
+    font-size: 12px;
+  }
+  #uploadForm #description {
+    width: 100%;
+    padding: 0.4em;
+    font-size: 14px;
+  }
+  #uploadForm label {
+    font-size: 17px;
+  }
+  #uploadForm select {
+    padding: 0.3em;
+  }
+  #uploadForm button {
+    padding: 0.4em 0.7em;
+    font-size: 16px;
+    border-radius: 0.4em;
+    margin-top: 0.5em;
+  }
+  #uploadForm button i {
+    padding-right: 0.3em;
   }
   .noSidebar {
     display: block;
