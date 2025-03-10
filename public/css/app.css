@@ -2209,6 +2209,7 @@ footer .social {
     padding-bottom: 0em;
     position: fixed;
     height: auto;
+    padding-bottom: 4em;
   }
   nav .logo {
     padding: 0.4em;
