@@ -768,6 +768,9 @@ nav {
       transition: var(--transition);
       background-color: var(--hoverGreen);
     }
+    i {
+      color: #ffff;
+    }
   }
 
   #arrow {
