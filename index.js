@@ -10,7 +10,6 @@ const ejs = require('ejs');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-const passport = require('passport');
 const localStrategy = require('passport-local');
 const session = require('express-session');
 const routes = require('./routes');
@@ -23,7 +22,6 @@ const bodyParser = require('body-parser');
 
 const morgan = require('morgan');
 const moment = require('moment');
-const fs = require('fs');
 
 
 // const wrapAsync = require('./utils/wrapAsync');
@@ -80,6 +78,8 @@ app.use(flash());
 
 app.use(cors());
 
+const passport = require('./config/passportConfig'); // Import the Passport configuration
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -95,17 +95,13 @@ app.use((req, res, next) => {
   next();
 });
 
-passport.use(new localStrategy(User.authenticate()));
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-
 
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', path.join(__dirname, 'views'));

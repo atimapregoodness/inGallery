@@ -16,7 +16,7 @@ exports.postLogin = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash('error', 'Invalid credentials');
+      req.flash('error', 'Invalid email or username');
       return res.redirect('/auth/login');
     }
 
@@ -31,7 +31,6 @@ exports.postLogin = (req, res, next) => {
   })(req, res, next);
 };
 
-
 exports.getSignup = (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect('/user/dashboard');
@@ -43,12 +42,33 @@ exports.getSignup = (req, res) => {
 exports.postSignup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const user = new User({ username, email });
-    await User.register(user, password);
-    req.flash('success', 'Account Created Successfully');
-    res.redirect('/auth/login');
-  } catch (e) {
-    req.flash('error', e.message);
+
+    if (!username || !email) {
+      req.flash('error', 'Username and email are required.');
+      return res.redirect('/auth/signup');
+    }
+
+    // Check if user exists with the same username or email
+    const existingUser = await User.findOne({
+      $or: [{ username }, { email }],
+    });
+
+    if (existingUser) {
+      req.flash('error', 'Username or email already exists.');
+      return res.redirect('/auth/signup');
+    }
+
+    // Register new user
+    const newUser = new User({ username, email });
+    const registeredUser = await User.register(newUser, password);
+
+    req.login(registeredUser, (err) => {
+      if (err) return next(err);
+      req.flash('success', 'Welcome to inGallery!');
+      res.redirect('/user/dashbaord');
+    });
+  } catch (err) {
+    req.flash('error', err.message);
     res.redirect('/auth/signup');
   }
 };
@@ -57,10 +77,9 @@ exports.getLogout = (req, res) => {
   req.logout((err) => {
     if (err) {
       req.flash('error', 'Error logging out');
-      res.redirect('/');
+      return res.redirect('/');
     }
+    req.flash('success', 'Logged out successfully');
+    res.redirect('/');
   });
-
-  req.flash('success', 'Logged out successfully');
-  res.redirect('/');
 };

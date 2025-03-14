@@ -2,7 +2,6 @@
 @import "variables";
 
 * {
-  font-family: "Poppins", serif;
   font-size: 14px;
   box-sizing: border-box;
   margin: 0;
@@ -44,7 +43,8 @@ input:-webkit-autofill {
 }
 
 body {
-  background-color: var(--backgroundColor);
+  background-color: var(--backgroundColor) !important;
+  font-family: "Poppins", serif !important;
   width: 100%;
 }
 
@@ -1236,16 +1236,16 @@ footer {
           // border: var(--border);
 
           &:hover {
-            background-color: var(--darkGreen);
+            background-color: var(--hoverGray);
             // transform: translateX(0.3em);
             transition: var(--transition);
-            i {
-              color: #fff;
-            }
+            // i {
+            //   color: #fff;
+            // }
 
-            span {
-              color: #fff;
-            }
+            // span {
+            //   color: #fff;
+            // }
           }
 
           span {

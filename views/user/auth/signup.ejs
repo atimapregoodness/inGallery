@@ -5,6 +5,8 @@
   <form action="/auth/signup" method="post">
     <h1 id="header">Create Account</h1>
     <%- include('../../partials/err') %>
+
+    <!-- Username Field -->
     <div id="input">
       <label for="username">Username</label>
       <div class="inputContainer">
@@ -13,10 +15,13 @@
           type="text"
           name="username"
           id="username"
-          placeholder="enter your username"
+          placeholder="Enter your username"
+          required
         />
       </div>
     </div>
+
+    <!-- Email Field -->
     <div id="input">
       <label for="email">Email Address</label>
       <div class="inputContainer">
@@ -25,10 +30,13 @@
           type="email"
           name="email"
           id="email"
-          placeholder="enter your email address"
+          placeholder="Enter your email address"
+          required
         />
       </div>
     </div>
+
+    <!-- Password Field -->
     <div id="input">
       <label for="password">Password</label>
       <div class="inputContainer">
@@ -37,19 +45,24 @@
           type="password"
           name="password"
           id="password"
-          placeholder="create a password"
+          placeholder="Create a password"
+          required
         />
       </div>
     </div>
+
+    <!-- Terms and Conditions -->
     <div class="terms">
-      <input type="checkbox" name="terms" id="terms" / required>
-      <label for="terms"
-        ><p>i agreed to the <a href="">terms and conditions</a></p></label
-      >
+      <input type="checkbox" name="terms" id="terms" required />
+      <label for="terms">
+        <p>I agree to the <a href="#">terms and conditions</a></p>
+      </label>
     </div>
+
+    <!-- Submit Button -->
     <div class="btns">
       <button type="submit">Register <i class="fa-solid fa-plus"></i></button>
-      <a href="/auth/login">i have an account!</a>
+      <a href="/auth/login">I have an account!</a>
     </div>
   </form>
 </div>

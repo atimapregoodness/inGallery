@@ -1,17 +1,19 @@
-<title>Login - inGallery</title> <%- layout('layout/boilerplate') %>
+<title>Login - inGallery</title>
+<%- layout('layout/boilerplate') %>
 <div class="container">
   <form action="/auth/login" method="POST">
     <h1 id="header">Login</h1>
     <%- include('../../partials/err') %>
     <div id="input">
-      <label for="username">Username</label>
+      <label for="identifier">Email or Username</label>
       <div class="inputContainer">
         <i class="fa-solid fa-user"></i>
         <input
           type="text"
-          name="username"
-          id="username"
-          placeholder="enter your username"
+          name="identifier"
+          id="identifier"
+          placeholder="Enter your email or username"
+          required
         />
       </div>
     </div>
@@ -23,7 +25,8 @@
           type="password"
           name="password"
           id="password"
-          placeholder="create a password"
+          placeholder="Enter your password"
+          required
         />
       </div>
     </div>
@@ -31,7 +34,7 @@
       <button type="submit">
         <i class="fa-solid fa-right-to-bracket"></i>Login
       </button>
-      <a href="/auth/signup">i don't have an account!</a>
+      <a href="/auth/signup">I don't have an account!</a>
     </div>
   </form>
 </div>

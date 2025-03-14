@@ -17,11 +17,13 @@
   --gray: #29282c;
   --color: #000000;
   --inputColor: #ffff;
+  --hoverGray: #d4d4d4;
 }
 
 .dark-mode {
   --blurBg: #1b1a1de3;
   --lightRed: #ffdede;
+  --hoverGray: #272727;
   --transition: all 0.5s;
   --hoverGreen: #273f34;
   --grabBg: #bec2c5;
@@ -35,7 +37,6 @@
 }
 
 * {
-  font-family: "Poppins", serif;
   font-size: 14px;
   box-sizing: border-box;
   margin: 0;
@@ -78,7 +79,8 @@ input:-webkit-autofill {
 }
 
 body {
-  background-color: var(--backgroundColor);
+  background-color: var(--backgroundColor) !important;
+  font-family: "Poppins", serif !important;
   width: 100%;
 }
 
@@ -1137,14 +1139,8 @@ footer .social {
   border-radius: 0.4em;
 }
 .sideBar ul li a button:hover {
-  background-color: var(--darkGreen);
+  background-color: var(--hoverGray);
   transition: var(--transition);
-}
-.sideBar ul li a button:hover i {
-  color: #fff;
-}
-.sideBar ul li a button:hover span {
-  color: #fff;
 }
 .sideBar ul li a button span {
   color: var(--color);
@@ -2248,7 +2244,7 @@ footer .social {
     align-self: center;
   }
   nav .navLinks li {
-    line-height: 2em;
+    padding: 0.4em 0.7em;
     margin-top: 1em;
     font-size: 15px;
     list-style: none;
