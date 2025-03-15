@@ -4,16 +4,16 @@
   <form action="/auth/login" method="POST">
     <h1 id="header">Login</h1>
     <%- include('../../partials/err') %>
-    <div id="input">
-      <label for="identifier">Email or Username</label>
+    <div class="input">
+      <label for="email">Email or Username</label>
       <div class="inputContainer">
         <i class="fa-solid fa-user"></i>
         <input
           type="text"
           name="identifier"
-          id="identifier"
+          id="email"
           placeholder="Enter your email or username"
-          required
+          value="<%= typeof identifier !== 'undefined' ? identifier : '' %>"
         />
       </div>
     </div>
@@ -26,7 +26,6 @@
           name="password"
           id="password"
           placeholder="Enter your password"
-          required
         />
       </div>
     </div>

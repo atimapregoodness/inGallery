@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Joi = require('joi');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   email: {
     type: String,
@@ -24,6 +25,10 @@ const userSchema = new Schema({
   favorites: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'favorites',
+  }],
+  wallet: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'wallet',
   }],
   createdAt: { type: Date, default: Date.now },
 });

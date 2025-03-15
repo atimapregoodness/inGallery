@@ -242,6 +242,7 @@ form {
   display: block;
   margin: auto;
   width: 20em;
+  padding-top: 3em;
 }
 form #header {
   font-size: 25px;
@@ -255,7 +256,7 @@ form div {
 }
 form input {
   border-radius: 0 0.5em 0.5em 0;
-  background-color: var(--grabBg);
+  background-color: var(--backgroundColor);
   color: var(--color);
   border: none;
   padding: 0.5em;
@@ -264,6 +265,8 @@ form input {
 form .inputContainer {
   display: flex;
   flex-direction: row;
+  border: var(--border);
+  border-radius: 0.5em;
 }
 form .inputContainer i {
   background-color: var(--darkGreen);
@@ -302,8 +305,10 @@ form .btns i {
 }
 form .terms {
   margin: auto;
-  width: fit-content;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   padding-top: 0.5em;
 }
 form .terms input {
@@ -312,6 +317,7 @@ form .terms input {
 form .terms p {
   padding-left: 0.3em;
   font-size: 13px;
+  padding-top: 1.2em;
 }
 form .terms a {
   font-size: 13px;
@@ -319,6 +325,7 @@ form .terms a {
 
 #uploadForm {
   width: 50em;
+  margin-top: 0;
 }
 #uploadForm #uploadHeader {
   color: var(--color);
@@ -498,6 +505,7 @@ nav {
   position: fixed;
   z-index: 800;
   padding: 0.2em;
+  padding-bottom: 0;
   -webkit-backdrop-filter: var(--blur1);
   backdrop-filter: var(--blur1);
   background-color: var(--blurBg);
@@ -522,7 +530,7 @@ nav .navLinks {
   flex-direction: column;
   align-items: end;
   padding-right: 4em;
-  margin-bottom: 0.3em;
+  margin-bottom: 0em;
 }
 nav .navLinks ul {
   display: flex;
@@ -614,6 +622,9 @@ nav .hamborger .itemsContainer li button {
 }
 nav .hamborger .itemsContainer li button:hover {
   background-color: var(--hoverGreen);
+}
+nav .hamborger .itemsContainer li button i {
+  color: #fff;
 }
 nav .hamborger .itemsContainer li:hover {
   background: none;
@@ -798,6 +809,7 @@ nav #logoutBtn #exitIcon {
   text-align: center;
   width: 40em;
   background-color: var(--inputColor);
+  padding-top: 0em;
 }
 .searchContainer #searchForm input {
   border-radius: 0.4em 0 0 0.4em;
@@ -1091,15 +1103,15 @@ footer .social {
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 .sideBar #contents {
   height: 100vh;
   position: fixed;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  width: 30vh;
+  width: auto;
 }
 .sideBar #floatBtn button {
   background-color: var(--darkGreen);
@@ -1279,8 +1291,10 @@ footer .social {
   align-items: center;
   justify-content: center;
   opacity: 0.5;
+  font-size: 15px;
 }
 #imgPreview .topBar .controlIcons #isPublished i {
+  font-size: 15px;
   color: #fff;
 }
 #imgPreview .topBar .controlIcons #publishBtn {
@@ -1293,12 +1307,14 @@ footer .social {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 }
 #imgPreview .topBar .controlIcons #publishBtn:hover {
   background-color: var(--hoverGreen);
   transition: var(--transition);
 }
 #imgPreview .topBar .controlIcons #publishBtn i {
+  font-size: 15px;
   color: #fff;
 }
 #imgPreview .topBar .controlIcons h1 {
@@ -1306,6 +1322,7 @@ footer .social {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 15px;
 }
 #imgPreview .topBar .controlIcons #publish {
   display: flex;
@@ -1351,11 +1368,10 @@ footer .social {
 }
 #imgPreview .imgSection2 {
   width: 100%;
-  width: 100%;
   padding-top: 0em;
 }
 #imgPreview .imgSection2 .imgPreview {
-  height: 70vh;
+  height: 65vh;
   width: 100%;
   margin: auto;
   display: flex;
@@ -1436,14 +1452,17 @@ footer .social {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  height: 100vh;
+  width: 50em;
 }
 .noImg h1 {
   font-size: 30px;
+  color: var(--darkGreen);
 }
 .noImg p {
   padding-top: 0.5em;
   font-size: 15px;
+  font-style: italic;
 }
 .noImg #floatBtn button {
   margin-top: 0.5em;
@@ -1458,6 +1477,7 @@ footer .social {
 }
 .noImg #floatBtn button i {
   padding-right: 0.4em;
+  color: #fff;
 }
 
 .popUpBox {

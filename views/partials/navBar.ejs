@@ -30,7 +30,9 @@
       >
       <% if(currentUser) {%>
       <a href="/user/dashboard"
-        ><li id="<% if(currentPage === '/user/dashboard'){ %>navActive<% } %>">
+        ><li
+          id="<% if(currentPage === '/user/dashboard' || currentPage === '/user/upload' || currentPage === '/user/dashboard/:id'  || currentPage === '/user/dashboard/:id' || currentPage === '/user/favorite' || currentPage === '/user/publish' || currentPage === '/user/account' || currentPage === '/user/profile'){ %>navActive<% } %>"
+        >
           Dashboard
         </li></a
       >
@@ -83,16 +85,12 @@
           <div class="itemsContainer">
             <a href="/auth/signup"
               ><li>
-                <button id="<% if(currentPage === '/signup'){ %>active<% } %>">
-                  <i class="fa-solid fa-plus"></i>Signup
-                </button>
+                <button><i class="fa-solid fa-plus"></i>Signup</button>
               </li></a
             >
             <a href="/auth/login"
               ><li>
-                <button
-                  id="<% if(currentPage === '/auth/login'){ %>active<% } %>"
-                >
+                <button>
                   <i class="fa-solid fa-right-to-bracket"></i>Login
                 </button>
               </li></a

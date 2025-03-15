@@ -7,7 +7,7 @@
     <%- include('../../partials/err') %>
 
     <!-- Username Field -->
-    <div id="input">
+    <div class="input">
       <label for="username">Username</label>
       <div class="inputContainer">
         <i class="fa-solid fa-user"></i>
@@ -16,13 +16,13 @@
           name="username"
           id="username"
           placeholder="Enter your username"
-          required
+          value="<%= typeof username !== 'undefined' ? username : '' %>"
         />
       </div>
     </div>
 
     <!-- Email Field -->
-    <div id="input">
+    <div class="input">
       <label for="email">Email Address</label>
       <div class="inputContainer">
         <i class="fa-solid fa-envelope"></i>
@@ -31,13 +31,13 @@
           name="email"
           id="email"
           placeholder="Enter your email address"
-          required
+          value="<%= typeof email !== 'undefined' ? email : '' %>"
         />
       </div>
     </div>
 
     <!-- Password Field -->
-    <div id="input">
+    <div class="input">
       <label for="password">Password</label>
       <div class="inputContainer">
         <i class="fa-sharp fa-solid fa-key"></i>
@@ -46,14 +46,14 @@
           name="password"
           id="password"
           placeholder="Create a password"
-          required
         />
       </div>
     </div>
 
     <!-- Terms and Conditions -->
     <div class="terms">
-      <input type="checkbox" name="terms" id="terms" required />
+      <input type="checkbox" name="terms" id="terms" <%= typeof terms !==
+      'undefined' && terms ? 'checked' : '' %>/>
       <label for="terms">
         <p>I agree to the <a href="#">terms and conditions</a></p>
       </label>

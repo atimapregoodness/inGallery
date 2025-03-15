@@ -2,6 +2,7 @@
 const PublishImg = require('../models/publish');
 const UploadImg = require('../models/upload');
 const appError = require('../utils/appError');
+const wallet = require('../models/wallet');
 
 
 exports.getExplore = async (req, res) => {
@@ -47,9 +48,17 @@ exports.getImg = async (req, res, next) => {
 
   const findImg = await PublishImg.findById(imgs._id).populate('user');
 
+  const rewardUser = await wallet.findOne({ user: user._id });
+  if (!rewardUser) throw new Error("Wallet not found");
+
+  console.log(rewardUser);
+
+
+
   if (user && findImg && imgs) {
     const userId = req.user._id.toString();
     const findImgId = findImg.user._id.toString();
+
 
     if (userId !== findImgId && !findImg.views.includes(user._id)) {
       findImg.views.push(user._id);
