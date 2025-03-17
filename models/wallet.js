@@ -7,12 +7,11 @@ const UsdtWalletSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  address: { type: String, required: true, unique: true },
-  totalEarnings: { type: Number, default: 0 }, // All-time earned USDT
-  availableBalance: { type: Number, default: 0 }, // Can withdraw/transfer
+  totalEarnings: { type: Number, default: 0 },
+  availableBalance: { type: Number, default: 0 },
   transactions: [
     {
-      txId: { type: String, required: true, unique: true },
+      txId: { type: String, required: true },
       amount: { type: Number, required: true },
       type: { type: String, enum: ['view-reward', 'download-reward', 'withdrawal', 'transfer'] },
       status: { type: String, enum: ['pending', 'confirmed', 'failed'], default: 'pending' },

@@ -256,7 +256,67 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
+
+
+
+
+  // Define the base API endpoint
+  const apiEndpointBase = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=";
+
+  async function fetchConversionRate() {
+    try {
+      // Get the selected currency from the dropdown
+      const currencySelector = document.getElementById("currencySelector");
+      const selectedCurrency = currencySelector.value;
+
+      // Build the API endpoint dynamically
+      const apiEndpoint = `${apiEndpointBase}${selectedCurrency}`;
+
+      const response = await fetch(apiEndpoint);
+      const data = await response.json();
+
+      // Extract the conversion rate for the selected currency
+      const conversionRate = data.tether[selectedCurrency];
+
+      // Get the USDT amount from the h1 element
+      const usdtElement = document.getElementById("usdtAmount");
+      const usdtAmount = parseFloat(usdtElement.textContent);
+
+      // Check if the value is valid for conversion
+      if (!isNaN(usdtAmount)) {
+        // Calculate the converted amount
+        const convertedAmount = usdtAmount * conversionRate;
+
+        // Update the h6 element with the converted amount
+        const h6Element = document.getElementById("convertedAmount");
+        h6Element.textContent = `~ ${convertedAmount.toFixed(7)} ${selectedCurrency.toUpperCase()}`;
+      } else {
+        // Handle invalid or "N/A" value
+        const h6Element = document.getElementById("convertedAmount");
+        h6Element.textContent = "No valid USDT amount to convert.";
+      }
+    } catch (error) {
+      console.error("Error fetching conversion rate:", error);
+      const h6Element = document.getElementById("convertedAmount");
+      h6Element.textContent = "Failed to fetch conversion rate.";
+    }
+  }
+
+
+  const currencySelector = document.getElementById("currencySelector");
+  const usdtElement = document.getElementById("usdtAmount");
+  const h6Element = document.getElementById("convertedAmount");
+
+  if (currencySelector && usdtElement && h6Element) {
+    // Add an event listener to call the function whenever the currency is changed
+    currencySelector.addEventListener("change", fetchConversionRate);
+
+    // Call the function initially to display the converted amount in the default currency
+    fetchConversionRate();
+  }
 });
+
+
 
 
 

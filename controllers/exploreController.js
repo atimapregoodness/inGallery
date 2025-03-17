@@ -2,7 +2,8 @@
 const PublishImg = require('../models/publish');
 const UploadImg = require('../models/upload');
 const appError = require('../utils/appError');
-const wallet = require('../models/wallet');
+const Wallet = require('../models/wallet');
+const { addTransaction } = require('../services/txsService');
 
 
 exports.getExplore = async (req, res) => {
@@ -48,28 +49,35 @@ exports.getImg = async (req, res, next) => {
 
   const findImg = await PublishImg.findById(imgs._id).populate('user');
 
-  const rewardUser = await wallet.findOne({ user: user._id });
-  if (!rewardUser) throw new Error("Wallet not found");
-
-  console.log(rewardUser);
-
-
 
   if (user && findImg && imgs) {
     const userId = req.user._id.toString();
     const findImgId = findImg.user._id.toString();
+    const amount = 0.0005;
 
+    // Check if user is NOT the owner and has NOT already viewed the image
+    if (userId !== findImgId) {
+      if (!findImg.views.includes(user._id)) {
+        // Reward the user and add them to the views list
+        await addTransaction(findImg.user._id, amount, 'view-reward');
+        findImg.views.push(user._id);
 
-    if (userId !== findImgId && !findImg.views.includes(user._id)) {
-      findImg.views.push(user._id);
-      await findImg.save();
-      // console.log('user is not the owner');
-    } else if (findImg.views.includes(user._id)) {
-      // console.log('user has already viewed the image');
+        // Save the updated image view list
+        // await findImg.save();
+
+        // Fetch the updated wallet with populated transactions
+        const wallet = await Wallet.findOne({ user: findImg.user._id }).populate('transactions');
+
+        console.log(wallet);
+
+      } else {
+        console.log('User has already viewed the image, no reward given.');
+      }
     } else {
-      // console.log('user is the owner');
+      console.log('User is the owner, no reward given.');
     }
   }
+
 
   let views = findImg.views.length;
 

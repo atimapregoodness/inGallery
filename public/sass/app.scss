@@ -13,6 +13,13 @@
   color: var(--color);
 }
 
+input {
+  background-color: var(--backgroundColor);
+}
+select {
+  background-color: var(--backgroundColor);
+}
+
 ::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -2266,5 +2273,54 @@ footer {
 //     transparent
 //   ); /* Or any gradient you want */
 // }
+
+.balanceSection {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: 12px;
+    border: var(--border);
+  }
+
+  th {
+    background-color: var(--darkGreen);
+    color: #fff;
+    font-weight: 600;
+
+    text-align: center;
+  }
+
+  tr {
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--hoverGray); /* Highlight row on hover */
+      transition: background-color 0.3s;
+    }
+  }
+
+  td {
+    color: var(--color);
+  }
+
+  caption {
+    caption-side: top;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #444;
+  }
+
+  h6 {
+    color: #535353;
+  }
+}
 
 @import "mediaQueryStyle";

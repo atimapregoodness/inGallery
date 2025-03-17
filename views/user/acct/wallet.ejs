@@ -1,3 +1,62 @@
-<title>Dashboard - inGallery</title>
+<title>Wallet - inGallery</title>
 <%- layout('layout/userBoilerplate') %>
-<div class="bodyContainer"><%-include('../../partials/sideBar') %></div>
+<div class="bodyContainer">
+  <%-include('../../partials/sideBar') %>
+  <div class="balanceSection">
+    <h1>
+      <img src="/assets/logo_usdt_2.svg" alt="" />
+      <span id="usdtAmount"><%= wallet ? wallet.totalEarnings : 'N/A' %></span>
+      USDT
+    </h1>
+    <h6 id="convertedAmount"></h6>
+    <h3>Select Currency</h3>
+    <select id="currencySelector">
+      <option value="usd">USD - United States Dollar</option>
+      <option value="eur">EUR - Euro</option>
+      <option value="gbp">GBP - British Pound</option>
+      <option value="ngn">NGN - Nigerian Naira</option>
+      <option value="cad">CAD - Canadian Dollar</option>
+      <option value="aud">AUD - Australian Dollar</option>
+      <option value="jpy">JPY - Japanese Yen</option>
+      <option value="cny">CNY - Chinese Yuan</option>
+      <option value="inr">INR - Indian Rupee</option>
+      <option value="zar">ZAR - South African Rand</option>
+      <option value="aed">AED - Emirati Dirham</option>
+      <option value="brl">BRL - Brazilian Real</option>
+      <option value="mxn">MXN - Mexican Peso</option>
+      <option value="rub">RUB - Russian Ruble</option>
+      <option value="sgd">SGD - Singapore Dollar</option>
+      <option value="chf">CHF - Swiss Franc</option>
+      <option value="sek">SEK - Swedish Krona</option>
+      <option value="nzd">NZD - New Zealand Dollar</option>
+      <option value="krw">KRW - South Korean Won</option>
+      <option value="pln">PLN - Polish Zloty</option>
+    </select>
+    <div class="txsSection">
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for (let txs of transactions) {%>
+          <tr>
+            <td><%= txs.txId %></td>
+            <td><%= moment(txs.createdAt).format("MMMM Do YYYY,h:mm A") %></td>
+            <td><%= txs.type %></td>
+            <td><%= txs.amount %></td>
+            <td><%= txs.status%></td>
+            <!-- <td>Completed</td> -->
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

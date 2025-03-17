@@ -48,6 +48,14 @@
   color: var(--color);
 }
 
+input {
+  background-color: var(--backgroundColor);
+}
+
+select {
+  background-color: var(--backgroundColor);
+}
+
 ::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -1964,6 +1972,45 @@ footer .social {
 .deleteActiveBox #popUpContent {
   transform: scale(1.07);
   transition: var(--transition);
+}
+
+.balanceSection table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+.balanceSection th,
+.balanceSection td {
+  padding: 12px;
+  border: var(--border);
+}
+.balanceSection th {
+  background-color: var(--darkGreen);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+.balanceSection tr {
+  transition: background-color 0.3s;
+}
+.balanceSection tr:hover {
+  background-color: var(--hoverGray); /* Highlight row on hover */
+  transition: background-color 0.3s;
+}
+.balanceSection td {
+  color: var(--color);
+}
+.balanceSection caption {
+  caption-side: top;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #444;
+}
+.balanceSection h6 {
+  color: #535353;
 }
 
 @media screen and (max-width: 600px) {

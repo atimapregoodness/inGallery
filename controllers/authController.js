@@ -1,7 +1,8 @@
 const User = require('../models/user');
 const passport = require('passport');
 const { validateSignup, validateLogin } = require('../validations/userValidation');
-
+const Wallet = require('../models/wallet');
+const user = require('../models/user');
 // Login view
 exports.getLogin = (req, res) => {
   if (req.isAuthenticated()) {
@@ -70,7 +71,7 @@ exports.getSignup = (req, res) => {
   });
 };
 
-exports.postSignup = async (req, res) => {
+exports.postSignup = async (req, res, next) => {
   try {
     const { error } = validateSignup(req.body);
     if (error) {
@@ -100,15 +101,45 @@ exports.postSignup = async (req, res) => {
       });
     }
 
-    const newUser = new User({ username, email });
-    const registeredUser = await User.register(newUser, password);
 
-    req.login(registeredUser, (err) => {
-      if (err) return next(err);
-      req.flash('success', 'Welcome to inGallery!');
-      return res.redirect('/user/dashboard');
-    });
+    try {
+      // Register the new user and create wallet for the user
+      const newUser = new User({ username, email });
+      const registeredUser = await User.register(newUser, password);
+
+      const userWallet = new Wallet({
+        user: registeredUser._id
+      });
+
+      await userWallet.save();
+      req.flash('success', 'Account Successfully Created');
+      return res.redirect('/auth/login');
+
+    } catch (err) {
+      req.flash('error', err.message);
+      return res.render('user/auth/signup', {
+        username,
+        email,
+        password,
+        success: req.flash('success'),
+        error: req.flash('error')
+      });
+    }
+
+
+
+    // Log the user in after successful signup
+    // req.login(registeredUser, (err) => {
+    //   if (err) {
+    //     console.error('Login error:', err);
+    //     return next(err);
+    //   }
+    //   req.flash('success', 'Welcome to inGallery!');
+    //   return res.redirect('/user/dashboard');
+    // });
+
   } catch (err) {
+    console.error('Signup error:', err);
     req.flash('error', err.message);
     return res.render('user/auth/signup', {
       username: req.body.username,
@@ -119,6 +150,7 @@ exports.postSignup = async (req, res) => {
     });
   }
 };
+
 
 
 exports.getLogout = (req, res) => {
