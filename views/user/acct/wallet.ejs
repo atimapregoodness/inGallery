@@ -1,62 +1,141 @@
 <title>Wallet - inGallery</title>
 <%- layout('layout/userBoilerplate') %>
-<div class="bodyContainer">
+<div class="bodyContainer" id="walletBody">
   <%-include('../../partials/sideBar') %>
-  <div class="balanceSection">
-    <h1>
-      <img src="/assets/logo_usdt_2.svg" alt="" />
-      <span id="usdtAmount"><%= wallet ? wallet.totalEarnings : 'N/A' %></span>
-      USDT
-    </h1>
-    <h6 id="convertedAmount"></h6>
-    <h3>Select Currency</h3>
-    <select id="currencySelector">
-      <option value="usd">USD - United States Dollar</option>
-      <option value="eur">EUR - Euro</option>
-      <option value="gbp">GBP - British Pound</option>
-      <option value="ngn">NGN - Nigerian Naira</option>
-      <option value="cad">CAD - Canadian Dollar</option>
-      <option value="aud">AUD - Australian Dollar</option>
-      <option value="jpy">JPY - Japanese Yen</option>
-      <option value="cny">CNY - Chinese Yuan</option>
-      <option value="inr">INR - Indian Rupee</option>
-      <option value="zar">ZAR - South African Rand</option>
-      <option value="aed">AED - Emirati Dirham</option>
-      <option value="brl">BRL - Brazilian Real</option>
-      <option value="mxn">MXN - Mexican Peso</option>
-      <option value="rub">RUB - Russian Ruble</option>
-      <option value="sgd">SGD - Singapore Dollar</option>
-      <option value="chf">CHF - Swiss Franc</option>
-      <option value="sek">SEK - Swedish Krona</option>
-      <option value="nzd">NZD - New Zealand Dollar</option>
-      <option value="krw">KRW - South Korean Won</option>
-      <option value="pln">PLN - Polish Zloty</option>
-    </select>
-    <div class="txsSection">
-      <table>
-        <thead>
-          <tr>
-            <th>Transaction ID</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-        </thead>
+  <div class="wallet">
+    <div class="balanceSection">
+      <div class="balance">
+        <h1 id="walletHeader">My Wallet</h1>
+        <div class="sec1">
+          <div><%- include('../../partials/err') %></div>
+          <h3 id="subHeader">Available Balance</h3>
+          <h1>
+            <img src="/assets/logo_usdt_2.svg" alt="" />
+            <span id="usdtAmount">
+              <%= wallet ? wallet.usdtBalance.toFixed(4): 'N/A' %>
+              <span id="currency">USDT</span>
+            </span>
+          </h1>
+          <h6>
+            ~ <%= Number(wallet.usdtBalance.toFixed(4)).toLocaleString() %>
+          </h6>
+        </div>
+        <div class="sec2">
+          <a href="/withdraw" class="btn">
+            <i class="fa-solid fa-hand-holding-dollar"></i> Withdraw
+          </a>
+          <a href="/convert" class="btn">
+            <i class="fa-solid fa-arrows-rotate"></i> Convert
+          </a>
+        </div>
 
-        <tbody>
-          <% for (let txs of transactions) {%>
-          <tr>
-            <td><%= txs.txId %></td>
-            <td><%= moment(txs.createdAt).format("MMMM Do YYYY,h:mm A") %></td>
-            <td><%= txs.type %></td>
-            <td><%= txs.amount %></td>
-            <td><%= txs.status%></td>
-            <!-- <td>Completed</td> -->
-          </tr>
+        <div class="txsSection">
+          <div class="txsSec1">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Holdings</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>USDT</td>
+                  <td>
+                    $<%= Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
+                    %>
+                  </td>
+                  <td>$1</td>
+                  <td>
+                    $<%= Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
+                    %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>GBPoints (GBP)</td>
+                  <td>
+                    <%=
+                    Number(wallet.availableBalance.toFixed(2)).toLocaleString()
+                    %>
+                  </td>
+                  <td>$<%= gbpRate %></td>
+                  <td>
+                    $<%= (wallet.availableBalance *
+                    gbpRate).toLocaleString('en-US', { minimumFractionDigits: 2,
+                    maximumFractionDigits: 2 }) %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="txsSec2">
+        <h1 id="header">History</h1>
+        <% if (transactions.length) {%>
+        <div class="txs">
+          <% for (let txs of transactions) { %>
+          <div id="text">
+            <i
+              class="fa-solid <%= iconMap[txs.type] || 'fa-question-circle' %>"
+            ></i>
+            <div class="textArea">
+              <h1><% if (txs.type) { %> <%= txs.type %> <% } %></h1>
+              <h6>
+                <%= moment(txs.createdAt).format("MMMM Do YYYY,h:mm A") %>
+              </h6>
+            </div>
+          </div>
+          <div id="valueSide">
+            <h1>
+              <% let sign = (txs.type === 'view-reward' || txs.type ===
+              'download-reward' || txs.type === 'reward' || txs.type ===
+              'deposit' || txs.type === 'conversion-credit') ? '+' : '-'; let
+              currency = (txs.currency === 'points') ? 'GBP' : 'USDT'; %> <%=
+              sign %><%= txs.amount %> <%= currency %>
+            </h1>
+
+            <h6
+              class="<%= (txs.status === 'successful' || txs.status === 'confirmed') ? 'successful' : '' %>"
+            >
+              <%= txs.status %>
+            </h6>
+          </div>
           <% } %>
-        </tbody>
-      </table>
+        </div>
+        <% } else {%>
+        <h1>No transaction is made!</h1>
+        <% } %>
+      </div>
+
+      <!-- <div class="currencySelect">
+        <h3>Select Currency</h3>
+        <select id="currencySelector">
+          <option value="usd">USD - United States Dollar</option>
+          <option value="eur">EUR - Euro</option>
+          <option value="gbp">GBP - British Pound</option>
+          <option value="ngn">NGN - Nigerian Naira</option>
+          <option value="cad">CAD - Canadian Dollar</option>
+          <option value="aud">AUD - Australian Dollar</option>
+          <option value="jpy">JPY - Japanese Yen</option>
+          <option value="cny">CNY - Chinese Yuan</option>
+          <option value="inr">INR - Indian Rupee</option>
+          <option value="zar">ZAR - South African Rand</option>
+          <option value="aed">AED - Emirati Dirham</option>
+          <option value="brl">BRL - Brazilian Real</option>
+          <option value="mxn">MXN - Mexican Peso</option>
+          <option value="rub">RUB - Russian Ruble</option>
+          <option value="sgd">SGD - Singapore Dollar</option>
+          <option value="chf">CHF - Swiss Franc</option>
+          <option value="sek">SEK - Swedish Krona</option>
+          <option value="nzd">NZD - New Zealand Dollar</option>
+          <option value="krw">KRW - South Korean Won</option>
+          <option value="pln">PLN - Polish Zloty</option>
+        </select>
+      </div> -->
     </div>
   </div>
 </div>

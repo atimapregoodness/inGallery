@@ -2,54 +2,52 @@ const mongoose = require('mongoose');
 const Wallet = require('../models/wallet'); // Adjust path to your model
 
 // Function to add a transaction
-async function addTransaction(userId, amount, type) {
+async function addTransaction(userId, amount, currency, type) {
+  if (!userId || amount <= 0) {
+    return { success: false, message: 'Invalid transaction details' };
+  }
+
   try {
-    // Find the user's wallet
+    // Find user's wallet
     const wallet = await Wallet.findOne({ user: userId });
 
     if (!wallet) {
       return { success: false, message: 'Wallet not found' };
     }
 
-    // Create a new transaction
-    const newTransaction = {
-      txId: new mongoose.Types.ObjectId().toString(), // Generate a unique txId
+    // Check for sufficient balance before proceeding
+    if (['withdrawal', 'transfer'].includes(type) && wallet.availableBalance < amount) {
+      return { success: false, message: 'Insufficient balance' };
+    }
+
+    // Create a transaction object
+    const transaction = {
+      txId: new mongoose.Types.ObjectId().toString(),
       amount,
+      currency,
       type,
-      status: 'pending', // Default status
+      status: 'successful', // Directly marking it as confirmed
       createdAt: new Date()
     };
 
-    // Add transaction to wallet
-    wallet.transactions.push(newTransaction);
+    // Define update object
+    const updateData = {
+      $push: { transactions: transaction },
+      $inc: {}
+    };
 
-    // Update the wallet balance if it's a reward
-    if (type === 'view-reward' || type === 'download-reward') {
-      wallet.totalEarnings += amount;
-      wallet.availableBalance += amount;
-    } else if (type === 'withdrawal' || type === 'transfer') {
-      if (wallet.availableBalance < amount) {
-        return { success: false, message: 'Insufficient balance' };
-      }
-      wallet.availableBalance -= amount;
+    // Handle different transaction types
+    if (['view-reward', 'download-reward'].includes(type)) {
+      updateData.$inc.totalEarnings = amount;
+      updateData.$inc.availableBalance = amount;
+    } else if (['withdrawal', 'transfer'].includes(type)) {
+      updateData.$inc.availableBalance = -amount;
     }
 
-    // Save changes
-    await wallet.save();
+    // Perform atomic update
+    const updatedWallet = await Wallet.findOneAndUpdate({ user: userId }, updateData, { new: true }).populate('transactions');
 
-    // After saving, update the last transaction's status to "confirmed"
-    const lastTransactionIndex = wallet.transactions.length - 1;
-    if (lastTransactionIndex >= 0) {
-      wallet.transactions[lastTransactionIndex].status = 'confirmed';
-    }
-
-    // Save again to reflect the status change
-    await wallet.save();
-
-    // Populate the transactions array before returning
-    const populatedWallet = await Wallet.findOne({ user: userId }).populate('transactions');
-
-    return { success: true, message: 'Transaction completed successfully', wallet: populatedWallet };
+    return { success: true, message: 'Transaction completed successfully', wallet: updatedWallet };
 
   } catch (err) {
     console.error('Error adding transaction:', err);
@@ -57,5 +55,72 @@ async function addTransaction(userId, amount, type) {
   }
 }
 
-// Export the function for use in other files
-module.exports = { addTransaction };
+
+async function addConvert(userId, amount, conversionRate) {
+  if (!userId || amount <= 0) {
+    return { success: false, message: 'Invalid conversion details' };
+  }
+
+  try {
+    // Find user's wallet
+    const wallet = await Wallet.findOne({ user: userId });
+    if (!wallet) {
+      return { success: false, message: 'Wallet not found' };
+    }
+
+    if (wallet.availableBalance < amount) {
+      return { success: false, message: 'Insufficient points balance' };
+    }
+
+    // Calculate USDT amount
+    const usdtAmount = amount * conversionRate;
+
+    // Generate transaction IDs
+    const pointsTxId = new mongoose.Types.ObjectId().toString();
+    const usdtTxId = new mongoose.Types.ObjectId().toString();
+
+    // Perform atomic update
+    const updatedWallet = await Wallet.findOneAndUpdate(
+      { user: userId },
+      {
+        $inc: {
+          availableBalance: -amount,  // Deduct points
+          usdtBalance: usdtAmount     // Add USDT
+        },
+        $push: {
+          transactions: {
+            $each: [
+              {
+                txId: pointsTxId,
+                amount: amount,
+                currency: 'points',
+                type: 'conversion-deduction', // Updated type to indicate deduction
+                status: 'successful',
+                createdAt: new Date()
+              },
+              {
+                txId: usdtTxId,
+                amount: usdtAmount, // Adding USDT
+                currency: 'usdt',
+                type: 'conversion-credit', // Updated type to indicate credit
+                status: 'successful',
+                createdAt: new Date()
+              }
+            ]
+          }
+        }
+      },
+      { new: true }
+    );
+
+    return { success: true, message: 'Points converted to USDT successfully', wallet: updatedWallet };
+
+  } catch (err) {
+    console.error('Transaction error:', err);
+    return { success: false, message: 'An error occurred while converting points' };
+  }
+}
+
+
+// Export function
+module.exports = { addTransaction, addConvert };

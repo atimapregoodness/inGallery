@@ -1974,43 +1974,174 @@ footer .social {
   transition: var(--transition);
 }
 
-.balanceSection table {
+.wallet {
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 16px;
-  text-align: left;
+  margin-right: 2em;
+  margin-left: 2em;
+  padding: 1em;
 }
-.balanceSection th,
-.balanceSection td {
-  padding: 12px;
-  border: var(--border);
+.wallet .sec2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3em;
 }
-.balanceSection th {
+.wallet .sec2 a {
   background-color: var(--darkGreen);
   color: #fff;
-  font-weight: 600;
-  text-align: center;
+  transition: var(--transition);
+  padding: 0.5em;
 }
-.balanceSection tr {
-  transition: background-color 0.3s;
+.wallet .sec2 a:first-child {
+  margin-right: 1em;
 }
-.balanceSection tr:hover {
-  background-color: var(--hoverGray); /* Highlight row on hover */
-  transition: background-color 0.3s;
+.wallet .sec2 a:hover {
+  transition: var(--transition);
+  background-color: var(--hoverGreen);
 }
-.balanceSection td {
+.wallet .sec2 a i {
+  color: white;
+}
+.wallet #walletHeader {
+  font-size: 40px;
   color: var(--color);
+  font-weight: 600;
+  padding-bottom: 1em;
 }
-.balanceSection caption {
+.wallet #subHeader {
+  font-size: 15px;
+}
+.wallet .balanceSection {
+  padding-top: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.wallet h1 {
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+}
+.wallet h1 #currency {
+  font-size: 15px;
+}
+.wallet h1 img {
+  padding-right: 0.5em;
+}
+.wallet h1 span {
+  font-size: 50px;
+}
+.wallet #valueSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.wallet .currencySelect {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 2em;
+}
+.wallet .currencySelect h3 {
+  padding-right: 0.4em;
+  font-size: 14px;
+  padding-top: 0.5em;
+}
+.wallet .currencySelect select {
+  border-radius: 0.4em;
+  font-size: 14px;
+}
+.wallet .txsSec2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10em;
+  margin-right: 5em;
+}
+.wallet .txs {
+  margin: auto;
+  width: 100%;
+  height: 30em;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3em;
+}
+.wallet .txs #text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.wallet .txs i {
+  margin-right: 0.4em;
+  font-size: 20px;
+  background: var(--hoverGray);
+  padding: 0.4em;
+  border-radius: 5em;
+}
+.wallet .txs .successful {
+  color: var(--darkGreen);
+}
+.wallet .txs h1 {
+  font-size: 15px;
+}
+.wallet #convertForm {
+  display: flex;
+  flex-direction: row;
+}
+.wallet #convertForm input {
+  background-color: var(--inputColor);
+  border-radius: 0;
+}
+.wallet #convertForm button {
+  background-color: var(--darkGreen);
+  color: #fff;
+}
+.wallet #header {
+  color: var(--color);
+  font-size: 20px;
+  padding-bottom: 0.5em;
+}
+.wallet caption {
   caption-side: top;
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 18px;
   color: #444;
 }
-.balanceSection h6 {
+.wallet h6 {
   color: #535353;
+  font-size: 12px;
+}
+.wallet table {
+  width: 100%;
+  margin-top: 20px;
+  background: var(--backgroundColor);
+  border: var(--border);
+  border-radius: 1em;
+  overflow: hidden;
+}
+.wallet thead {
+  background: var(--darkGreen);
+  color: #fff;
+  text-align: left;
+}
+.wallet th {
+  color: #fff;
+}
+.wallet th,
+.wallet td {
+  padding: 12px 15px;
+  border-bottom: var(--border);
+}
+.wallet .currency {
+  font-weight: bold;
+  color: var(--darkGreen);
 }
 
 @media screen and (max-width: 600px) {

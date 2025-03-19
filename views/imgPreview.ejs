@@ -71,13 +71,13 @@
     <h1>You may also like</h1>
 
     <div class="imgContainer">
-      <% for (let img of findCateogory) {%>
+      <% if (findCategory.length) {%> <% for (let img of findCategory) {%>
       <div class="img">
         <a href="/explore/image/<%= img._id %>"
           ><img src="<%= img.img.url %>" alt=""
         /></a>
       </div>
-      <%} %>
+      <% } %> <%} %>
     </div>
   </section>
 </div>

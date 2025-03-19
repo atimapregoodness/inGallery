@@ -1,0 +1,14 @@
+<title>Wallet - inGallery</title>
+<%- layout('layout/userBoilerplate') %>
+<div class="bodyContainer" id="walletBody">
+  <%-include('../../partials/sideBar') %>
+  <div class="txsSec1">
+    <h1>
+      <span id="usdtAmount">
+        <%= wallet ? wallet.availableBalance.toFixed(4) : 'N/A' %>
+        <span id="currency">GBP</span>
+      </span>
+    </h1>
+    <h6 id="convertedAmount"></h6>
+  </div>
+</div>

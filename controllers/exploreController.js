@@ -38,63 +38,59 @@ exports.getExplore = async (req, res) => {
 };
 
 exports.getImg = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = req.user;
+    const skip = parseInt(req.query.skip) || 0;
+    const limit = parseInt(req.query.limit) || 30;
 
-  const { id } = req.params;
+    const imgs = await UploadImg.findById(id).populate('user');
+    if (!imgs) {
+      return next(new appError('Image not found', 404));
+    }
 
-  const user = req.user;
-  const skip = parseInt(req.query.skip) || 0;
-  const limit = parseInt(req.query.limit) || 30;
+    const findImg = await PublishImg.findById(imgs._id).populate('user');
+    if (!findImg) {
+      return next(new appError('Published image not found', 404));
+    }
 
-  const imgs = await UploadImg.findById(id).populate('user');
+    if (user) {
+      const userId = user._id.toString();
+      const findImgId = findImg.user._id.toString();
+      const amount = 10;
+      const currency = 'points';
 
-  const findImg = await PublishImg.findById(imgs._id).populate('user');
-
-
-  if (user && findImg && imgs) {
-    const userId = req.user._id.toString();
-    const findImgId = findImg.user._id.toString();
-    const amount = 0.0005;
-
-    // Check if user is NOT the owner and has NOT already viewed the image
-    if (userId !== findImgId) {
-      if (!findImg.views.includes(user._id)) {
+      // Check if user is NOT the owner and has NOT already viewed the image
+      if (userId !== findImgId && !findImg.views.includes(user._id.toString())) {
         // Reward the user and add them to the views list
-        await addTransaction(findImg.user._id, amount, 'view-reward');
+        await addTransaction(findImg.user._id, amount, currency, 'view-reward');
         findImg.views.push(user._id);
 
         // Save the updated image view list
-        // await findImg.save();
+        await findImg.save();  // ✅ This ensures the views array is updated in the database
 
         // Fetch the updated wallet with populated transactions
         const wallet = await Wallet.findOne({ user: findImg.user._id }).populate('transactions');
-
         console.log(wallet);
-
       } else {
         console.log('User has already viewed the image, no reward given.');
       }
-    } else {
-      console.log('User is the owner, no reward given.');
     }
+
+    const views = findImg.views.length;
+
+    const findCategory = await PublishImg.find({
+      $or: [
+        { category: new RegExp(imgs.category, 'i') },
+        { 'imgs.img.filename': new RegExp(imgs.filename, 'i') },
+        { description: new RegExp(imgs.description, 'i') }
+      ]
+    }).populate('user').skip(skip).limit(limit);
+
+    res.render('imgPreview', { imgs, findCategory, views });
+
+  } catch (err) {
+    console.error(err);
+    next(err);
   }
-
-
-  let views = findImg.views.length;
-
-  if (!views && !imgs) {
-    const err = new appError('Image not found', 404);
-    console.log(`Error: ======= ${err.message, err.status}`);
-    return next(err);
-  }
-
-  const findCateogory = await PublishImg.find({
-    $or: [
-      { category: new RegExp(imgs.category, 'i') },
-      { 'imgs.img.filename': new RegExp(imgs.filename, 'i') },
-      { description: new RegExp(imgs.description, 'i') }
-    ]
-
-  }).populate('user').skip(skip).limit(limit);
-
-  res.render('imgPreview', { imgs, findCateogory, views });
 };

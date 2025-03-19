@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { getDashboardImages, getUpload, uploadImg, publishImg, getDashboard, deleteImg } = require('../../controllers/dashboardController');
-const { getWallet } = require('../../controllers/walletController');
+const { getWallet, postConvert } = require('../../controllers/walletController');
+
 const multer = require("multer");
 const { storage } = require("../../cloudinary");
 const upload = multer({ storage });
@@ -21,5 +22,8 @@ router.get('/dashboard/:id/publish', wrapAsync(publishImg));
 router.get('/dashboard/:id/delete', wrapAsync(deleteImg));
 
 router.get('/wallet', wrapAsync(getWallet));
+
+router.post('/wallet/convert-usdt', wrapAsync(postConvert));
+
 
 module.exports = router;

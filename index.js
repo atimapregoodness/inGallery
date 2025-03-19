@@ -92,6 +92,7 @@ app.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.search = req.query;
   res.locals.moment = moment;
+  res.locals.gbpRate = 0.002;
 
   next();
 });
