@@ -7,9 +7,12 @@ const WalletSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+
   totalEarnings: { type: Number, default: 0 }, // Total earnings in points
   availableBalance: { type: Number, default: 0 }, // Available points balance
   usdtBalance: { type: Number, default: 0 }, // USDT balance
+  usdtAddress: { type: String },
+   
   transactions: [
     {
       txId: { type: String, required: true },

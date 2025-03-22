@@ -1,4 +1,4 @@
-<title>Wallet - inGallery</title>
+<title>Wallet inGallery</title>
 <%- layout('layout/userBoilerplate') %>
 <div class="bodyContainer" id="walletBody">
   <%-include('../../partials/sideBar') %>
@@ -12,7 +12,8 @@
           <h1>
             <img src="/assets/logo_usdt_2.svg" alt="" />
             <span id="usdtAmount">
-              <%= wallet ? wallet.usdtBalance.toFixed(4): 'N/A' %>
+              <%= wallet ?
+              Number(wallet.usdtBalance.toFixed(4)).toLocaleString(): 'N/A' %>
               <span id="currency">USDT</span>
             </span>
           </h1>
@@ -20,59 +21,151 @@
             ~ <%= Number(wallet.usdtBalance.toFixed(4)).toLocaleString() %>
           </h6>
         </div>
-        <div class="sec2">
-          <a href="/withdraw" class="btn">
-            <i class="fa-solid fa-hand-holding-dollar"></i> Withdraw
-          </a>
-          <a href="/convert" class="btn">
-            <i class="fa-solid fa-arrows-rotate"></i> Convert
-          </a>
-        </div>
+        <div class="tabs">
+          <div class="sec2">
+            <ul class="nav nav-tabs" id="myTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="assets-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#assets"
+                  type="button"
+                  role="tab"
+                >
+                  <i class="fa-solid fa-wallet"></i> Assets
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="withdraw-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#withdraw"
+                  type="button"
+                  role="tab"
+                >
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i> Withdraw
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="convert-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#convert"
+                  type="button"
+                  role="tab"
+                >
+                  <i class="fa-solid fa-exchange-alt"></i> Convert
+                </button>
+              </li>
+            </ul>
 
-        <div class="txsSection">
-          <div class="txsSec1">
-            <table>
-              <thead>
-                <tr>
-                  <th>Asset</th>
-                  <th>Holdings</th>
-                  <th>Price</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>USDT</td>
-                  <td>
-                    $<%= Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
-                    %>
-                  </td>
-                  <td>$1</td>
-                  <td>
-                    $<%= Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
-                    %>
-                  </td>
-                </tr>
+            <!-- Tabs Content -->
+            <div class="tab-content" id="myTabContent">
+              <!-- Assets Content -->
+              <div
+                class="tab-pane fade show active"
+                id="assets"
+                role="tabpanel"
+              >
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Asset</th>
+                      <th>Holdings</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>USDT</td>
+                      <td>
+                        $<%=
+                        Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
+                        %>
+                      </td>
+                      <td>$1</td>
+                      <td>
+                        $<%=
+                        Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
+                        %>
+                      </td>
+                    </tr>
 
-                <tr>
-                  <td>GBPoints (GBP)</td>
-                  <td>
-                    <%=
-                    Number(wallet.availableBalance.toFixed(2)).toLocaleString()
-                    %>
-                  </td>
-                  <td>$<%= gbpRate %></td>
-                  <td>
-                    $<%= (wallet.availableBalance *
-                    gbpRate).toLocaleString('en-US', { minimumFractionDigits: 2,
-                    maximumFractionDigits: 2 }) %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    <tr>
+                      <td>GBPoints (GBP)</td>
+                      <td>
+                        <%=
+                        Number(wallet.availableBalance.toFixed(2)).toLocaleString()
+                        %>
+                      </td>
+                      <td>$<%= gbpRate %></td>
+                      <td>
+                        $<%= (wallet.availableBalance *
+                        gbpRate).toLocaleString('en-US', {
+                        minimumFractionDigits: 2, maximumFractionDigits: 2 }) %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Withdraw Content -->
+              <div class="tab-pane fade" id="withdraw" role="tabpanel">
+                <h3>Withdraw</h3>
+                <p>Here you can withdraw your funds securely.</p>
+              </div>
+
+              <!-- Convert Content -->
+              <div class="tab-pane fade" id="convert" role="tabpanel">
+                <form
+                  action="/user/wallet/convert-usdt"
+                  method="POST"
+                  class="swap-form"
+                >
+                  <div class="inputs">
+                    <input
+                      type="hidden"
+                      name="userId"
+                      placeholder="userId"
+                      id="userId"
+                      value="<%= wallet.user._id %>"
+                    />
+                    <p>
+                      <label for="amount">GBP:</label>
+                      <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        min="1"
+                        max="<%= wallet.availableBalance %>"
+                      />
+                    </p>
+                    <div class="convertIcon">
+                      <i class="fa-solid fa-circle-arrow-right"></i>
+                    </div>
+                    <p>
+                      <label for="get">USDT:</label>
+                      <input type="number" id="get" name="get" readonly />
+                    </p>
+                  </div>
+
+                  <p>
+                    Conversion Rate: <strong>1 GBP = $<%= gbpRate%></strong>
+                  </p>
+                  <button type="submit" id="convertBtn">
+                    <i class="fa-solid fa-rotate"></i> Convert
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="txsSec2">
         <h1 id="header">History</h1>
         <% if (transactions.length) {%>
@@ -110,32 +203,6 @@
         <h1>No transaction is made!</h1>
         <% } %>
       </div>
-
-      <!-- <div class="currencySelect">
-        <h3>Select Currency</h3>
-        <select id="currencySelector">
-          <option value="usd">USD - United States Dollar</option>
-          <option value="eur">EUR - Euro</option>
-          <option value="gbp">GBP - British Pound</option>
-          <option value="ngn">NGN - Nigerian Naira</option>
-          <option value="cad">CAD - Canadian Dollar</option>
-          <option value="aud">AUD - Australian Dollar</option>
-          <option value="jpy">JPY - Japanese Yen</option>
-          <option value="cny">CNY - Chinese Yuan</option>
-          <option value="inr">INR - Indian Rupee</option>
-          <option value="zar">ZAR - South African Rand</option>
-          <option value="aed">AED - Emirati Dirham</option>
-          <option value="brl">BRL - Brazilian Real</option>
-          <option value="mxn">MXN - Mexican Peso</option>
-          <option value="rub">RUB - Russian Ruble</option>
-          <option value="sgd">SGD - Singapore Dollar</option>
-          <option value="chf">CHF - Swiss Franc</option>
-          <option value="sek">SEK - Swedish Krona</option>
-          <option value="nzd">NZD - New Zealand Dollar</option>
-          <option value="krw">KRW - South Korean Won</option>
-          <option value="pln">PLN - Polish Zloty</option>
-        </select>
-      </div> -->
     </div>
   </div>
 </div>

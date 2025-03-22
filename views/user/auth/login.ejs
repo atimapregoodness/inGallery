@@ -1,9 +1,11 @@
 <title>Login | inGallery</title>
 <%- layout('layout/boilerplate') %>
+
 <div class="container">
   <form action="/auth/login" method="POST">
     <h1 id="header">Login</h1>
     <%- include('../../partials/err') %>
+
     <div class="input">
       <label for="email">Email or Username</label>
       <div class="inputContainer">
@@ -17,7 +19,8 @@
         />
       </div>
     </div>
-    <div id="input">
+
+    <div id="passwordInput">
       <label for="password">Password</label>
       <div class="inputContainer">
         <i class="fa-sharp fa-solid fa-key"></i>
@@ -29,6 +32,7 @@
         />
       </div>
     </div>
+
     <div class="btns">
       <button type="submit">
         <i class="fa-solid fa-right-to-bracket"></i>Login

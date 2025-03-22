@@ -2,10 +2,12 @@
 <%- layout('layout/boilerplate') %>
 
 <div class="container">
-  <form action="/auth/signup" method="post">
+  <form action="/auth/signup" method="post" id="signupForm">
     <h1 id="header">Create Account</h1>
     <%- include('../../partials/err') %>
-
+    <p id="passwordError" class="alert alert-danger mt-2" style="display: none">
+      <i class="fa-solid fa-triangle-exclamation"></i> Passwords do not match!
+    </p>
     <!-- Username Field -->
     <div class="input">
       <label for="username">Username</label>
@@ -16,7 +18,7 @@
           name="username"
           id="username"
           placeholder="Enter your username"
-          value="<%= typeof username !== 'undefined' ? username : '' %>"
+          required
         />
       </div>
     </div>
@@ -31,7 +33,7 @@
           name="email"
           id="email"
           placeholder="Enter your email address"
-          value="<%= typeof email !== 'undefined' ? email : '' %>"
+          required
         />
       </div>
     </div>
@@ -46,14 +48,29 @@
           name="password"
           id="password"
           placeholder="Create a password"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Confirm Password Field -->
+    <div class="input">
+      <label for="confirmPassword">Confirm Password</label>
+      <div class="inputContainer">
+        <i class="fa-sharp fa-solid fa-key"></i>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Confirm your password"
+          required
         />
       </div>
     </div>
 
     <!-- Terms and Conditions -->
     <div class="terms">
-      <input type="checkbox" name="terms" id="terms" <%= typeof terms !==
-      'undefined' && terms ? 'checked' : '' %>/>
+      <input type="checkbox" name="terms" id="terms" required />
       <label for="terms">
         <p>I agree to the <a href="#">terms and conditions</a></p>
       </label>
