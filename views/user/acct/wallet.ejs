@@ -1,4 +1,4 @@
-<title>Wallet inGallery</title>
+<title>Wallet | inGallery</title>
 <%- layout('layout/userBoilerplate') %>
 <div class="bodyContainer" id="walletBody">
   <%-include('../../partials/sideBar') %>
@@ -115,8 +115,77 @@
 
               <!-- Withdraw Content -->
               <div class="tab-pane fade" id="withdraw" role="tabpanel">
-                <h3>Withdraw</h3>
-                <p>Here you can withdraw your funds securely.</p>
+                <form
+                  action="/user/wallet/edit-wallet-address"
+                  id="addressForm"
+                  method="POST"
+                >
+                  <label for="newWalletAddress">Receiving Address:</label>
+                  <div id="contents" class="formContents">
+                    <input
+                      type="text"
+                      id="walletAddress"
+                      value="<%= wallet.usdtAddress %>"
+                      placeholder="enter your BSC wallet address"
+                      readonly="readonly"
+                    />
+                    <button type="button" id="wEditBtn">Edit</button>
+                  </div>
+                </form>
+                <form
+                  action="/user/wallet/withdraw"
+                  method="POST"
+                  class="swap-form"
+                >
+                  <div class="inputs">
+                    <p>
+                      <label for="usdtAmt"
+                        >USDT Balance: $<%=
+                        Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
+                        %></label
+                      >
+                      <input
+                        type="number"
+                        id="usdtAmnt"
+                        name="usdtAmt"
+                        max="<%=
+                        wallet.usdtBalance
+                        
+                        %>"
+                        placeholder="enter the USDT amount you want to withdraw"
+                        required
+                      />
+                    </p>
+                    <p class="space">
+                      <input
+                        type="hidden"
+                        name="userId"
+                        placeholder="userId"
+                        id="userId"
+                        value="<%= wallet.user._id %>"
+                      />
+                    </p>
+                    <p>
+                      <label for="receiveAmt">You will Receive:</label>
+                      <input
+                        type="text"
+                        id="receiveAmnt"
+                        name="receiveAmt"
+                        value="$0.00"
+                        readonly
+                      />
+                    </p>
+                  </div>
+                  <div class="alert alert-info" role="alert" id="txsMsg">
+                    <p>
+                      <strong>NOTE:</strong> A <strong>5%</strong> transaction
+                      fee is required for the transaction to be successful.
+                    </p>
+                  </div>
+                  <button type="submit" id="convertBtn">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Withdraw
+                  </button>
+                </form>
               </div>
 
               <!-- Convert Content -->
@@ -135,21 +204,36 @@
                       value="<%= wallet.user._id %>"
                     />
                     <p>
-                      <label for="amount">GBP:</label>
+                      <label for="amount"
+                        >GBP: <%=
+                        Number(wallet.availableBalance.toFixed(2)).toLocaleString()
+                        %>
+                      </label>
                       <input
                         type="number"
                         id="amount"
                         name="amount"
                         min="1"
-                        max="<%= wallet.availableBalance %>"
+                        required
+                        value="0"
                       />
                     </p>
                     <div class="convertIcon">
                       <i class="fa-solid fa-circle-arrow-right"></i>
                     </div>
                     <p>
-                      <label for="get">USDT:</label>
-                      <input type="number" id="get" name="get" readonly />
+                      <label for="get"
+                        >USDT: $<%=
+                        Number(wallet.usdtBalance.toFixed(2)).toLocaleString()
+                        %></label
+                      >
+                      <input
+                        type="text"
+                        id="get"
+                        name="get"
+                        readonly
+                        value="$0.0000"
+                      />
                     </p>
                   </div>
 
@@ -167,41 +251,78 @@
       </div>
 
       <div class="txsSec2">
-        <h1 id="header">History</h1>
-        <% if (transactions.length) {%>
-        <div class="txs">
-          <% for (let txs of transactions) { %>
-          <div id="text">
-            <i
-              class="fa-solid <%= iconMap[txs.type] || 'fa-question-circle' %>"
-            ></i>
-            <div class="textArea">
-              <h1><% if (txs.type) { %> <%= txs.type %> <% } %></h1>
-              <h6>
-                <%= moment(txs.createdAt).format("MMMM Do YYYY,h:mm A") %>
+        <div class="filter-sort mb-4" id="filterSort">
+          <div class="header">
+            <h1 id="header">History</h1>
+          </div>
+          <form
+            id="filterSortForm"
+            method="GET"
+            action="/user/wallet"
+            class="row g-3"
+          >
+            <div class="col-md-6" id="contents">
+              <div class="input-group" id="contents">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-filter"></i>
+                </span>
+                <select
+                  name="transactionType"
+                  id="transactionType"
+                  class="form-select"
+                >
+                  <option value="">All</option>
+                  <option value="withdrawal">Withdrawal</option>
+                  <option value="conversion-credit">Conversion Credit</option>
+                  <option value="conversion-deduction">
+                    Conversion Deduction
+                  </option>
+                  <option value="view-reward">View Reward</option>
+                  <option value="download-reward">Download Reward</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="txs" id="transactionList">
+          <!-- Transactions will be populated here -->
+          <% if (transactions.length) { %> <% transactions.forEach((txs) => { %>
+          <div
+            class="txItem"
+            data-type="<%= txs.type %>"
+            data-status="<%= txs.status %>"
+          >
+            <div id="text">
+              <i
+                class="fa-solid <%= iconMap[txs.type] || 'fa-question-circle' %>"
+              ></i>
+              <div class="textArea">
+                <h1><%= txs.type %></h1>
+                <h6>
+                  <%= moment(txs.createdAt).format("MMMM Do YYYY, h:mm A") %>
+                </h6>
+              </div>
+            </div>
+            <div id="valueSide">
+              <h1>
+                <% let sign = (txs.type === 'view-reward' || txs.type ===
+                'download-reward' || txs.type === 'reward' || txs.type ===
+                'deposit' || txs.type === 'conversion-credit') ? '+' : '-'; %>
+                <%= sign %><%= txs.amount %> <%= txs.currency === 'points' ?
+                'GBP' : 'USDT' %>
+              </h1>
+              <h6
+                class="<%= (txs.status === 'successful' || txs.status === 'confirmed') ? 'successful' : '' %>"
+              >
+                <%= txs.status %>
               </h6>
             </div>
           </div>
-          <div id="valueSide">
-            <h1>
-              <% let sign = (txs.type === 'view-reward' || txs.type ===
-              'download-reward' || txs.type === 'reward' || txs.type ===
-              'deposit' || txs.type === 'conversion-credit') ? '+' : '-'; let
-              currency = (txs.currency === 'points') ? 'GBP' : 'USDT'; %> <%=
-              sign %><%= txs.amount %> <%= currency %>
-            </h1>
-
-            <h6
-              class="<%= (txs.status === 'successful' || txs.status === 'confirmed') ? 'successful' : '' %>"
-            >
-              <%= txs.status %>
-            </h6>
-          </div>
+          <% }) %> <% } else { %>
+          <h1 id="noTxs">No transaction is made!</h1>
           <% } %>
         </div>
-        <% } else {%>
-        <h1>No transaction is made!</h1>
-        <% } %>
       </div>
     </div>
   </div>

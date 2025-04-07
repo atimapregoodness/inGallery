@@ -6,14 +6,20 @@
     <div class="controlIcons">
       <ul>
         <div class="first">
-          <a href="/user/dashboard"><button class="noBackground">
-              <i class="fa-solid fa-circle-arrow-left"></i></button></a>
+          <a href="/user/dashboard"
+            ><button class="noBackground">
+              <i class="fa-solid fa-circle-arrow-left"></i></button
+          ></a>
           <h1><%= imgs.img.filename %></h1>
         </div>
         <div class="space"></div>
         <div class="icons">
           <li>
-            <button class="noBackground" id="noPadding" onclick="downloadImage('<%= imgs.img.url %>', '<%= imgs.img.filename %>')">
+            <button
+              class="noBackground"
+              id="noPadding"
+              onclick="downloadImage('<%= imgs.img.url %>', '<%= imgs.img.filename %>')"
+            >
               <i class="fa-solid fa-circle-down"></i>
             </button>
           </li>
@@ -54,9 +60,17 @@
                   </p>
                 </h3>
                 <form class="btns">
-                  <a href="#" id="deleteCloseBtn"><i class="fa-regular fa-circle-xmark" id="whiteIcon"></i>No</a>
-                  <a href="/user/dashboard/<%= imgs._id %>/delete?_method=DELETE" type="submit" id="deleteYesBtn">
-                    <i class="fa-solid fa-trash" id="whiteIcon"></i>Yes</a>
+                  <a href="#" id="deleteCloseBtn"
+                    ><i class="fa-regular fa-circle-xmark" id="whiteIcon"></i
+                    >No</a
+                  >
+                  <a
+                    href="/user/dashboard/<%= imgs._id %>/delete?_method=DELETE"
+                    type="submit"
+                    id="deleteYesBtn"
+                  >
+                    <i class="fa-solid fa-trash" id="whiteIcon"></i>Yes</a
+                  >
                 </form>
               </div>
             </div>
@@ -92,15 +106,26 @@
     <div class="imgHeader"><%- include('../../partials/err') %></div>
     <div class="imgPreview">
       <div class="img">
-        <img src="<%= imgs.img.url %>" alt="<%= imgs.img.filename %>" id="zoomableImage" />
+        <img
+          src="<%= imgs.img.url %>"
+          alt="<%= imgs.img.filename %>"
+          id="zoomableImage"
+        />
       </div>
     </div>
     <div class="footer">
-      <div>
+      <div id="zoomIcons">
         <button id="zoomIn">
           <i class="fa-solid fa-magnifying-glass-plus"></i>
         </button>
-        <input type="range" name="zoomInOut" id="zoomInOut" min="15" max="1000" value="15" />
+        <input
+          type="range"
+          name="zoomInOut"
+          id="zoomInOut"
+          min="15"
+          max="1000"
+          value="15"
+        />
         <button id="zoomOut">
           <i class="fa-solid fa-magnifying-glass-minus"></i>
         </button>

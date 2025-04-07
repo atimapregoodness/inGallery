@@ -6,6 +6,7 @@ const upload = multer({ storage });
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
 const Wallet = require("../models/wallet");
+const isValidBSCAddress = require("../validations/usdtWalletValidation");
 
 const iconMap = {
   "view-reward": "fa-arrow-down",
@@ -25,8 +26,6 @@ exports.getWallet = async (req, res) => {
     "transactions"
   );
   const transactions = wallet.transactions;
-  console.log(user);
-  console.log(transactions);
 
   res.render("user/acct/wallet", { wallet, transactions, iconMap });
 };
@@ -43,4 +42,40 @@ exports.postConvert = async (req, res) => {
 
   req.flash(result.success ? "success" : "error", result.message);
   return res.redirect("back");
+};
+
+exports.editWalletAddress = async (req, res) => {
+  // res.send(req.body);
+  console.log(req.body);
+  try {
+    const { walletAddress } = req.body;
+    const userId = req.user._id;
+    if (!walletAddress) {
+      req.flash("error", "Wallet address is required.");
+      return res.redirect("/user/wallet");
+    }
+    if (!isValidBSCAddress(walletAddress)) {
+      req.flash(
+        "error",
+        'Invalid USDT (BSC) address. It must start with "0x" and be 42 characters long.'
+      );
+      return res.redirect("/user/wallet");
+    }
+    let wallet = await Wallet.findOne({ user: userId });
+    if (!wallet) {
+      req.flash("error", "something went wrong");
+      res.redirect("/user/wallet");
+    } else {
+      wallet.usdtAddress = walletAddress;
+      req.flash("success", "Wallet address updated successfully.");
+      await wallet.save();
+      console.log(wallet);
+      return res.redirect("/user/wallet");
+    }
+    res.redirect("/user/wallet");
+  } catch (error) {
+    console.error(error);
+    req.flash("error", "Server error. Please try again.");
+    res.redirect("/user/wallet");
+  }
 };

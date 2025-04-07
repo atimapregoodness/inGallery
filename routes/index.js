@@ -11,6 +11,6 @@ const homeRoutes = require("./homeRoutes");
 router.use("/", homeRoutes);
 router.use("/user", profileRoutes);
 router.use("/auth", authRoutes);
-router.use('/explore', exploreRoutes);
+router.use("/explore", exploreRoutes);
 
 module.exports = router;

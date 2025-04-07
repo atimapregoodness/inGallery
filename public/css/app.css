@@ -1139,6 +1139,7 @@ footer button i {
 footer i {
   padding-right: 0.4em;
   color: var(--grabBg);
+  background: none;
 }
 footer .social {
   margin-left: 7em;
@@ -1445,7 +1446,7 @@ footer .social {
   transition: var(--transition);
   pointer-events: none;
 }
-#imgPreview .imgSection2 input[type=range] {
+#imgPreview .imgSection2 input[type="range"] {
   -webkit-appearance: none; /* Remove default appearance */
   width: 8em; /* Full-width */
   height: 8px; /* Height of the slider */
@@ -1455,10 +1456,10 @@ footer .social {
   transition: opacity 0.2s; /* Transition for hover effect */
   border-radius: 50em;
 }
-#imgPreview .imgSection2 input[type=range]:hover {
+#imgPreview .imgSection2 input[type="range"]:hover {
   opacity: 1; /* Full opacity on hover */
 }
-#imgPreview .imgSection2 input[type=range]::-webkit-slider-thumb {
+#imgPreview .imgSection2 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Remove default appearance */
   appearance: none; /* Remove default appearance */
   width: 20px; /* Width of the thumb */
@@ -1468,10 +1469,10 @@ footer .social {
   cursor: pointer; /* Pointer cursor on hover */
   transition: background 0.2s; /* Transition for hover effect */
 }
-#imgPreview .imgSection2 input[type=range]::-webkit-slider-thumb:hover {
+#imgPreview .imgSection2 input[type="range"]::-webkit-slider-thumb:hover {
   background: var(--hoverGreen); /* Thumb color on hover */
 }
-#imgPreview .imgSection2 input[type=range]::-moz-range-thumb {
+#imgPreview .imgSection2 input[type="range"]::-moz-range-thumb {
   width: 25px; /* Width of the thumb */
   height: 25px; /* Height of the thumb */
   border-radius: 50%; /* Round thumb */
@@ -1479,7 +1480,7 @@ footer .social {
   cursor: pointer; /* Pointer cursor on hover */
   transition: background 0.2s; /* Transition for hover effect */
 }
-#imgPreview .imgSection2 input[type=range]::-moz-range-thumb:hover {
+#imgPreview .imgSection2 input[type="range"]::-moz-range-thumb:hover {
   background: var(--hoverGreen); /* Thumb color on hover */
 }
 #imgPreview .imgSection2 i {
@@ -1487,6 +1488,9 @@ footer .social {
   font-size: 25px;
   padding-right: 1em;
   padding-left: 1em;
+}
+#imgPreview .imgSection2 #zoomIcons button {
+  background: none;
 }
 #imgPreview .imgSection2 .footer {
   width: 100%;
@@ -2054,6 +2058,10 @@ footer .social {
 .wallet .sec2 ul li {
   margin: 0 1em;
 }
+.wallet .sec2 #myTabs {
+  border-bottom: var(--border);
+  padding: 0.5em 1em;
+}
 .wallet .sec2 button {
   background: none;
   color: var(--color);
@@ -2084,13 +2092,13 @@ footer .social {
   font-size: 40px;
   color: var(--color);
   font-weight: 600;
-  padding-bottom: 1em;
+  padding-bottom: 0.5em;
 }
 .wallet #subHeader {
   font-size: 15px;
 }
 .wallet .balanceSection {
-  padding-top: 2em;
+  padding-top: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -2137,16 +2145,17 @@ footer .social {
 }
 .wallet .txs {
   margin: auto;
-  width: 100%;
-  height: 33em;
+  width: 90%;
+  height: 30em;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding-right: 2em;
+}
+.wallet .txs .txItem {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 3em;
+  column-gap: 0em;
 }
 .wallet .txs #text {
   display: flex;
@@ -2180,8 +2189,7 @@ footer .social {
 }
 .wallet #header {
   color: var(--color);
-  font-size: 20px;
-  padding-bottom: 0.5em;
+  font-size: 25px;
 }
 .wallet caption {
   caption-side: top;
@@ -2219,9 +2227,32 @@ footer .social {
   color: var(--darkGreen);
 }
 
+#addressForm {
+  padding-top: 0em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#addressForm #contents {
+  display: flex;
+  flex-direction: row;
+}
+#addressForm input {
+  height: 2em;
+  border: var(--border);
+  border-radius: 5px 0 0 5px;
+}
+#addressForm button {
+  background-color: var(--darkGreen);
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  height: 2em;
+  padding: 0 1em;
+}
+
 .swap-form {
   border-radius: 12px;
-  padding: 20px;
+  padding: 5px;
   width: 30em;
   display: flex;
   flex-direction: column;
@@ -2232,7 +2263,7 @@ footer .social {
   flex-direction: row;
 }
 .swap-form .inputs .convertIcon {
-  padding-top: 1em;
+  padding-top: 1.4em;
   padding-right: 0.5em;
   padding-left: 0.5em;
 }
@@ -2240,23 +2271,35 @@ footer .social {
   font-size: 30px;
   color: var(--color);
 }
+.swap-form .space {
+  padding: 0 1em;
+}
 .swap-form label {
   display: block;
   margin-bottom: 5px;
   font-size: 0.9rem;
   color: var(--color);
 }
-.swap-form input[type=number] {
+.swap-form #txsMsg {
+  padding: 0.2em;
+  margin: 0.5em 1em;
+  margin-top: -1em;
+  height: 3.5em;
+}
+.swap-form #txsMsg strong {
+  color: #000000;
+}
+.swap-form input {
   width: 12em;
   padding: 5px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
 }
 .swap-form p {
   font-size: 0.9rem;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   text-align: center;
   color: #666;
 }
@@ -2277,6 +2320,45 @@ footer .social {
 .swap-form #convertBtn i {
   margin-right: 0.5em;
   color: #fff;
+}
+
+#filterSort {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: -1em;
+  align-items: center;
+  width: 20em;
+}
+#filterSort #contents {
+  width: 100%;
+  display: flex;
+}
+#filterSort form {
+  margin: 0;
+  padding: 0;
+  width: 10em;
+}
+#filterSort form #contents span {
+  background-color: var(--backgroundColor);
+  border: var(--border);
+  color: var(--color);
+}
+#filterSort form #contents span i {
+  color: var(--color);
+}
+#filterSort form #contents select {
+  font-size: 12px;
+  color: var(--color);
+  background-color: var(--backgroundColor);
+  border: var(--border);
+}
+#filterSort form #contents select option {
+  color: var(--color);
+  font-size: 12px;
+}
+#filterSort div {
+  margin: 0;
 }
 
 @media screen and (max-width: 600px) {
@@ -3575,4 +3657,4 @@ footer .social {
   .deletePopup .btns {
     width: 80%;
   }
-}/*# sourceMappingURL=app.css.map */
+} /*# sourceMappingURL=app.css.map */

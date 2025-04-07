@@ -40,6 +40,7 @@
   </div>
   <% if (!imgDetails.length) {%>
   <div class="noImg">
+    <%- include('../../partials/err') %>
     <h1>No image added yet</h1>
     <p>click here to upload image !!</p>
     <a href="/user/upload" id="floatBtn"
@@ -49,7 +50,6 @@
         <i class="fa-solid fa-plus"></i>New
       </button>
     </a>
-    <%- include('../../partials/err') %>
   </div>
   <% } %>
 </div>
