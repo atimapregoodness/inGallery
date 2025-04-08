@@ -42,7 +42,7 @@ const sessionConfig = {
 };
 
 // 🟢 3. MIDDLEWARE SETUP
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, "dist")));
 app.use(morgan(":method :url :status :response-time ms - [:date]"));
 app.use(cors());
 app.use(bodyParser.json());
@@ -52,10 +52,12 @@ app.use(flash());
 app.use(methodOverride("_method"));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static(path.join(__dirname, "../public")));
+
 app.use(
   "/bootstrap",
-  express.static(path.join(__dirname, "node_modules/bootstrap/dist"))
+  express.static(path.join(__dirname, "../node_modules/bootstrap/dist"))
 );
 
 // 🟢 4. VIEW ENGINE SETUP

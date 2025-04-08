@@ -1446,7 +1446,7 @@ footer .social {
   transition: var(--transition);
   pointer-events: none;
 }
-#imgPreview .imgSection2 input[type="range"] {
+#imgPreview .imgSection2 input[type=range] {
   -webkit-appearance: none; /* Remove default appearance */
   width: 8em; /* Full-width */
   height: 8px; /* Height of the slider */
@@ -1456,10 +1456,10 @@ footer .social {
   transition: opacity 0.2s; /* Transition for hover effect */
   border-radius: 50em;
 }
-#imgPreview .imgSection2 input[type="range"]:hover {
+#imgPreview .imgSection2 input[type=range]:hover {
   opacity: 1; /* Full opacity on hover */
 }
-#imgPreview .imgSection2 input[type="range"]::-webkit-slider-thumb {
+#imgPreview .imgSection2 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Remove default appearance */
   appearance: none; /* Remove default appearance */
   width: 20px; /* Width of the thumb */
@@ -1469,10 +1469,10 @@ footer .social {
   cursor: pointer; /* Pointer cursor on hover */
   transition: background 0.2s; /* Transition for hover effect */
 }
-#imgPreview .imgSection2 input[type="range"]::-webkit-slider-thumb:hover {
+#imgPreview .imgSection2 input[type=range]::-webkit-slider-thumb:hover {
   background: var(--hoverGreen); /* Thumb color on hover */
 }
-#imgPreview .imgSection2 input[type="range"]::-moz-range-thumb {
+#imgPreview .imgSection2 input[type=range]::-moz-range-thumb {
   width: 25px; /* Width of the thumb */
   height: 25px; /* Height of the thumb */
   border-radius: 50%; /* Round thumb */
@@ -1480,7 +1480,7 @@ footer .social {
   cursor: pointer; /* Pointer cursor on hover */
   transition: background 0.2s; /* Transition for hover effect */
 }
-#imgPreview .imgSection2 input[type="range"]::-moz-range-thumb:hover {
+#imgPreview .imgSection2 input[type=range]::-moz-range-thumb:hover {
   background: var(--hoverGreen); /* Thumb color on hover */
 }
 #imgPreview .imgSection2 i {
@@ -3657,4 +3657,4 @@ footer .social {
   .deletePopup .btns {
     width: 80%;
   }
-} /*# sourceMappingURL=app.css.map */
+}/*# sourceMappingURL=app.css.map */

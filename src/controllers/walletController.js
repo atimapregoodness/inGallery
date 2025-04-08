@@ -1,12 +1,12 @@
 const multer = require("multer");
-const { storage } = require("../cloudinary");
-const UploadImg = require("../models/upload");
-const PublishImg = require("../models/publish");
+const { storage } = require("../../src/cloudinary");
+const UploadImg = require("../../src/models/upload");
+const PublishImg = require("../../src/models/publish");
 const upload = multer({ storage });
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
-const Wallet = require("../models/wallet");
-const isValidBSCAddress = require("../validations/usdtWalletValidation");
+const Wallet = require("../../src/models/wallet");
+const isValidBSCAddress = require("../../src/validations/usdtWalletValidation");
 
 const iconMap = {
   "view-reward": "fa-arrow-down",
@@ -68,7 +68,7 @@ exports.editWalletAddress = async (req, res) => {
     } else {
       wallet.usdtAddress = walletAddress;
       req.flash("success", "Wallet address updated successfully.");
-      await wallet.save();
+      // await wallet.save();
       console.log(wallet);
       return res.redirect("/user/wallet");
     }
