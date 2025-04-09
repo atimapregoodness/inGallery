@@ -3,7 +3,7 @@ const { GenerateSW } = require("workbox-webpack-plugin");
 
 module.exports = {
   mode: "production", // Production mode for optimized build
-  entry: "/public/src/app.js", // Entry point for your app
+  entry: "/public/assets/js/app.js", // Entry point for your app
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"), // Output directory

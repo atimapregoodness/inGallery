@@ -120,11 +120,12 @@
                   id="addressForm"
                   method="POST"
                 >
-                  <label for="newWalletAddress">Receiving Address:</label>
+                  <label for="walletAddress">Receiving Address:</label>
                   <div id="contents" class="formContents">
                     <input
                       type="text"
                       id="walletAddress"
+                      name="walletAddress"
                       value="<%= wallet.usdtAddress %>"
                       placeholder="enter your BSC wallet address"
                       readonly="readonly"

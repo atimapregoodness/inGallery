@@ -42,7 +42,7 @@ const sessionConfig = {
 };
 
 // 🟢 3. MIDDLEWARE SETUP
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "../dist")));
 app.use(morgan(":method :url :status :response-time ms - [:date]"));
 app.use(cors());
 app.use(bodyParser.json());

@@ -1,12 +1,12 @@
 const multer = require("multer");
-const { storage } = require("../../src/cloudinary");
-const UploadImg = require("../../src/models/upload");
-const PublishImg = require("../../src/models/publish");
+const { storage } = require("../cloudinary");
+const UploadImg = require("../models/upload");
+const PublishImg = require("../models/publish");
 const upload = multer({ storage });
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
-const Wallet = require("../../src/models/wallet");
-const isValidBSCAddress = require("../../src/validations/usdtWalletValidation");
+const Wallet = require("../models/wallet");
+const isValidBSCAddress = require("../validations/usdtWalletValidation");
 
 const iconMap = {
   "view-reward": "fa-arrow-down",
@@ -46,9 +46,9 @@ exports.postConvert = async (req, res) => {
 
 exports.editWalletAddress = async (req, res) => {
   // res.send(req.body);
-  console.log(req.body);
   try {
     const { walletAddress } = req.body;
+    console.log(walletAddress);
     const userId = req.user._id;
     if (!walletAddress) {
       req.flash("error", "Wallet address is required.");
@@ -61,18 +61,27 @@ exports.editWalletAddress = async (req, res) => {
       );
       return res.redirect("/user/wallet");
     }
-    let wallet = await Wallet.findOne({ user: userId });
+    const wallet = await Wallet.findOne({ user: userId });
+
     if (!wallet) {
-      req.flash("error", "something went wrong");
-      res.redirect("/user/wallet");
+      req.flash("error", "Wallet not found.");
+      return res.redirect("/user/wallet");
     } else {
       wallet.usdtAddress = walletAddress;
-      req.flash("success", "Wallet address updated successfully.");
-      // await wallet.save();
-      console.log(wallet);
-      return res.redirect("/user/wallet");
+      try {
+        await wallet.save();
+        req.flash("success", "Wallet address updated successfully.");
+        console.log(wallet);
+        return res.redirect("/user/wallet");
+      } catch (validationError) {
+        console.error(validationError);
+        req.flash(
+          "error",
+          "Failed to update wallet address. Please try again."
+        );
+        return res.redirect("/user/wallet");
+      }
     }
-    res.redirect("/user/wallet");
   } catch (error) {
     console.error(error);
     req.flash("error", "Server error. Please try again.");

@@ -3,7 +3,7 @@
   "short_name": "inGallery",
   "start_url": "/home",
   "display": "standalone",
-  "background_color": "#fffff",
+  "background_color": "#ffff",
   "theme_color": "#ffffff",
   "icons": [
     {

@@ -83,8 +83,8 @@ document?.addEventListener("DOMContentLoaded", function () {
     document.body.style.transition = "all 0.5s ease";
     logos.forEach((logo) => {
       logo.src = isDark
-        ? "/assets/inGallery_logo.png"
-        : "/assets/inGallery_logo_black.png";
+        ? "/assets/images/inGallery_logo.png"
+        : "/assets/images/inGallery_logo_black.png";
     });
     toggleButtons?.forEach((btn) => (btn.checked = isDark));
   }
@@ -186,29 +186,40 @@ document?.addEventListener("DOMContentLoaded", function () {
 
   if (walletInput && walletInput.value !== "") {
     wEditBtn?.addEventListener("click", () => {
+      walletInput.readOnly = true;
+      walletInput.name = ""; // Remove the name attribute to exclude it from req.body
       walletInput.style.display = "none";
       wEditBtn.style.display = "none";
 
+      // Create a new input field for wallet address
       const newInput = document.createElement("input");
+
       newInput.type = "text";
       newInput.id = "newWalletAddress";
       newInput.name = "walletAddress";
-      newInput.placeholder = "enter your BSC Wallet address";
-      newInput.value = "";
-      newInput.name = "walletAddress";
-      newInput.required = "true";
+      newInput.placeholder = "Enter your BSC Wallet address";
+      newInput.value = ``; // Start with an empty value
+      newInput.required = true; // Correctly set required attribute (no quotes)
 
+      // Create a new button for submission
       const newBtn = document.createElement("button");
+      newBtn.class = "noColor";
       newBtn.type = "submit";
+      // newBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
       newBtn.textContent = "Done";
+
+      // Append new input and button to the form contents
       formContents.appendChild(newInput);
       formContents.appendChild(newBtn);
     });
   } else {
-    wEditBtn.type = "submit";
-    wEditBtn.textContent = "Add";
-    walletInput.readOnly = false;
-    walletInput.name = "walletAddress";
+    // Configure the button when wallet input is empty
+    if (wEditBtn) {
+      wEditBtn.type = "submit";
+      // wEditBtn.textContent = '<i class="fa-solid fa-plus"></i>';
+      wEditBtn.textContent = "Add";
+      walletInput.readOnly = false; // Allow editing
+    }
   }
 
   // Swiper Initialization
@@ -234,7 +245,7 @@ document?.addEventListener("DOMContentLoaded", function () {
   // Register the service worker
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register("/js/service-worker.js")
+      .register("/assets/js/service-worker.js")
       .then((reg) => console.log("Service Worker Registered:", reg))
       .catch((err) => console.error("Service Worker Failed:", err));
   }

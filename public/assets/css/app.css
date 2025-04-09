@@ -2361,6 +2361,10 @@ footer .social {
   margin: 0;
 }
 
+.noColor {
+  background: none;
+}
+
 @media screen and (max-width: 600px) {
   .reveal {
     transform: translateY(2em);
