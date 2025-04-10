@@ -124,7 +124,7 @@ async function addConvert(userId, amount, conversionRate) {
 
     return {
       success: true,
-      message: "GBPoints converted to USDT successfully",
+      message: "IGPoints converted to USDT successfully",
       wallet: updatedWallet,
     };
   } catch (err) {
@@ -136,5 +136,74 @@ async function addConvert(userId, amount, conversionRate) {
   }
 }
 
+async function withdrawAddTransaction(userId, amount, currency) {
+  if (!userId || amount <= 0) {
+    return { success: false, message: "Invalid withdrawal details" };
+  }
+
+  try {
+    // Find user's wallet
+    const wallet = await Wallet.findOne({ user: userId });
+
+    if (!wallet) {
+      return { success: false, message: "Wallet not found" };
+    }
+
+    // Check for sufficient balance before proceeding
+    if (wallet.usdtBalance < amount) {
+      return { success: false, message: "Insufficient balance" };
+    }
+
+    // Create a transaction object
+    const transaction = {
+      txId: new mongoose.Types.ObjectId().toString(),
+      amount,
+      currency,
+      type: "withdrawal",
+      status: "pending", // Marking it as pending initially
+      createdAt: new Date(),
+    };
+
+    // Define update object
+    const updateData = {
+      $push: { transactions: transaction },
+      $inc: { usdtBalance: -amount }, // Deducting balance immediately
+    };
+
+    // Perform atomic update
+    const updatedWallet = await Wallet.findOneAndUpdate(
+      { user: userId },
+      updateData,
+      { new: true }
+    ).populate("transactions");
+
+    // Simulate delay for transaction processing
+    setTimeout(async () => {
+      try {
+        // Update the transaction status to successful
+        await Wallet.updateOne(
+          { user: userId, "transactions.txId": transaction.txId },
+          { $set: { "transactions.$.status": "successful" } }
+        );
+        console.log(`Transaction ${transaction.txId} marked as successful`);
+      } catch (err) {
+        console.error(
+          `Error updating transaction ${transaction.txId} to successful:`,
+          err
+        );
+      }
+    }, 10000); // 10 seconds delay
+
+    return {
+      success: true,
+      message: "Withdrawal transaction initiated and marked as pending",
+      wallet: updatedWallet,
+    };
+  } catch (err) {
+    console.error("Error processing withdrawal transaction:", err);
+    return { success: false, message: "An error occurred" };
+  }
+}
+
 // Export function
-module.exports = { addTransaction, addConvert };
+module.exports = { addTransaction, addConvert, withdrawAddTransaction };

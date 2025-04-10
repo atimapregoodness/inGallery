@@ -69,12 +69,14 @@ app.set("views", path.join(__dirname, "views"));
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.info = req.flash("info");
+  res.warning = req.flash("warning");
   res.locals.currentUser = req.user;
   res.locals.currentPage = req.originalUrl;
   res.locals.fullUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
   res.locals.search = req.query;
   res.locals.moment = moment;
-  res.locals.gbpRate = 0.002;
+  res.locals.IGPRate = 0.002;
 
   if (req.session) {
     req.session.previousUrl = req.session.currentUrl || req.headers.referer;

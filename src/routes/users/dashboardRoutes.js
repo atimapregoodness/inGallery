@@ -12,6 +12,7 @@ const {
   getWallet,
   postConvert,
   editWalletAddress,
+  postWithdraw,
 } = require("../../controllers/walletController");
 
 const multer = require("multer");
@@ -36,5 +37,7 @@ router.get("/wallet", wrapAsync(getWallet));
 router.post("/wallet/convert-usdt", wrapAsync(postConvert));
 
 router.post("/wallet/edit-wallet-address", wrapAsync(editWalletAddress));
+
+router.post("/wallet/withdraw", wrapAsync(postWithdraw));
 
 module.exports = router;

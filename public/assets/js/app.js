@@ -21,11 +21,11 @@ document?.addEventListener("DOMContentLoaded", function () {
   // Currency Converter
   const amount = document.querySelector("#amount");
   const get = document.querySelector("#get");
-  const gbpRate = 0.002;
+  const IGPRate = 0.002;
 
   amount?.addEventListener("input", () => {
     const inputValue = parseFloat(amount.value) || 0.0;
-    let rate = inputValue * gbpRate;
+    let rate = inputValue * IGPRate;
     get.value = `$${Number(rate.toFixed(4)).toLocaleString()}`;
   });
 
@@ -57,6 +57,24 @@ document?.addEventListener("DOMContentLoaded", function () {
     noRecordsMessage.style.display = visibleCount === 0 ? "block" : "none";
     noTxs.style.display = "none";
   });
+
+  const TxsStatus = document.querySelector("#txsStatus");
+  if (TxsStatus) {
+    const status = TxsStatus.textContent?.toLowerCase();
+    switch (status) {
+      case "success":
+        TxsStatus.style.color = "green";
+        break;
+      case "pending":
+        TxsStatus.style.color = "orange";
+        break;
+      case "failed":
+        TxsStatus.style.color = "red";
+        break;
+      default:
+        TxsStatus.style.color = "#535353";
+    }
+  }
 
   // Form Validation
   const signupForm = document.getElementById("signupForm");
@@ -258,6 +276,18 @@ document?.addEventListener("DOMContentLoaded", function () {
     // Show the install button
     if (installBtn) {
       installBtn.hidden = false;
+    }
+  });
+
+  const nav = document.querySelector("nav");
+
+  // Add scroll shadow effect with transition
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      nav.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+      nav.style.transition = "box-shadow 0.3s ease-in-out";
+    } else {
+      nav.style.boxShadow = "none";
     }
   });
 

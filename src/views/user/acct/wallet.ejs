@@ -96,16 +96,16 @@
                     </tr>
 
                     <tr>
-                      <td>GBPoints (GBP)</td>
+                      <td>IGPoints (IGP)</td>
                       <td>
                         <%=
                         Number(wallet.availableBalance.toFixed(2)).toLocaleString()
                         %>
                       </td>
-                      <td>$<%= gbpRate %></td>
+                      <td>$<%= IGPRate %></td>
                       <td>
                         $<%= (wallet.availableBalance *
-                        gbpRate).toLocaleString('en-US', {
+                        IGPRate).toLocaleString('en-US', {
                         minimumFractionDigits: 2, maximumFractionDigits: 2 }) %>
                       </td>
                     </tr>
@@ -149,12 +149,12 @@
                         type="number"
                         id="usdtAmnt"
                         name="usdtAmt"
+                        step="0.0001"
+                        min="0.0001"
                         max="<%=
-                        wallet.usdtBalance
-                        
-                        %>"
+                      wallet.usdtBalance
+                      %>"
                         placeholder="enter the USDT amount you want to withdraw"
-                        required
                       />
                     </p>
                     <p class="space">
@@ -164,6 +164,7 @@
                         placeholder="userId"
                         id="userId"
                         value="<%= wallet.user._id %>"
+                        required
                       />
                     </p>
                     <p>
@@ -206,7 +207,7 @@
                     />
                     <p>
                       <label for="amount"
-                        >GBP: <%=
+                        >IGP: <%=
                         Number(wallet.availableBalance.toFixed(2)).toLocaleString()
                         %>
                       </label>
@@ -239,7 +240,7 @@
                   </div>
 
                   <p>
-                    Conversion Rate: <strong>1 GBP = $<%= gbpRate%></strong>
+                    Conversion Rate: <strong>1 IGP = $<%= IGPRate%></strong>
                   </p>
                   <button type="submit" id="convertBtn">
                     <i class="fa-solid fa-rotate"></i> Convert
@@ -288,7 +289,9 @@
 
         <div class="txs" id="transactionList">
           <!-- Transactions will be populated here -->
-          <% if (transactions.length) { %> <% transactions.forEach((txs) => { %>
+          <% if (transactions.length) { %> <% transactions.sort((a, b) => new
+          Date(b.createdAt) - new Date(a.createdAt)); %> <%
+          transactions.forEach((txs) => { %>
           <div
             class="txItem"
             data-type="<%= txs.type %>"
@@ -311,9 +314,10 @@
                 'download-reward' || txs.type === 'reward' || txs.type ===
                 'deposit' || txs.type === 'conversion-credit') ? '+' : '-'; %>
                 <%= sign %><%= txs.amount %> <%= txs.currency === 'points' ?
-                'GBP' : 'USDT' %>
+                'IGP' : 'USDT' %>
               </h1>
               <h6
+                id="TxsStatus"
                 class="<%= (txs.status === 'successful' || txs.status === 'confirmed') ? 'successful' : '' %>"
               >
                 <%= txs.status %>

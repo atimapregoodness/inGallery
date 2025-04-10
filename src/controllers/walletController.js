@@ -11,7 +11,7 @@ const isValidBSCAddress = require("../validations/usdtWalletValidation");
 const iconMap = {
   "view-reward": "fa-arrow-down",
   "download-reward": "fa-arrow-down",
-  withdraw: "fa-hand-holding-dollar",
+  withdrawal: "fa-hand-holding-dollar",
   transfer: "fa-right-left",
   "conversion-credit": "fa-arrows-rotate", // Circular arrows for conversion (credit)
   "conversion-deduction": "fa-arrows-rotate", // Circular arrows for conversion (deduction)
@@ -20,6 +20,7 @@ const iconMap = {
 };
 
 exports.getWallet = async (req, res) => {
+  req.flash("info", "welcome to the withdrawal page");
   const user = req.user;
 
   const wallet = await Wallet.findOne({ user: user._id }).populate(
@@ -31,7 +32,11 @@ exports.getWallet = async (req, res) => {
 };
 
 // Conversion rate (1 point = 1 USDT) - Change this if needed
-const { addConvert, addTransaction } = require("../services/txsService");
+const {
+  addConvert,
+  addTransaction,
+  withdrawAddTransaction,
+} = require("../services/txsService");
 
 exports.postConvert = async (req, res) => {
   const { userId, amount } = req.body;
@@ -82,6 +87,63 @@ exports.editWalletAddress = async (req, res) => {
         return res.redirect("/user/wallet");
       }
     }
+  } catch (error) {
+    console.error(error);
+    req.flash("error", "Server error. Please try again.");
+    res.redirect("/user/wallet");
+  }
+};
+
+exports.postWithdraw = async (req, res) => {
+  try {
+    const { usdtAmt, userId } = req.body;
+
+    const amount = parseFloat(usdtAmt);
+    console.log(req.body, amount);
+
+    if (!amount || isNaN(amount) || amount <= 0) {
+      req.flash("error", "Invalid withdrawal amount.");
+      return res.redirect("/user/wallet");
+    }
+
+    const wallet = await Wallet.findOne({ user: userId });
+
+    if (!wallet) {
+      req.flash("error", "Wallet not found.");
+      return res.redirect("/user/wallet");
+    }
+
+    if (!wallet.usdtBalance || wallet.usdtBalance < amount) {
+      req.flash("error", "Insufficient balance for withdrawal.");
+      return res.redirect("/user/wallet");
+    }
+
+    // Process the withdrawal with the timeout logic handled in withdrawAddTransaction
+    let result;
+    try {
+      result = await withdrawAddTransaction(
+        userId,
+        amount,
+        "USDT", // Ensure the currency matches the enum value in your schema
+        "withdrawal"
+      );
+    } catch (error) {
+      console.error("Error during withdrawal transaction:", error);
+      req.flash("error", "Failed to process withdrawal. Please try again.");
+      return res.redirect("/user/wallet");
+    }
+
+    if (!result.success) {
+      req.flash("error", result.message);
+      return res.redirect("/user/wallet");
+    }
+
+    req.flash(
+      "info",
+      "Withdrawal is being processed. Please check back later."
+    );
+
+    res.redirect("/user/wallet");
   } catch (error) {
     console.error(error);
     req.flash("error", "Server error. Please try again.");
