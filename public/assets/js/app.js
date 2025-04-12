@@ -58,24 +58,6 @@ document?.addEventListener("DOMContentLoaded", function () {
     noTxs.style.display = "none";
   });
 
-  const TxsStatus = document.querySelector("#txsStatus");
-  if (TxsStatus) {
-    const status = TxsStatus.textContent?.toLowerCase();
-    switch (status) {
-      case "success":
-        TxsStatus.style.color = "green";
-        break;
-      case "pending":
-        TxsStatus.style.color = "orange";
-        break;
-      case "failed":
-        TxsStatus.style.color = "red";
-        break;
-      default:
-        TxsStatus.style.color = "#535353";
-    }
-  }
-
   // Form Validation
   const signupForm = document.getElementById("signupForm");
   const password = document.getElementById("password");
@@ -258,7 +240,7 @@ document?.addEventListener("DOMContentLoaded", function () {
   }
 
   let deferredPrompt;
-  const installBtn = document.getElementById("installBtn");
+  const installBtns = document.querySelectorAll("#installBtn");
 
   // Register the service worker
   if ("serviceWorker" in navigator) {
@@ -273,10 +255,10 @@ document?.addEventListener("DOMContentLoaded", function () {
     e.preventDefault(); // Prevent the default prompt from showing up
     deferredPrompt = e; // Store the event to use later
 
-    // Show the install button
-    if (installBtn) {
-      installBtn.hidden = false;
-    }
+    // Show the install buttons
+    installBtns.forEach((btn) => {
+      btn.hidden = false;
+    });
   });
 
   const nav = document.querySelector("nav");
@@ -291,20 +273,24 @@ document?.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Handle install button click
-  installBtn?.addEventListener("click", async () => {
-    if (deferredPrompt) {
-      // Show the install prompt
-      deferredPrompt.prompt();
+  // Handle install button clicks
+  installBtns.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      if (deferredPrompt) {
+        // Show the install prompt
+        deferredPrompt.prompt();
 
-      // Wait for the user to respond to the prompt
-      const result = await deferredPrompt.userChoice;
-      console.log("User choice:", result.outcome); // Log whether the user accepted or declined
+        // Wait for the user to respond to the prompt
+        const result = await deferredPrompt.userChoice;
+        console.log("User choice:", result.outcome); // Log whether the user accepted or declined
 
-      // After the user choice, clear the deferred prompt and hide the install button
-      deferredPrompt = null;
-      installBtn.hidden = true;
-    }
+        // After the user choice, clear the deferred prompt and hide the install buttons
+        deferredPrompt = null;
+        installBtns.forEach((btn) => {
+          btn.hidden = true;
+        });
+      }
+    });
   });
 
   // Optional: Show a hint for installation (not really necessary but helpful for users)
@@ -313,6 +299,17 @@ document?.addEventListener("DOMContentLoaded", function () {
       console.log("You can install this app via the 'Install App' button.");
     }
   }, 3000);
+
+  // Profile Image Preview
+  const profileImgInput = document.querySelector("#profileImgInput");
+  const profileImg = document.querySelector("#profileImg");
+
+  profileImgInput?.addEventListener("change", () => {
+    const [file] = profileImgInput.files || [];
+    if (file) {
+      profileImg.src = URL.createObjectURL(file);
+    }
+  });
 
   console.log("All scripts executed");
 });

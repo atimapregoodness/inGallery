@@ -1,0 +1,45 @@
+<title>Edit Profile | inGallery</title>
+<%- layout('layout/userBoilerplate') %>
+<div class="bodyContainer" id="profileEdit">
+  <%-include('../../partials/sideBar') %>
+  <div class="profileContainer">
+    <div><%- include('../../partials/err') %></div>
+    <div class="container">
+      <div class="editProfile">
+        <div class="imgContainer">
+          <img
+            src="<%= user.profileImg ? user.profileImg : '/assets/images/no-profile.png' %>"
+            alt="Profile Picture"
+            id="profileImg"
+          />
+        </div>
+      </div>
+      <form
+        action="/user/profile/edit-profile"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="hidden"
+          name="userId"
+          id="userId"
+          value="<%= user._id %>"
+          required
+        />
+        <input
+          type="file"
+          name="profileImg"
+          id="profileImgInput"
+          accept="image/*"
+          class="d-none"
+        />
+        <label for="profileImgInput" class="btn btn-primary">
+          <i class="fa-solid fa-pen-to-square"></i> Edit
+        </label>
+        <button type="submit" class="btn btn-success">
+          <i class="fa-regular fa-circle-check"></i> Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

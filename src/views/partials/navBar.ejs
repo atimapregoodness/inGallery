@@ -6,9 +6,10 @@
         alt="logo"
         class="logo"
     /></a>
-    <button id="installBtn" hidden class="btn install-btn">
-      📲 Install App
-    </button>
+    <div class="installOff">
+      <button id="installBtn" class="btn install-btn">📲 Install App</button>
+    </div>
+
     <div class="noDisplay">
       <label class="theme-switch">
         <input type="checkbox" class="mode-toggle" />
@@ -57,6 +58,13 @@
         <div class="items">
           <div class="itemsContainer">
             <ul>
+              <div class="imgContainer">
+                <img
+                  src="<%= currentUser.profileImg%>"
+                  alt="Profile Picture"
+                  id="profileImg"
+                />
+              </div>
               <h1 id="header"><%= currentUser.username %></h1>
               <a href="#"><li><%= currentUser.email %></li></a>
               <a href="#"><li>Account Setting</li></a>
@@ -114,6 +122,9 @@
           </span>
         </label>
       </div>
+      <li class="installOn">
+        <button id="installBtn" class="btn install-btn">📲 Install App</button>
+      </li>
     </ul>
   </div>
 </nav>

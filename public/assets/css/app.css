@@ -570,6 +570,7 @@ nav {
 nav .logo {
   padding: 0.1em;
   padding-left: 1em;
+  display: flex;
 }
 nav .logo img {
   width: 140px;
@@ -654,8 +655,28 @@ nav .hamborger .itemsContainer {
   background-color: var(--backgroundColor);
   backdrop-filter: var(--blur1);
   -webkit-backdrop-filter: var(--blur1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 0.3em;
   padding: 0.5em;
+}
+nav .hamborger .itemsContainer .imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 10em;
+  height: 10em;
+  border: 3px solid var(--lightGreen);
+  border-radius: 50%;
+  overflow: hidden;
+}
+nav .hamborger .itemsContainer .imgContainer .img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 nav .hamborger .itemsContainer i {
   padding-right: 1em;
@@ -2202,6 +2223,15 @@ footer .social {
   color: #535353;
   font-size: 12px;
 }
+.wallet .status-successful {
+  color: var(--lightGreen);
+}
+.wallet .status-pending {
+  color: rgba(255, 166, 0, 0.7333333333);
+}
+.wallet .status-failed {
+  color: var(--red);
+}
 .wallet table {
   width: 100%;
   background: var(--backgroundColor);
@@ -2363,6 +2393,116 @@ footer .social {
 
 .noColor {
   background: none;
+}
+
+#profileImg {
+  width: 150px;
+  object-fit: cover;
+}
+
+#profileEdit {
+  width: 100%;
+  padding-right: 6em;
+}
+#profileEdit .profileContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#profileEdit .profileContainer .container {
+  width: 20em;
+  height: 30em;
+}
+#profileEdit .profileContainer .imgContainer {
+  border: 3px solid var(--lightGreen);
+  width: 20em;
+  height: 20em;
+  overflow: hidden;
+  border-radius: 100em;
+}
+#profileEdit .profileContainer .imgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+#profileEdit form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+#profileEdit form button {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+#profileEdit form button i {
+  color: #fff;
+  margin-right: 0.4em;
+}
+#profileEdit form label i {
+  color: #fff;
+  margin-right: 0.4em;
+}
+
+.profileImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.profileImg .imgContainer {
+  border: 3px solid var(--lightGreen);
+  width: 10em;
+  height: 10em;
+  overflow: hidden;
+  border-radius: 100em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profileImg .imgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+.details .contents {
+  display: grid;
+  column-gap: 1em;
+  row-gap: 0em;
+}
+.details p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+  padding: 0.5em;
+  background-color: var(--backgroundColor);
+  border: var(--border);
+  border-radius: 0.4em;
+  width: 28em;
+}
+.details p span {
+  padding-left: 0.4em;
+  font-weight: 400;
+  color: var(--color);
+}
+
+.installOn {
+  display: none;
+}
+
+.installOff {
+  display: block;
 }
 
 @media screen and (max-width: 600px) {
@@ -3660,5 +3800,11 @@ footer .social {
   }
   .deletePopup .btns {
     width: 80%;
+  }
+  .installOn {
+    display: block;
+  }
+  .installOff {
+    display: none;
   }
 }/*# sourceMappingURL=app.css.map */

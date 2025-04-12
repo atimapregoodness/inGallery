@@ -1,0 +1,56 @@
+<title>Profile | inGallery</title>
+<%- layout('layout/userBoilerplate') %>
+<div class="bodyContainer" id="walletBody">
+  <%-include('../../partials/sideBar') %>
+  <div class="profile">
+    <div><%- include('../../partials/err') %></div>
+    <div class="container">
+      <div class="profileImg">
+        <div class="imgContainer">
+          <img
+            src="<%= user.profileImg%>"
+            alt="Profile Picture"
+            id="profileImg"
+          />
+        </div>
+        <a href="/user/profile/edit-profile">
+          <button class="editBtn">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          </button></a
+        >
+      </div>
+
+      <div class="details">
+        <div class="personal">
+          <div class="contents">
+            <p class="username">
+              User Name: <span><%= user.username || "Not Provided"%></span>
+            </p>
+            <p>
+              First Name: <span><%= user.firstName || 'Not Provided' %></span>
+            </p>
+            <p>
+              Last Name: <span><%= user.lastName || 'Not Provided' %></span>
+            </p>
+            <p>Email: <span><%= user.email %></span></p>
+            <p>Phone: <span><%= user.phone || 'Not Provided' %></span></p>
+            <p>Location: <span><%= user.location || 'Not Provided' %></span></p>
+            <p>
+              Joined:
+              <span><%= new Date(user.createdAt).toLocaleDateString() %></span>
+            </p>
+          </div>
+          <div class="profileActions">
+            <a href="/user/profile/edit-profile">
+              <button class="editBtn">Edit Profile</button>
+            </a>
+            <a href="/user/profile/settings">
+              <button class="settingsBtn">Settings</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <h1>Details:</h1>
+    </div>
+  </div>
+</div>

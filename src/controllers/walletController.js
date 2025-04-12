@@ -20,7 +20,6 @@ const iconMap = {
 };
 
 exports.getWallet = async (req, res) => {
-  req.flash("info", "welcome to the withdrawal page");
   const user = req.user;
 
   const wallet = await Wallet.findOne({ user: user._id }).populate(

@@ -8,6 +8,7 @@ const {
   getDashboard,
   deleteImg,
 } = require("../../controllers/dashboardController");
+
 const {
   getWallet,
   postConvert,
@@ -15,7 +16,14 @@ const {
   postWithdraw,
 } = require("../../controllers/walletController");
 
+const {
+  getProfile,
+  getEditProfile,
+  postEditProfile,
+} = require("../../controllers/profileController");
+
 const multer = require("multer");
+
 const { storage } = require("../../cloudinary");
 const upload = multer({ storage });
 const wrapAsync = require("../../utils/wrapAssync");
@@ -39,5 +47,15 @@ router.post("/wallet/convert-usdt", wrapAsync(postConvert));
 router.post("/wallet/edit-wallet-address", wrapAsync(editWalletAddress));
 
 router.post("/wallet/withdraw", wrapAsync(postWithdraw));
+
+router.get("/profile", wrapAsync(getProfile));
+
+router.get("/profile/edit-profile", wrapAsync(getEditProfile));
+
+router.post(
+  "/profile/edit-profile",
+  upload.single("profileImg"),
+  wrapAsync(postEditProfile)
+);
 
 module.exports = router;

@@ -318,7 +318,7 @@
               </h1>
               <h6
                 id="TxsStatus"
-                class="<%= (txs.status === 'successful' || txs.status === 'confirmed') ? 'successful' : '' %>"
+                class="<%= (txs.status === 'successful' || txs.status === 'confirmed') ? 'status-successful' : (txs.status === 'pending' ? 'status-pending' : 'status-failed') %>"
               >
                 <%= txs.status %>
               </h6>

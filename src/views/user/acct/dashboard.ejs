@@ -28,7 +28,8 @@
       </div>
       <div class="imageContainer">
         <% if (userDetails.uploadedImages.length) { %> <%
-        userDetails.uploadedImages.forEach(function (img) { %>
+        userDetails.uploadedImages .sort((a, b) => new Date(b.uploadDate) - new
+        Date(a.uploadDate)) .forEach(function (img) { %>
         <div class="img" id="singleImg">
           <a href="/user/dashboard/<%= img._id %>">
             <img src="<%= img.img.url %>" alt="<%= img.img.filename %>" />
