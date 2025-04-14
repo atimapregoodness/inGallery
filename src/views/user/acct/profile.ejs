@@ -13,16 +13,22 @@
             id="profileImg"
           />
         </div>
-        <a href="/user/profile/edit-profile">
-          <button class="editBtn">
-            <i class="fa-solid fa-pen-to-square"></i> Edit
-          </button></a
-        >
+        <div class="profileActions">
+          <button class="editBtn popUpBtn">
+            <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+          </button>
+          <a href="/user/profile">
+            <button class="viewProfileBtn">
+              <i class="fa-solid fa-user"></i> View Profile
+            </button>
+          </a>
+        </div>
       </div>
 
       <div class="details">
         <div class="personal">
           <div class="contents">
+            <h1>Details:</h1>
             <p class="username">
               User Name: <span><%= user.username || "Not Provided"%></span>
             </p>
@@ -41,16 +47,70 @@
             </p>
           </div>
           <div class="profileActions">
-            <a href="/user/profile/edit-profile">
-              <button class="editBtn">Edit Profile</button>
-            </a>
+            <button class="editBtn">Edit Profile</button>
             <a href="/user/profile/settings">
               <button class="settingsBtn">Settings</button>
             </a>
           </div>
+          <div class="popUpBox">
+            <div id="pupUpContent" class="profileEdit">
+              <div class="profileContainer">
+                <div><%- include('../../partials/err') %></div>
+                <div class="container">
+                  <div class="editProfile">
+                    <div id="imgContainer">
+                      <img
+                        src="<%= user.profileImg ? user.profileImg : '/assets/images/no-profile.png' %>"
+                        alt="Profile Picture"
+                        id="profileImg"
+                        class="changeProfileImg"
+                      />
+                    </div>
+                    <form
+                      action="/user/profile/edit-profile"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      <input
+                        type="hidden"
+                        name="userId"
+                        id="userId"
+                        value="<%= user._id %>"
+                        required
+                      />
+                      <input
+                        type="file"
+                        name="profileImg"
+                        id="profileImgInput"
+                        accept="image/*"
+                        class="d-none"
+                      />
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        id="closeButton"
+                      >
+                        <i class="fa-solid fa-arrow-left"></i> Back
+                      </button>
+
+                      <label for="profileImgInput" class="btn btn-primary">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                      </label>
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        id="imgSubmit"
+                      >
+                        <i class="fa-regular fa-circle-check"></i> Save
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <h1>Details:</h1>
     </div>
   </div>
 </div>

@@ -1770,7 +1770,7 @@ footer {
 .popUpBox {
   z-index: -10;
   transition: var(--transition);
-  position: absolute;
+  position: fixed;
   -webkit-backdrop-filter: var(--blur1);
   backdrop-filter: var(--blur1);
   background-color: var(--blurBg);
@@ -2807,7 +2807,7 @@ footer {
   object-fit: cover;
 }
 
-#profileEdit {
+.profileEdit {
   width: 100%;
   padding-right: 6em;
 
@@ -2823,18 +2823,21 @@ footer {
       height: 30em;
     }
 
-    .imgContainer {
+    #imgContainer {
       border: 3px solid var(--lightGreen);
       width: 20em;
       height: 20em;
       overflow: hidden;
       border-radius: 100em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       img {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
-        overflow: hidden;
+        width: 104%;
+        height: 100%;
+        padding: 0;
       }
     }
   }
@@ -2844,14 +2847,18 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding-top: 1em;
 
     button {
-      margin-left: 1em;
-      margin-right: 1em;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
       i {
         color: #fff;
         margin-right: 0.4em;
+      }
+
+      a {
+        color: #fff;
       }
     }
 
@@ -2894,6 +2901,9 @@ footer {
     // display: grid;
     // grid-template-columns: 1fr 1fr;
   }
+}
+#installBtn {
+  display: none;
 }
 
 .details {

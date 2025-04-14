@@ -148,11 +148,20 @@ document?.addEventListener("DOMContentLoaded", function () {
   });
 
   // Popup Toggle
-  document.querySelector(".popUpBtn")?.addEventListener("click", () => {
-    document.querySelector(".popUpBox").classList.add("activeBox");
+  document.querySelectorAll(".popUpBtn")?.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".popUpBox").forEach((box) => {
+        box.classList.add("activeBox");
+      });
+    });
   });
-  document.querySelector("#closeButton")?.addEventListener("click", () => {
-    document.querySelector(".popUpBox").classList.remove("activeBox");
+
+  document.querySelectorAll("#closeButton")?.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".popUpBox").forEach((box) => {
+        box.classList.remove("activeBox");
+      });
+    });
   });
 
   // Delete Confirmation Popup
@@ -293,23 +302,44 @@ document?.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Profile Image Preview
+  const profileImgInput = document.querySelector("#profileImgInput");
+  const profileImg = document.querySelector(".changeProfileImg");
+  const imgSubmit = document.querySelector("#imgSubmit");
+
+  if (profileImgInput && profileImg) {
+    profileImgInput.addEventListener("change", () => {
+      const [file] = profileImgInput.files || [];
+      if (file) {
+        profileImg.src = URL.createObjectURL(file);
+      }
+    });
+  }
+
+  if (profileImgInput && imgSubmit) {
+    function toggleSubmitButton() {
+      if (!profileImgInput.files || profileImgInput.files.length === 0) {
+        imgSubmit.style.cursor = "not-allowed";
+        imgSubmit.setAttribute("disabled", "true");
+      } else {
+        imgSubmit.style.cursor = "pointer";
+        imgSubmit.removeAttribute("disabled");
+      }
+    }
+
+    // Initial state check
+    toggleSubmitButton();
+
+    // Update button state when a file is selected
+    profileImgInput.addEventListener("change", toggleSubmitButton);
+  }
+
   // Optional: Show a hint for installation (not really necessary but helpful for users)
   setTimeout(() => {
     if (!window.matchMedia("(display-mode: standalone)").matches) {
       console.log("You can install this app via the 'Install App' button.");
     }
   }, 3000);
-
-  // Profile Image Preview
-  const profileImgInput = document.querySelector("#profileImgInput");
-  const profileImg = document.querySelector("#profileImg");
-
-  profileImgInput?.addEventListener("change", () => {
-    const [file] = profileImgInput.files || [];
-    if (file) {
-      profileImg.src = URL.createObjectURL(file);
-    }
-  });
 
   console.log("All scripts executed");
 });

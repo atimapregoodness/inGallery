@@ -1558,7 +1558,7 @@ footer .social {
 .popUpBox {
   z-index: -10;
   transition: var(--transition);
-  position: absolute;
+  position: fixed;
   -webkit-backdrop-filter: var(--blur1);
   backdrop-filter: var(--blur1);
   background-color: var(--blurBg);
@@ -2400,50 +2400,56 @@ footer .social {
   object-fit: cover;
 }
 
-#profileEdit {
+.profileEdit {
   width: 100%;
   padding-right: 6em;
 }
-#profileEdit .profileContainer {
+.profileEdit .profileContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-#profileEdit .profileContainer .container {
+.profileEdit .profileContainer .container {
   width: 20em;
   height: 30em;
 }
-#profileEdit .profileContainer .imgContainer {
+.profileEdit .profileContainer #imgContainer {
   border: 3px solid var(--lightGreen);
   width: 20em;
   height: 20em;
   overflow: hidden;
   border-radius: 100em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#profileEdit .profileContainer .imgContainer img {
-  width: 100%;
-  height: 100%;
+.profileEdit .profileContainer #imgContainer img {
   object-fit: cover;
-  overflow: hidden;
+  width: 104%;
+  height: 100%;
+  padding: 0;
 }
-#profileEdit form {
+.profileEdit form {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding-top: 1em;
 }
-#profileEdit form button {
-  margin-left: 1em;
-  margin-right: 1em;
+.profileEdit form button {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
-#profileEdit form button i {
+.profileEdit form button i {
   color: #fff;
   margin-right: 0.4em;
 }
-#profileEdit form label i {
+.profileEdit form button a {
+  color: #fff;
+}
+.profileEdit form label i {
   color: #fff;
   margin-right: 0.4em;
 }
@@ -2469,6 +2475,10 @@ footer .social {
   height: 100%;
   object-fit: cover;
   overflow: hidden;
+}
+
+#installBtn {
+  display: none;
 }
 
 .details {

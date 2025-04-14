@@ -11,6 +11,7 @@
             src="<%= user.profileImg ? user.profileImg : '/assets/images/no-profile.png' %>"
             alt="Profile Picture"
             id="profileImg"
+            class="changeProfileImg"
           />
         </div>
       </div>
@@ -33,10 +34,16 @@
           accept="image/*"
           class="d-none"
         />
+        <button class="btn btn-danger">
+          <a href="/user/profile">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </a>
+        </button>
+
         <label for="profileImgInput" class="btn btn-primary">
           <i class="fa-solid fa-pen-to-square"></i> Edit
         </label>
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success" id="imgSubmit">
           <i class="fa-regular fa-circle-check"></i> Save
         </button>
       </form>
