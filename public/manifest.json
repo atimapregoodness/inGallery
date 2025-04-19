@@ -1,9 +1,9 @@
 {
   "name": "inGallery",
   "short_name": "inGallery",
-  "start_url": "/home",
+  "start_url": "https://www.ingallery.xyz/home",
   "display": "standalone",
-  "background_color": "#ffff",
+  "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "icons": [
     {

@@ -4,12 +4,26 @@
     {
       "src": "src/index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "src/admin.js",
+      "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "src/index.js"
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.ingallery.xyz"
+        }
+      ],
+      "destination": "src/admin.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "src/index.js"
     }
   ]
 }
