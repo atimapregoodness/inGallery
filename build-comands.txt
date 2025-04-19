@@ -1,0 +1,8 @@
+(1)
+
+./gradlew assembleRelease
+
+
+(2)
+
+"C:/Android/android-sdk/build-tools/34.0.0/apksigner.bat" sign --ks "C:/Users/Atimapre Goodness/Documents/my-key.jks" --ks-key-alias "my-key-alias" --out "C:/Users/Atimapre Goodness/Desktop/Dev/inGallery/app/build/outputs/apk/release/app-release.apk" "C:/Users/Atimapre Goodness/Desktop/Dev/inGallery/app/build/outputs/apk/release/app-release-unsigned.apk"

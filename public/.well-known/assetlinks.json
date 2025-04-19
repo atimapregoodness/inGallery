@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "xyz.ingallery.twa",
+      "sha256_cert_fingerprints": [
+        "5B:D9:E3:F8:0E:AA:44:CD:D6:D2:D9:D6:2E:D7:97:6A:2A:95:2B:1A:2C:99:BC:E5:F0:97:2D:81:A9:95:21:AE"
+      ]
+    }
+  }
+]

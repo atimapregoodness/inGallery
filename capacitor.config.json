@@ -1,0 +1,6 @@
+{
+  "appId": "xyz.ingallery.twa",
+  "appName": "inGallery",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
