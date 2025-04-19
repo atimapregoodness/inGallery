@@ -1,10 +1,10 @@
 {
   "name": "inGallery",
   "short_name": "inGallery",
-  "start_url": "https://www.ingallery.xyz/home",
-  "display": "standalone",   // This ensures your app opens in standalone mode without the Chrome UI
-  "background_color": "#ffffff",  // This is the background color for your app
-  "theme_color": "#000000",  // This is the color for the status bar and Chrome toolbar (you can choose another color)
+  "start_url": "/home",
+  "display": "standalone",   // Ensures your app opens in standalone mode without the Chrome UI
+  "background_color": "#ffffff",  // Background color for the app
+  "theme_color": "#000000",  // Theme color for status bar and Chrome toolbar
   "icons": [
     {
       "src": "/assets/icons/icon-192x192.png",
@@ -26,5 +26,8 @@
       "sizes": "96x96",
       "type": "image/png"
     }
-  ]
+  ],
+  "scope": "/",
+  "start_url": "/home", // Adjust the start URL to reflect the correct entry point
+  "orientation": "portrait" // Optional: Lock the app to portrait mode if needed
 }
