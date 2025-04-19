@@ -4,6 +4,7 @@
   "name": "inGallery",
   "launcherName": "inGallery",
   "display": "standalone",
+"display_override": ["standalone", "minimal-ui"],
   "themeColor": "#FFFFFF",
   "themeColorDark": "#000000",
   "navigationColor": "#000000",
@@ -12,7 +13,7 @@
   "navigationDividerColorDark": "#000000",
   "backgroundColor": "#FFFFFF",
   "enableNotifications": true,
-  "startUrl": "/home/",
+  "startUrl": "https://www.ingallery.xyz/home",
   "iconUrl": "https://ingallery.xyz/assets/icons/icon-512x512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
