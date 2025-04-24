@@ -19,14 +19,14 @@ exports.getDashboard = async (req, res) => {
 
       const numberOfImgs = images.length;
 
-      res.render("user/acct/dashboard", {
+      res.render("user/dashboard", {
         userDetails,
         imgDetails,
         numberOfImgs,
       });
     } catch (err) {
       req.flash("error", `${err.message}`);
-      res.render("user/acct/dashboard");
+      res.render("user/dashboard");
     }
   } else {
     req.flash("error", "Please login first");
@@ -42,7 +42,7 @@ exports.getDashboardImages = async (req, res) => {
 
     const isPublished = await PublishImg.findById(id).populate("user");
 
-    res.render("user/acct/imgPreview", { imgs, isPublished });
+    res.render("user/imgPreview", { imgs, isPublished });
   } else {
     req.flash("error", "Please login first");
     res.redirect("/auth/login");
@@ -51,7 +51,7 @@ exports.getDashboardImages = async (req, res) => {
 
 exports.getUpload = async (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("user/acct/upload");
+    res.render("user/upload");
   } else {
     req.flash("error", "Please login first");
     res.redirect("/auth/login");

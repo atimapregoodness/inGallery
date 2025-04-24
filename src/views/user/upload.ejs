@@ -1,7 +1,7 @@
 <title>Dashboard - inGallery</title>
 <%- layout('layout/userBoilerplate') %>
 <div class="bodyContainer">
-  <%-include('../../partials/sideBar') %>
+  <%-include('../partials/sideBar') %>
   <form
     action="/user/upload"
     method="post"
@@ -9,7 +9,7 @@
     id="uploadForm"
   >
     <h1 id="uploadHeader">Upload a Image</h1>
-    <%- include('../../partials/err') %>
+    <%- include('../partials/err') %>
     <div class="container2">
       <div class="first">
         <div class="input" id="imgInput">

@@ -16,7 +16,7 @@ exports.getLogin = (req, res) => {
     return res.redirect("/user/dashboard");
   }
 
-  res.render("user/auth/login", {
+  res.render("auth/login", {
     email: "",
     password: "",
     success: req.flash("success"),
@@ -29,7 +29,7 @@ exports.postLogin = async (req, res, next) => {
   const { error } = validateLogin(req.body);
 
   const renderLogin = () => {
-    return res.render("user/auth/login", {
+    return res.render("auth/login", {
       email,
       password,
       success: req.flash("success"),
@@ -111,7 +111,7 @@ exports.getSignup = (req, res) => {
     return res.redirect("/user/dashboard");
   }
 
-  res.render("user/auth/signup", {
+  res.render("auth/signup", {
     username: "",
     email: "",
     password: "",
@@ -126,7 +126,7 @@ exports.postSignup = async (req, res) => {
   const { error } = validateSignup(req.body);
 
   const renderSignup = () => {
-    return res.render("user/auth/signup", {
+    return res.render("auth/signup", {
       username,
       email,
       password,

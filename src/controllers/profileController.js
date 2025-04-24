@@ -13,7 +13,7 @@ exports.getProfile = async (req, res) => {
   }
   const user = req.user;
   console.log(user);
-  res.render("user/acct/profile", { user });
+  res.render("user/profile", { user });
 };
 
 exports.getEditProfile = async (req, res) => {
@@ -22,7 +22,7 @@ exports.getEditProfile = async (req, res) => {
     return res.redirect("/auth/login");
   }
   const user = req.user;
-  res.render("user/acct/editProfile", { user });
+  res.render("user/editProfile", { user });
 };
 
 exports.postEditProfile = async (req, res) => {

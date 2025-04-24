@@ -27,11 +27,11 @@ exports.getWallet = async (req, res) => {
   );
   const transactions = wallet.transactions;
 
-  req.locals.transactions = transactions;
-  req.locals.iconMap = iconMap;
-  req.locals.wallet = wallet;
+  res.locals.transactions = transactions;
+  res.locals.iconMap = iconMap;
+  res.locals.wallet = wallet;
 
-  res.render("user/acct/wallet", { wallet, transactions, iconMap });
+  res.render("user/wallet", { wallet, transactions, iconMap });
 };
 
 // Conversion rate (1 point = 1 USDT) - Change this if needed
