@@ -3,3 +3,11 @@
 /package-lock.json
 /package.json
 /.git
+/dist
+/build
+/.next
+/out
+/coverage
+*.log
+.env
+.env.*

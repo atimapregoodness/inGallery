@@ -14,7 +14,10 @@ const userSchema = new Schema({
     required: [true, "Email cannot be blank"],
     unique: true,
   },
-
+  isAdmin: {
+    type: Boolean,
+    default: false, // Make sure regular users aren't admins by default
+  },
   uploadedImages: [
     {
       type: mongoose.Schema.Types.ObjectId,

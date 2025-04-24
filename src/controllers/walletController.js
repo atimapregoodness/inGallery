@@ -27,6 +27,10 @@ exports.getWallet = async (req, res) => {
   );
   const transactions = wallet.transactions;
 
+  req.locals.transactions = transactions;
+  req.locals.iconMap = iconMap;
+  req.locals.wallet = wallet;
+
   res.render("user/acct/wallet", { wallet, transactions, iconMap });
 };
 
@@ -35,7 +39,7 @@ const {
   addConvert,
   addTransaction,
   withdrawAddTransaction,
-} = require("../services/txsService");
+} = require("../routes/user/services/txsService");
 
 exports.postConvert = async (req, res) => {
   const { userId, amount } = req.body;

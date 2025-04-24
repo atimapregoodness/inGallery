@@ -263,7 +263,7 @@ button {
 }
 
 .trueDisplay {
-  display: block;
+  display: flex;
 }
 
 button {
@@ -655,9 +655,11 @@ nav .hamborger .itemsContainer {
   background-color: var(--backgroundColor);
   backdrop-filter: var(--blur1);
   -webkit-backdrop-filter: var(--blur1);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 0.3em;
   padding: 0.5em;
+}
+nav .hamborger .itemsContainer #profileList {
+  width: 20em;
 }
 nav .hamborger .itemsContainer .imgContainer {
   display: flex;
@@ -2397,7 +2399,7 @@ footer .social {
 
 #profileImg {
   width: 150px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .profileEdit {
@@ -2426,7 +2428,7 @@ footer .social {
   justify-content: center;
 }
 .profileEdit .profileContainer #imgContainer img {
-  object-fit: cover;
+  object-fit: fill;
   width: 104%;
   height: 100%;
   padding: 0;
@@ -2513,6 +2515,131 @@ footer .social {
 
 .installOff {
   display: block;
+}
+
+.notification {
+  padding-top: 0.4em;
+  padding-left: 1em;
+  margin: 0;
+}
+.notification button {
+  position: relative;
+  border: var(--border);
+  border-radius: 5em;
+}
+.notification button #notificationBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.notification .noticeBox {
+  position: absolute;
+  top: 5em;
+  width: 20.5em;
+  height: 90vh;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+.notification .noticeBox #myTabContent {
+  margin-top: 0.5em;
+  border: var(--border);
+  border-radius: 1em;
+  display: block;
+  height: 75vh;
+  width: 100%;
+  background-color: var(--backgroundColor);
+}
+.notification .noticeBox .msgContainer {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.notification .noticeBox .msgContainer ul {
+  border: var(--border);
+  border-radius: 1em;
+  display: block;
+  background-color: var(--backgroundColor);
+  border: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0;
+  padding: 0.5em;
+  width: 100%;
+  border: var(--border);
+}
+.notification .noticeBox .msgContainer ul li {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 4em;
+}
+.notification .noticeBox .msgContainer ul li:hover {
+  background: none;
+}
+.notification .noticeBox .msgContainer ul button {
+  background: none;
+  color: var(--color);
+  transition: var(--transition);
+  padding-bottom: 1em;
+  width: 5em;
+  border: none;
+  display: flex;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.notification .noticeBox .msgContainer ul button i {
+  font-size: 20px;
+  color: var(--color);
+}
+.notification .noticeBox .msgContainer ul button i:hover {
+  color: var(--lightGreen);
+}
+.notification .noticeBox .msgContainer #myTabs {
+  padding: 0.5em;
+}
+.notification .noticeBox .msgContainer li .active {
+  border-radius: 4em;
+  color: var(--lightGreen);
+  position: relative;
+}
+.notification .noticeBox .msgContainer li .active i {
+  color: var(--lightGreen);
+}
+.notification .noticeBox .msgContainer li .active::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2em;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background-color: var(--lightGreen);
+  border-radius: 1em;
+}
+.notification .activeMessages {
+  transform: translateX(-70%);
+  transition: var(--transition);
 }
 
 @media screen and (max-width: 600px) {

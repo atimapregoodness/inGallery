@@ -23,6 +23,8 @@ node_modules/
 dist/
 *.log
 
+/build-comands.txt
+
 # System-specific files
 .DS_Store  # macOS specific
 Thumbs.db  # Windows specific
@@ -32,3 +34,5 @@ Thumbs.db  # Windows specific
 *.bak  # Backup files
 *.swp  # Swap files
 *.swo  # Swap files
+
+.vscode

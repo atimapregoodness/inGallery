@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Wallet = require("../models/wallet"); // Adjust path to your model
+const Wallet = require("../../../models/wallet"); // Adjust path to your model
 
 // Function to add a transaction
 async function addTransaction(userId, amount, currency, type) {

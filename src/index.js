@@ -10,12 +10,12 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const moment = require("moment");
 const ejsMate = require("ejs-mate");
-const routes = require("./routes");
+const userRoutes = require("./routes/user");
+const adminRoutes = require("./routes/admin");
 const appError = require("./utils/appError");
 
 const app = express();
@@ -46,8 +46,9 @@ app.use(express.static(path.join(__dirname, "../dist")));
 app.use(express.static(path.join(__dirname, "../zohoverify")));
 app.use(morgan(":method :url :status :response-time ms - [:date]"));
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig));
 app.use(flash());
 app.use(methodOverride("_method"));
@@ -55,7 +56,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, "../public")));
-
 app.use(
   "/bootstrap",
   express.static(path.join(__dirname, "../node_modules/bootstrap/dist"))
@@ -88,22 +88,45 @@ app.use((req, res, next) => {
   next();
 });
 
-// 🟢 6. ROUTES
-app.use("/", routes);
+// 🟢 6. DETECT ADMIN CONTEXT (subdomain or path)
+app.use((req, res, next) => {
+  const host = req.headers.host.split(":")[0];
+  const isLocalhost = host === "localhost" || host === "127.0.0.1";
 
-app.get("/back", (req, res) => {
-  res.redirect(req.session.previousUrl);
+  req.isAdminSubdomain = host.startsWith("admin.") && !isLocalhost;
+  req.isAdminPath = req.originalUrl.startsWith("/admin");
+
+  next();
 });
 
-// 🟢 7. ERROR HANDLING
-app.all("*", (req, res, next) => next(new appError("Page not found", 404)));
+// 🟢 7. ROUTES
+// If running in production with subdomain
+app.use((req, res, next) => {
+  if (req.isAdminSubdomain) {
+    return adminRoutes(req, res, next);
+  } else {
+    return userRoutes(req, res, next);
+  }
+});
 
-app.use((err, req, res, next) => {
+// If on localhost, support /admin path
+app.use("/dashboard", adminRoutes);
+app.use("/", userRoutes);
+
+// 🟢 8. BACK BUTTON SUPPORT
+app.get("/back", (req, res) => {
+  res.redirect(req.session.previousUrl || "/");
+});
+
+// 🟢 9. ERROR HANDLING
+app.all("*", (_req, _res, next) => next(new appError("Page not found", 404)));
+
+app.use((err, _req, res, _next) => {
   console.error(`[ERROR] ${err.message}`);
   res.status(err.status || 500).render("error/errorPage", { err });
 });
 
-// 🟢 8. START SERVER
+// 🟢 10. START SERVER
 app.listen(3000, () => {
-  console.log("🚀 Server running on http://localhost:3000");
+  console.log("🚀 Server running at http://localhost:3000");
 });

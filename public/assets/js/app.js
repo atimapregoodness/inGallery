@@ -301,6 +301,28 @@ document?.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  const noticeIcons = document.querySelectorAll("#noticeIcon");
+  const noticeBox = document.querySelector(".noticeBox");
+
+  if (noticeIcons.length && noticeBox) {
+    noticeIcons.forEach((icon) => {
+      icon.addEventListener("click", (e) => {
+        e.stopPropagation(); // prevent body click from firing
+        noticeBox.classList.toggle("activeMessages");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      const isClickInsideBox = noticeBox.contains(e.target);
+      const isClickOnIcon = Array.from(noticeIcons).some((icon) =>
+        icon.contains(e.target)
+      );
+
+      if (!isClickInsideBox && !isClickOnIcon) {
+        noticeBox.classList.remove("activeMessages");
+      }
+    });
+  }
 
   // Profile Image Preview
   const profileImgInput = document.querySelector("#profileImgInput");
