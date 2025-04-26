@@ -46,7 +46,6 @@ app.use(express.static(path.join(__dirname, "../dist")));
 app.use(express.static(path.join(__dirname, "../zohoverify")));
 app.use(morgan(":method :url :status :response-time ms - [:date]"));
 app.use(cors());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionConfig));
@@ -93,25 +92,32 @@ app.use((req, res, next) => {
   const host = req.headers.host.split(":")[0];
   const isLocalhost = host === "localhost" || host === "127.0.0.1";
 
-  req.isAdminSubdomain = host.startsWith("admin.") && !isLocalhost;
-  req.isAdminPath = req.originalUrl.startsWith("/admin");
+  req.isAdminSubdomain = host.startsWith("admin.") && !isLocalhost; // e.g., admin.ingallery.xyz
+  req.isAdminPath = req.originalUrl.startsWith("/dashboard");
 
+  console.log(
+    `[Request Host]: ${host} | isAdminSubdomain: ${req.isAdminSubdomain}`
+  );
   next();
 });
 
 // 🟢 7. ROUTES
-// If running in production with subdomain
+
+// Use subdomain-based routes first (e.g., admin.ingallery.xyz)
 app.use((req, res, next) => {
   if (req.isAdminSubdomain) {
-    return adminRoutes(req, res, next);
+    return adminRoutes(req, res, next); // Handle with admin routes
   } else {
-    return userRoutes(req, res, next);
+    return userRoutes(req, res, next); // Default to user routes
   }
 });
 
-// If on localhost, support /admin path
+// On localhost or fallback, use path-based routing
 app.use("/dashboard", adminRoutes);
 app.use("/", userRoutes);
+
+// const createAdminRoute = require("./routes/api/createAdmin");
+// app.use("/api/admin/create", createAdminRoute);
 
 // 🟢 8. BACK BUTTON SUPPORT
 app.get("/back", (req, res) => {
@@ -119,14 +125,15 @@ app.get("/back", (req, res) => {
 });
 
 // 🟢 9. ERROR HANDLING
-app.all("*", (_req, _res, next) => next(new appError("Page not found", 404)));
+app.all("*", (req, res, next) => next(new appError("Page not found", 404)));
 
-app.use((err, _req, res, _next) => {
+app.use((err, req, res, next) => {
   console.error(`[ERROR] ${err.message}`);
   res.status(err.status || 500).render("error/errorPage", { err });
 });
 
 // 🟢 10. START SERVER
-app.listen(3000, () => {
-  console.log("🚀 Server running at http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

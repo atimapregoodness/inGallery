@@ -36,3 +36,4 @@ Thumbs.db  # Windows specific
 *.swo  # Swap files
 
 .vscode
+.vercel

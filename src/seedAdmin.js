@@ -1,10 +1,8 @@
-// seedAdmin.js
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const User = require("./models/user");
 
 const seedAdmin = async () => {
@@ -22,16 +20,16 @@ const seedAdmin = async () => {
       return mongoose.disconnect();
     }
 
-    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 12);
-
+    // Create new admin user using passport-local-mongoose method
     const newAdmin = new User({
       username: "Admin",
       email: process.env.ADMIN_EMAIL,
-      password: hashedPassword,
       isAdmin: true,
     });
 
-    await newAdmin.save();
+    // Use passport-local-mongoose to register and hash the password
+    await User.register(newAdmin, process.env.ADMIN_PASSWORD);
+
     console.log("✅ Admin user created successfully!");
   } catch (err) {
     console.error("❌ Error creating admin user:", err);
