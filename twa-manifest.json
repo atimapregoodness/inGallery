@@ -3,15 +3,15 @@
   "host": "ingallery.xyz",
   "name": "inGallery",
   "launcherName": "inGallery",
-  "display": "standalone",  // Ensure 'standalone' for full-screen behavior
-  "display_override": ["standalone"],  // Force 'standalone' mode, overriding any other display modes
-  "themeColor": "#000000",  // Dark color to match the status bar and hide chrome UI
-  "themeColorDark": "#000000",  // Dark color for dark mode status bar
-  "navigationColor": "#000000",  // Color of the top navigation bar for light mode
-  "navigationColorDark": "#000000",  // Dark mode color for the top navigation bar
-  "navigationDividerColor": "#000000",  // Divider color for the navigation bar
-  "navigationDividerColorDark": "#000000",  // Dark mode divider color
-  "backgroundColor": "#FFFFFF",  // App background color (adjust as needed)
+  "display": "standalone",
+  "display_override": ["standalone"],
+  "themeColor": "#000000",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#FFFFFF",
   "enableNotifications": true,
   "startUrl": "https://www.ingallery.xyz/home",
   "iconUrl": "https://ingallery.xyz/assets/icons/icon-512x512.png",

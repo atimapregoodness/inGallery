@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
-const Wallet = require("../../../models/wallet"); // Adjust path to your model
+const Wallet = require("../models/wallet"); // Adjust path to your model
+const PersonalMsg = require("../models/personalMsg"); // Adjust path to your model
+const User = require("../models/user"); // Adjust path to your model
+const CommMsg = require("../models/commMsg"); // Adjust path to your model
 
 // Function to add a transaction
-async function addTransaction(userId, amount, currency, type) {
+async function addTransaction(userId, amount, currency, type, imgUser) {
   if (!userId || amount <= 0) {
     return { success: false, message: "Invalid transaction details" };
   }
@@ -54,6 +57,43 @@ async function addTransaction(userId, amount, currency, type) {
       { new: true }
     ).populate("transactions");
 
+    const user = await User.findById(userId).populate("personalMsg");
+    // const imgUser = await User.findById(userId).populate("uploadedImages");
+
+    let messageBody;
+
+    switch (type) {
+      case "withdrawal":
+        messageBody = `Your withdrawal request of ${amount} ${currency} has been processed successfully.`;
+        break;
+      case "view-reward":
+        messageBody = `You have earned ${amount} IGP for a new view on your image by ${
+          imgUser.username || "a user"
+        }.`;
+        break;
+      case "download-reward":
+        messageBody = `You have earned ${amount} IGP for a new download of your image by ${
+          imgUser.username || "a user"
+        }.`;
+        break;
+      case "transfer":
+        messageBody = `You have successfully transferred ${amount}${currency} to another user.`;
+        break;
+      default:
+        messageBody = `A transaction of type ${type} for ${amount} ${currency} has been completed.`;
+    }
+
+    const personalMsg = new PersonalMsg({
+      title: `${type.charAt(0).toUpperCase() + type.slice(1)}`,
+      body: messageBody,
+      user: userId,
+    });
+
+    await user.personalMsg.push(personalMsg._id);
+
+    await user.save();
+    await personalMsg.save();
+
     return {
       success: true,
       message: "Transaction completed successfully",
@@ -103,15 +143,15 @@ async function addConvert(userId, amount, conversionRate) {
                 txId: pointsTxId,
                 amount: amount,
                 currency: "points",
-                type: "conversion-deduction", // Updated type to indicate deduction
+                type: "conversion-deduction",
                 status: "successful",
                 createdAt: new Date(),
               },
               {
                 txId: usdtTxId,
-                amount: usdtAmount, // Adding USDT
+                amount: usdtAmount,
                 currency: "usdt",
-                type: "conversion-credit", // Updated type to indicate credit
+                type: "conversion-credit",
                 status: "successful",
                 createdAt: new Date(),
               },
@@ -121,6 +161,35 @@ async function addConvert(userId, amount, conversionRate) {
       },
       { new: true }
     );
+
+    const user = await User.findById(userId).populate("personalMsg");
+
+    // Create messages for the user
+    const deductionMessageBody = `Your account has been debited with ${amount} IGP for conversion.`;
+    const creditMessageBody = `Your account has been credited with ${usdtAmount.toFixed(
+      2
+    )} USDT after conversion.`;
+
+    const deductionPersonalMsg = new PersonalMsg({
+      title: "IGP Conversion - Deduction",
+      body: deductionMessageBody,
+      user: userId,
+    });
+
+    const creditPersonalMsg = new PersonalMsg({
+      title: "IGP Conversion - Credit",
+      body: creditMessageBody,
+      user: userId,
+    });
+
+    await user.personalMsg.push(deductionPersonalMsg._id);
+    await user.personalMsg.push(creditPersonalMsg._id);
+
+    await user.save();
+    await deductionPersonalMsg.save();
+    await creditPersonalMsg.save();
+
+    await user.save();
 
     return {
       success: true,

@@ -2545,20 +2545,23 @@ footer .social {
 }
 .notification .noticeBox {
   position: absolute;
+  z-index: 1000;
+  -webkit-backdrop-filter: var(--blur1);
+  backdrop-filter: var(--blur1);
+  background-color: var(--blurBg);
+  border: var(--border);
+  border-radius: 1em;
   top: 5em;
   width: 20.5em;
-  height: 90vh;
+  height: 80vh;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 }
 .notification .noticeBox #myTabContent {
   margin-top: 0.5em;
-  border: var(--border);
-  border-radius: 1em;
   display: block;
   height: 75vh;
   width: 100%;
-  background-color: var(--backgroundColor);
 }
 .notification .noticeBox .msgContainer {
   width: 100%;
@@ -2569,17 +2572,11 @@ footer .social {
   align-items: center;
 }
 .notification .noticeBox .msgContainer ul {
-  border: var(--border);
-  border-radius: 1em;
-  display: block;
-  background-color: var(--backgroundColor);
-  border: none;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 0;
+  grid-template-columns: 1fr 1fr;
   padding: 0.5em;
   width: 100%;
-  border: var(--border);
+  border-bottom: var(--border);
 }
 .notification .noticeBox .msgContainer ul li {
   margin: 0;
@@ -2616,8 +2613,17 @@ footer .social {
 .notification .noticeBox .msgContainer ul button i:hover {
   color: var(--lightGreen);
 }
+.notification .noticeBox .msgContainer #myTabContent {
+  top: 4em;
+  padding: 0.5em;
+  overflow: auto;
+}
 .notification .noticeBox .msgContainer #myTabs {
   padding: 0.5em;
+}
+.notification .noticeBox .msgContainer .firstLink {
+  border-right: var(--border);
+  border-radius: 0;
 }
 .notification .noticeBox .msgContainer li .active {
   border-radius: 4em;

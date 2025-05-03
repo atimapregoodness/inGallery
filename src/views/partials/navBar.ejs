@@ -14,6 +14,7 @@
           <i class="icon moon"><i class="fa-solid fa-moon"></i></i>
         </span>
       </label>
+      <% if (currentUser) {%>
       <div class="notification">
         <button id="noticeIcon" class="btn position-relative">
           <i class="fa-solid fa-bell"></i>
@@ -23,6 +24,7 @@
           </span>
         </button>
       </div>
+      <% } %>
       <div class="navMenu">
         <span><i class="fa-solid fa-bars"></i></span>
       </div>
@@ -127,6 +129,7 @@
           </span>
         </label>
       </div>
+      <% if (currentUser) {%>
       <div class="notification">
         <button id="noticeIcon" class="btn position-relative noticeIcon">
           <i class="fa-solid fa-bell"></i>
@@ -138,30 +141,15 @@
         <div class="noticeBox" id="noticeBox">
           <div class="msgContainer">
             <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item" role="presentation">
+              <li class="nav-item firstLink" role="presentation">
                 <button
                   class="nav-link active"
-                  id="alerts-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#alerts"
-                  type="button"
-                  role="tab"
-                >
-                  <i class="fa-solid fa-bell"></i>
-                  <span id="notificationBadge">
-                    3
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-lin k"
                   id="personal-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#personal"
                   type="button"
                   role="tab"
+                  aria-selected="true"
                 >
                   <i class="fa-solid fa-user"></i>
                   <span id="notificationBadge">
@@ -178,6 +166,7 @@
                   data-bs-target="#communities"
                   type="button"
                   role="tab"
+                  aria-selected="false"
                 >
                   <i class="fa-solid fa-users"></i>
                   <span id="notificationBadge">
@@ -190,18 +179,20 @@
 
             <!-- Tabs Content -->
             <div class="tab-content" id="myTabContent">
-              <!-- Alert Content -->
+              <!-- Annoucement Content -->
               <div
                 class="tab-pane fade show active"
-                id="alerts"
+                id="personal"
                 role="tabpanel"
               >
-                <h1>Alerts</h1>
-              </div>
-
-              <!-- Annoucement Content -->
-              <div class="tab-pane fade" id="personal" role="tabpanel">
-                <h1>Personal</h1>
+                <%personalMsg.forEach(msg => { %>
+                <div class="msgContainer">
+                  <h4><%= msg.body %></h4>
+                  <h5>
+                    <%= moment(msg.createdAt).format("MMMM Do YYYY, h:mm A") %>
+                  </h5>
+                </div>
+                <% }) %>
               </div>
 
               <!-- Activity Content -->
@@ -212,6 +203,7 @@
           </div>
         </div>
       </div>
+      <% } %>
     </ul>
   </div>
 </nav>

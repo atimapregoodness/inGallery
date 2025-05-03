@@ -27,7 +27,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("✅ Database connected successfully"))
-  .catch((err) => console.error("❌ Database connection failed", err));
+  .catch((err) => console.error("❌ Database con  nection failed", err));
 
 // 🟢 2. SESSION CONFIGURATION
 const sessionConfig = {
@@ -64,6 +64,10 @@ app.use(
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+const personalMsgMiddleware = require("./middleware/personalMsg");
+
+app.use(personalMsgMiddleware);
 
 // 🟢 5. GLOBAL VARIABLES
 app.use((req, res, next) => {

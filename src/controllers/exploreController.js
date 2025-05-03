@@ -2,7 +2,9 @@ const PublishImg = require("../models/publish");
 const UploadImg = require("../models/upload");
 const appError = require("../utils/appError");
 const Wallet = require("../models/wallet");
-const { addTransaction } = require("../routes/user/services/txsService");
+const PersonalMsg = require("../models/personalMsg");
+
+const { addTransaction } = require("../services/txsService");
 
 exports.getExplore = async (req, res) => {
   const { search } = req.query;
@@ -63,13 +65,22 @@ exports.getImg = async (req, res, next) => {
       const amount = 10;
       const currency = "points";
 
+      const imgUser = findImg;
       // Check if user is NOT the owner and has NOT already viewed the image
       if (
         userId !== findImgId &&
         !findImg.views.includes(user._id.toString())
       ) {
         // Reward the user and add them to the views list
-        await addTransaction(findImg.user._id, amount, currency, "view-reward");
+
+        await addTransaction(
+          findImg.user._id,
+          amount,
+          currency,
+          "view-reward",
+          imgUser
+        );
+
         findImg.views.push(user._id);
 
         // Save the updated image view list

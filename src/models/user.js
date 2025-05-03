@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Joi = require("joi");
 const passportLocalMongoose = require("passport-local-mongoose");
+const PersonalMsg = require("./personalMsg");
 
 const userSchema = new Schema({
   username: {
@@ -46,6 +47,12 @@ const userSchema = new Schema({
     type: String,
     default: "/assets/images/no-profile.png",
   },
+  personalMsg: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "PersonalMsg",
+    },
+  ],
   createdAt: { type: Date, default: Date.now },
 });
 

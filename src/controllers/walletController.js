@@ -20,18 +20,29 @@ const iconMap = {
 };
 
 exports.getWallet = async (req, res) => {
-  const user = req.user;
+  try {
+    const user = req.user;
+    const wallet = await Wallet.findOne({ user: user._id }).populate(
+      "transactions"
+    );
 
-  const wallet = await Wallet.findOne({ user: user._id }).populate(
-    "transactions"
-  );
-  const transactions = wallet.transactions;
+    if (!wallet) {
+      req.flash("error", "Wallet not found.");
+      return res.redirect("/user/dashboard");
+    }
+    const transactions = wallet.transactions;
 
-  res.locals.transactions = transactions;
-  res.locals.iconMap = iconMap;
-  res.locals.wallet = wallet;
+    res.locals.transactions = transactions;
+    res.locals.iconMap = iconMap;
+    res.locals.wallet = wallet;
 
-  res.render("user/wallet", { wallet, transactions, iconMap });
+    res.render("user/wallet", { wallet, transactions, iconMap });
+    // res.render("user/wallet");
+  } catch (error) {
+    console.error(error);
+    req.flash("error", "Server error. Please try again.");
+    res.redirect("/user/dashboard");
+  }
 };
 
 // Conversion rate (1 point = 1 USDT) - Change this if needed
@@ -39,7 +50,7 @@ const {
   addConvert,
   addTransaction,
   withdrawAddTransaction,
-} = require("../routes/user/services/txsService");
+} = require("../services/txsService");
 
 exports.postConvert = async (req, res) => {
   const { userId, amount } = req.body;
