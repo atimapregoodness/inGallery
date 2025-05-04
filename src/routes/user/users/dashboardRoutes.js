@@ -7,20 +7,20 @@ const {
   publishImg,
   getDashboard,
   deleteImg,
-} = require("../../../controllers/dashboardController");
+} = require("../../../controllers/user/dashboardController");
 
 const {
   getWallet,
   postConvert,
   editWalletAddress,
   postWithdraw,
-} = require("../../../controllers/walletController");
+} = require("../../../controllers/user/walletController");
 
 const {
   getProfile,
   getEditProfile,
   postEditProfile,
-} = require("../../../controllers/profileController");
+} = require("../../../controllers/user/profileController");
 
 const multer = require("multer");
 

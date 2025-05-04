@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getExplore, getImg } = require("../../controllers/exploreController");
+const { getExplore, getImg } = require("../../controllers/user/exploreController");
 const wrapAsync = require("../../utils/wrapAssync");
 
 router.get("/", wrapAsync(getExplore));

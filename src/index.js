@@ -67,7 +67,10 @@ app.set("views", path.join(__dirname, "views"));
 
 const personalMsgMiddleware = require("./middleware/personalMsg");
 
+const commMsgMiddleware = require("./middleware/commMsg");
+
 app.use(personalMsgMiddleware);
+app.use(commMsgMiddleware);
 
 // 🟢 5. GLOBAL VARIABLES
 app.use((req, res, next) => {
@@ -91,33 +94,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// 🟢 6. DETECT ADMIN CONTEXT (subdomain or path)
-app.use((req, res, next) => {
-  const host = req.headers.host.split(":")[0];
-  const isLocalhost = host === "localhost" || host === "127.0.0.1";
-
-  req.isAdminSubdomain = host.startsWith("admin.") && !isLocalhost; // e.g., admin.ingallery.xyz
-  req.isAdminPath = req.originalUrl.startsWith("/dashboard");
-
-  console.log(
-    `[Request Host]: ${host} | isAdminSubdomain: ${req.isAdminSubdomain}`
-  );
-  next();
-});
-
-// 🟢 7. ROUTES
-
-// Use subdomain-based routes first (e.g., admin.ingallery.xyz)
-app.use((req, res, next) => {
-  if (req.isAdminSubdomain) {
-    return adminRoutes(req, res, next); // Handle with admin routes
-  } else {
-    return userRoutes(req, res, next); // Default to user routes
-  }
-});
 
 // On localhost or fallback, use path-based routing
-app.use("/dashboard", adminRoutes);
+app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
 
 // const createAdminRoute = require("./routes/api/createAdmin");

@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 
 const commMsg = new mongoose.Schema({
-  title: String,
-  body: String,
+  title: {
+    type: String,
+    required: true
+  },
+  body: {
+    type: String,
+    required: true
+  },
 
   seen: {
     type: Boolean,

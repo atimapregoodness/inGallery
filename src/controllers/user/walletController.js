@@ -1,12 +1,12 @@
 const multer = require("multer");
-const { storage } = require("../cloudinary");
-const UploadImg = require("../models/upload");
-const PublishImg = require("../models/publish");
+const { storage } = require("../../cloudinary");
+const UploadImg = require("../../models/upload");
+const PublishImg = require("../../models/publish");
 const upload = multer({ storage });
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
-const Wallet = require("../models/wallet");
-const isValidBSCAddress = require("../validations/usdtWalletValidation");
+const Wallet = require("../../models/wallet");
+const isValidBSCAddress = require("../../validations/usdtWalletValidation");
 
 const iconMap = {
   "view-reward": "fa-arrow-down",
@@ -50,7 +50,7 @@ const {
   addConvert,
   addTransaction,
   withdrawAddTransaction,
-} = require("../services/txsService");
+} = require("../../services/txsService");
 
 exports.postConvert = async (req, res) => {
   const { userId, amount } = req.body;

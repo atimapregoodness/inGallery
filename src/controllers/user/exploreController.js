@@ -1,10 +1,10 @@
-const PublishImg = require("../models/publish");
-const UploadImg = require("../models/upload");
-const appError = require("../utils/appError");
-const Wallet = require("../models/wallet");
-const PersonalMsg = require("../models/personalMsg");
+const PublishImg = require("../../models/publish");
+const UploadImg = require("../../models/upload");
+const appError = require("../../utils/appError");
+const Wallet = require("../../models/wallet");
+const PersonalMsg = require("../../models/personalMsg");
 
-const { addTransaction } = require("../services/txsService");
+const { addTransaction } = require("../../services/txsService");
 
 exports.getExplore = async (req, res) => {
   const { search } = req.query;

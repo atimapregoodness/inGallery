@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const User = require("../models/user");
-const Wallet = require("../models/wallet");
+const User = require("../../models/user");
+const Wallet = require("../../models/wallet");
 const {
   validateSignup,
   validateLogin,
-} = require("../validations/userValidation");
+} = require("../../validations/userValidation");
 
 // GET Login Page
 exports.getLogin = (req, res) => {

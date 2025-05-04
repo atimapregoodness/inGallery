@@ -20,18 +20,30 @@ select {
   background-color: var(--backgroundColor);
 }
 
+/* Default scrollbar styles for non-webkit browsers */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--backgroundColor);
+}
+
 ::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--lightGray);
+  background-color: var(--color);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--lightGray);
-  border-radius: 0.7em;
+  background: linear-gradient(180deg, var(--border) var(--backgroundColor));
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--border) var(--backgroundColor));
 }
 
 input:-webkit-autofill,
@@ -3002,8 +3014,21 @@ footer {
       width: 100%;
     }
 
+    #noMsg {
+      font-size: 15px;
+      align-items: center;
+      color: var(--color);
+      font-style: italic;
+      display: flex;
+      justify-self: center;
+      align-self: center;
+      flex-direction: column;
+    }
+
     .msgContainer {
       width: 100%;
+      height: 100%;
+
       padding: 0;
       margin: 0;
       display: flex;
@@ -3054,6 +3079,50 @@ footer {
             &:hover {
               color: var(--lightGreen);
             }
+          }
+        }
+      }
+
+      .msgContainer {
+        width: 100%;
+        padding: 1em;
+        margin-bottom: 1em;
+        border-radius: 0.5em;
+        background-color: var(--backgroundColor);
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1em;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: var(--hoverGray);
+        }
+
+        .readReceipt {
+          width: 10px;
+          height: 10px;
+          margin-top: 0.3em;
+          border-radius: 50%;
+          background-color: #31a24c; // Similar to Facebook's green
+        }
+
+        .msgContent {
+          flex: 1;
+
+          h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color);
+            margin: 0;
+          }
+
+          h5 {
+            font-size: 13px;
+            font-weight: 400;
+            color: #65676b;
+            margin: 0.3em 0 0 0;
           }
         }
       }

@@ -43,7 +43,7 @@ Welcome to **inGallery**, your go-to platform for sharing and discovering amazin
 
 ## Contact Us
 
-For support or inquiries, please reach out to our team at [surport.ingallery.xyz](mailto:customerservice.ingallery.xyz).
+For support or inquiries, please reach out to our team at [surport@ingallery.xyz](mailto:support@ingallery.xyz).
 
 ---
 

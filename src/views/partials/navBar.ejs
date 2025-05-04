@@ -134,7 +134,8 @@
         <button id="noticeIcon" class="btn position-relative noticeIcon">
           <i class="fa-solid fa-bell"></i>
           <span id="notificationBadge">
-            3
+            <%= ((personalMsg && personalMsg.length) || 0) + ((commMsg &&
+            commMsg.length) || 0) %>
             <span class="visually-hidden">unread messages</span>
           </span>
         </button>
@@ -152,10 +153,12 @@
                   aria-selected="true"
                 >
                   <i class="fa-solid fa-user"></i>
+                  <% if (personalMsg.length) {%>
                   <span id="notificationBadge">
-                    3
+                    <%= personalMsg.length %>
                     <span class="visually-hidden">unread messages</span>
                   </span>
+                  <% } %>
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -170,7 +173,7 @@
                 >
                   <i class="fa-solid fa-users"></i>
                   <span id="notificationBadge">
-                    3
+                    <%= commMsg.length %>
                     <span class="visually-hidden">unread messages</span>
                   </span>
                 </button>
@@ -185,19 +188,40 @@
                 id="personal"
                 role="tabpanel"
               >
-                <%personalMsg.forEach(msg => { %>
+                <% if(personalMsg.length) {%> <%personalMsg.forEach(msg => { %>
                 <div class="msgContainer">
-                  <h4><%= msg.body %></h4>
-                  <h5>
-                    <%= moment(msg.createdAt).format("MMMM Do YYYY, h:mm A") %>
-                  </h5>
+                  <div class="msgContent">
+                    <h4><%= msg.body %></h4>
+                    <h5>
+                      <%= moment(msg.createdAt).format("MMMM Do YYYY, h:mm A")
+                      %>
+                    </h5>
+                  </div>
+
+                  <div class="readReceipt"></div>
                 </div>
-                <% }) %>
+                <% }) %><% } else {%>
+                <h1 id="noMsg">No message here!</h1>
+                <% } %>
               </div>
 
               <!-- Activity Content -->
               <div class="tab-pane fade" id="communities" role="tabpanel">
-                <h1>communities</h1>
+                <% if(commMsg.length) {%> <%commMsg.forEach(msg => { %>
+                <div class="msgContainer">
+                  <div class="msgContent">
+                    <h4><%= msg.body %></h4>
+                    <h5>
+                      <%= moment(msg.createdAt).format("MMMM Do YYYY, h:mm A")
+                      %>
+                    </h5>
+                  </div>
+
+                  <div class="readReceipt"></div>
+                </div>
+                <% }) %><% } else {%>
+                <h1 id="noMsg">No message here!</h1>
+                <% } %>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ const {
   postSignup,
   postLogin,
   getLogout,
-} = require("../../../controllers/authController");
+} = require("../../../controllers/user/authController");
 const wrapAsync = require("../../../utils/wrapAssync");
 
 router.get("/login", wrapAsync(getLogin));
